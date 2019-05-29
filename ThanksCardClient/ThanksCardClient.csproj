@@ -58,6 +58,7 @@
     <Compile Include="ViewModels\KanshaCardViewModel.cs" />
     <Compile Include="ViewModels\KeizibanViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MypageViewModel.cs" />
     <Compile Include="ViewModels\PickupViewModel.cs" />
     <Compile Include="ViewModels\RankingViewModel.cs" />
     <Compile Include="Views\Busyo.xaml.cs">
@@ -71,6 +72,9 @@
     </Compile>
     <Compile Include="Views\Keiziban.xaml.cs">
       <DependentUpon>Keiziban.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mypage.xaml.cs">
+      <DependentUpon>Mypage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pickup.xaml.cs">
       <DependentUpon>Pickup.xaml</DependentUpon>
@@ -106,6 +110,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Mypage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pickup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

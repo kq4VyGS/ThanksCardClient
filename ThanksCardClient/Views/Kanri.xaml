@@ -6,7 +6,7 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="Kanri" Height="350" Width="525">
+        Title=" 管理" Height="350" Width="525">
     
     <Window.DataContext>
         <vm:KanriViewModel/>
@@ -33,6 +33,17 @@
     </i:Interaction.Triggers>
     
     <Grid>
+      <StackPanel>
+        <TextBlock  Height="27"   Text="ログアウト" RenderTransformOrigin="-1.72,1.6" Margin="452,0,0,0"/>
+        <TextBlock Text="ユーザー編集"/>
+        <TextBlock Text="新規登録"/>
+        <UniformGrid  Columns="2">
+          <TextBlock Text="名前：" Margin="32,0,193,0"/>
+          <TextBox Text="{Binding User.Name}" Margin="-188,0,307,0"/>
+        </UniformGrid>
+        <TextBlock Text="部署編集"/>
+        <TextBlock Text="部署登録"/>
         
+      </StackPanel>
     </Grid>
 </Window>
