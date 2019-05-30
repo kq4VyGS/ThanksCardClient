@@ -116,6 +116,112 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
+        #region Keiziban
+
+
+        private ViewModelCommand _ShowKeizibanCommand;
+
+        public ViewModelCommand ShowKeizibanCommand
+
+        {
+            get
+            {
+                if (_ShowKeizibanCommand == null)
+                {
+                    _ShowKeizibanCommand = new ViewModelCommand(ShowKeiziban);
+                }
+                return _ShowKeizibanCommand;
+            }
+        }
+
+        public void ShowKeiziban()
+        {
+            var showkeiziban = new TransitionMessage(typeof(Views.Keiziban), new MainWindowViewModel(), TransitionMode.Modal, "ShowKeiziban");
+            Messenger.Raise(showkeiziban);
+
+        }
+        #endregion
+
+        #region Pickup
+
+
+        private ViewModelCommand _ShowPickupCommand;
+
+        public ViewModelCommand ShowPickupCommand
+
+        {
+            get
+            {
+                if (_ShowPickupCommand == null)
+                {
+                    _ShowPickupCommand = new ViewModelCommand(ShowPickup);
+                }
+                return _ShowPickupCommand;
+            }
+        }
+
+        public void ShowPickup()
+        {
+            var showpickup = new TransitionMessage(typeof(Views.Pickup), new MainWindowViewModel(), TransitionMode.Modal, "ShowPickup");
+            Messenger.Raise(showpickup);
+
+        }
+        #endregion
+
+        #region ShowBusyo
+
+
+        private ViewModelCommand _ShowBusyoCommand;
+
+        public ViewModelCommand ShowBusyoCommand
+
+        {
+            get
+            {
+                if (_ShowBusyoCommand == null)
+                {
+                    _ShowBusyoCommand = new ViewModelCommand(ShowBusyo);
+                }
+                return _ShowBusyoCommand;
+            }
+        }
+
+        public void ShowBusyo()
+        {
+            var showbusyo = new TransitionMessage(typeof(Views.Busyo), new MainWindowViewModel(), TransitionMode.Modal, "ShowBusyo");
+            Messenger.Raise(showbusyo);
+
+        }
+        #endregion
+
+        #region ShowRankiing
+
+
+        private ViewModelCommand _ShowRankingCommand;
+
+        public ViewModelCommand ShowRankingCommand
+
+        {
+            get
+            {
+                if (_ShowRankingCommand == null)
+                {
+                    _ShowRankingCommand = new ViewModelCommand(ShowRanking);
+                }
+                return _ShowRankingCommand;
+            }
+        }
+
+        public void ShowRanking()
+        {
+            var showranking = new TransitionMessage(typeof(Views.Ranking), new MainWindowViewModel(), TransitionMode.Modal, "ShowRanking");
+            Messenger.Raise(showranking);
+
+        }
+        #endregion
+
+
+
         //aa
     }
 }

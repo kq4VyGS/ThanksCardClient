@@ -14,6 +14,27 @@
 
     <i:Interaction.Triggers>
 
+        <!-- MainWindowViewModel からの TransitionMessage("Keiziban") を受け取とって掲示板画面を表示する処理。ゆうき -->
+        <l:InteractionMessageTrigger MessageKey="ShowKeiziban" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
+        <!-- MainWindowViewModel からの TransitionMessage("Pickup") を受け取とってピックアップ画面を表示する処理。ゆうき -->
+        <l:InteractionMessageTrigger MessageKey="ShowPickup" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
+        <!-- MainWindowViewModel からの TransitionMessage("Busyo") を受け取とって部署画面を表示する処理。ゆうき -->
+        <l:InteractionMessageTrigger MessageKey="ShowBusyo" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
+        <!-- MainWindowViewModel からの TransitionMessage("ShowRanking") を受け取とってランキング画面を表示する処理。ゆうき -->
+        <l:InteractionMessageTrigger MessageKey="ShowRanking" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
+
         <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
         <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
         <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
@@ -38,13 +59,13 @@
             <ColumnDefinition Width="49*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2">
-            <TextBlock  Height="27"   Text="ログアウト" RenderTransformOrigin="-1.72,1.6" Margin="452,0,0,0"/>
+            <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="454,0,0,0"/>
             <UniformGrid  Columns="5">
-                <TextBlock  Height="20" Width="70"   Text="マイページ" RenderTransformOrigin="-1.72,1.6"/>
-                <TextBlock  Height="20" Width="70"   Text="掲示板" RenderTransformOrigin="-1.72,1.6"/>
-                <TextBlock  Height="20" Width="70"   Text="ピックアップ" RenderTransformOrigin="-1.72,1.6"/>
-                <TextBlock  Height="20" Width="70"   Text="部署" RenderTransformOrigin="-1.72,1.6"/>
-                <TextBlock  Height="20" Width="70"   Text="ランキング" RenderTransformOrigin="-1.72,1.6"/>
+                <Button Content="マイページ" Command="{Binding ShowMypageCommand}"/>
+                <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}"/>
+                <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}"/>
+                <Button Content="部署" Command="{Binding ShowBusyoCommand}"/>
+                <Button Content="ランキング" Command="{Binding ShowRankingCommand}"/>
             </UniformGrid>
         </StackPanel>
     </Grid>
