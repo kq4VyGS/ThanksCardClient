@@ -12,11 +12,13 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using ThanksCardClient.Models;
+using System.Windows;
 
 namespace ThanksCardClient.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
+
         /* コマンド、プロパティの定義にはそれぞれ 
          * 
          *  lvcom    : ViewModelCommand
@@ -136,6 +138,10 @@ namespace ThanksCardClient.ViewModels
 
         public void ShowKeiziban()
         {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
             var showkeiziban = new TransitionMessage(typeof(Views.Keiziban), new MainWindowViewModel(), TransitionMode.Modal, "ShowKeiziban");
             Messenger.Raise(showkeiziban);
 
@@ -162,6 +168,10 @@ namespace ThanksCardClient.ViewModels
 
         public void ShowPickup()
         {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
             var showpickup = new TransitionMessage(typeof(Views.Pickup), new MainWindowViewModel(), TransitionMode.Modal, "ShowPickup");
             Messenger.Raise(showpickup);
 
@@ -188,6 +198,10 @@ namespace ThanksCardClient.ViewModels
 
         public void ShowBusyo()
         {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
             var showbusyo = new TransitionMessage(typeof(Views.Busyo), new MainWindowViewModel(), TransitionMode.Modal, "ShowBusyo");
             Messenger.Raise(showbusyo);
 
@@ -214,6 +228,10 @@ namespace ThanksCardClient.ViewModels
 
         public void ShowRanking()
         {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
             var showranking = new TransitionMessage(typeof(Views.Ranking), new MainWindowViewModel(), TransitionMode.Modal, "ShowRanking");
             Messenger.Raise(showranking);
 
