@@ -6,12 +6,14 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="ログイン" Height="350" Width="525">
+        Title="ログイン" Height="371.615" Width="521.115">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
+   
+    
     <i:Interaction.Triggers>
 
         <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
@@ -30,6 +32,11 @@
 
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
+        <!-- LogonViewModel からの TransitionMessage("Authorized") を受け取とってログオン画面を閉じる処理。 -->
+        <l:InteractionMessageTrigger MessageKey="Authorized" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
     </i:Interaction.Triggers>
 
     <Grid>
@@ -38,12 +45,12 @@
                 <TextBlock Text="{Binding ErrorMessage}" Foreground="Red"/>
                 <TextBlock Text="―Logon―" Margin="220,0,234,0"/>
                 <UniformGrid  Columns="2">
-                <TextBlock Text="メールアドレス　:" Margin="166,0,0,0"/>
-                <TextBox Text="{Binding User.Address}" Margin="0,0,146,0"/>
+                    <TextBlock Text="メールアドレス　:" Margin="166,0,0,0"/>
+                    <TextBox Text="{Binding Employee.MailAddress}" Margin="0,0,146,0"/>
                 </UniformGrid>
                 <UniformGrid  Columns="2">
-                <TextBlock Text="パスワード　:" Margin="183,0,0,0"/>
-                <TextBox Text="{Binding User.Password}" Margin="0,0,146,0"/>
+                    <TextBlock Text="パスワード　:" Margin="183,0,0,0"/>
+                    <TextBox Text="{Binding Employee.Password}" Margin="0,0,146,0"/>
                 </UniformGrid>
                 <Button Content="ログイン" Command="{Binding LogonCommand}" Margin="208,0,234,0"/>
             </StackPanel>
