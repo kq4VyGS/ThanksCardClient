@@ -104,7 +104,9 @@ namespace ThanksCardClient.ViewModels
 
             if (authorizedUser != null) // Logon 成功
             {
-                Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Authorized"));
+                var showmypage = new TransitionMessage(typeof(Views.Mypage), new MainWindowViewModel(), TransitionMode.Modal, "ShowMypage");
+                Messenger.Raise(showmypage);
+            
             }
             else // Logon 失敗
             {

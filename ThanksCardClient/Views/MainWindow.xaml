@@ -16,6 +16,11 @@
     
     <i:Interaction.Triggers>
 
+        <!-- MainWindowViewModel からの TransitionMessage("ShowMypage") を受け取とってマイページ画面を表示する処理。ゆうき -->
+        <l:InteractionMessageTrigger MessageKey="ShowMypage" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
         <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
         <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
         <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
