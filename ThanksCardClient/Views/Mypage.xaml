@@ -14,24 +14,28 @@
 
     <i:Interaction.Triggers>
 
-        <!-- MainWindowViewModel からの TransitionMessage("Keiziban") を受け取とって掲示板画面を表示する処理。ゆうき -->
         <l:InteractionMessageTrigger MessageKey="ShowKeiziban" Messenger="{Binding Messenger}">
-            <l:TransitionInteractionMessageAction/>
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
-        <!-- MainWindowViewModel からの TransitionMessage("Pickup") を受け取とってピックアップ画面を表示する処理。ゆうき -->
         <l:InteractionMessageTrigger MessageKey="ShowPickup" Messenger="{Binding Messenger}">
-            <l:TransitionInteractionMessageAction/>
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
-        <!-- MainWindowViewModel からの TransitionMessage("Busyo") を受け取とって部署画面を表示する処理。ゆうき -->
         <l:InteractionMessageTrigger MessageKey="ShowBusyo" Messenger="{Binding Messenger}">
-            <l:TransitionInteractionMessageAction/>
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
-        <!-- MainWindowViewModel からの TransitionMessage("ShowRanking") を受け取とってランキング画面を表示する処理。ゆうき -->
         <l:InteractionMessageTrigger MessageKey="ShowRanking" Messenger="{Binding Messenger}">
-            <l:TransitionInteractionMessageAction/>
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
 
