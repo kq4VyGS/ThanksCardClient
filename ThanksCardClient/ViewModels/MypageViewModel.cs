@@ -61,6 +61,8 @@ namespace ThanksCardClient.ViewModels
 
         public void Initialize()
         {
+            var message = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, "ShowLogon");
+            Messenger.Raise(message);
         }
     }
 }
