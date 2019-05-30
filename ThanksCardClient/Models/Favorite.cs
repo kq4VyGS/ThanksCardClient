@@ -7,7 +7,7 @@ using Livet;
 
 namespace ThanksCardClient.Models
 {
-    public class Department : NotificationObject
+    public class Favorite : NotificationObject
     {
         /*
          * NotificationObjectはプロパティ変更通知の仕組みを実装したオブジェクトです。
@@ -32,38 +32,38 @@ namespace ThanksCardClient.Models
 
         #endregion
 
-        #region CD
+        #region Employee_Fk
 
-        private int _CD;
+        private Employee _Employee;
 
-        public int CD
+        public Employee Employee
         {
             get
-            { return _CD; }
+            { return _Employee; }
             set
             { 
-                if (_CD == value)
+                if (_Employee == value)
                     return;
-                _CD = value;
+                _Employee = value;
                 RaisePropertyChanged();
             }
         }
 
         #endregion
 
-        #region Name
+        #region Card_Fk
 
-        private string _Name;
+        private Card _Card;
 
-        public string Name
+        public Card Card
         {
             get
-            { return _Name; }
+            { return _Card; }
             set
             { 
-                if (_Name == value)
+                if (_Card == value)
                     return;
-                _Name = value;
+                _Card = value;
                 RaisePropertyChanged();
             }
         }

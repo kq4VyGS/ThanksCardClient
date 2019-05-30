@@ -53,11 +53,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Favorite.cs" />
+    <Compile Include="Models\Section.cs" />
     <Compile Include="Services\IRestService.cs" />
     <Compile Include="Services\RestService.cs" />
     <Compile Include="ViewModels\BusyoViewModel.cs" />
-    <Compile Include="Models\Department.cs" />
     <Compile Include="ViewModels\KanriViewModel.cs" />
     <Compile Include="ViewModels\KanshaCardViewModel.cs" />
     <Compile Include="ViewModels\KeizibanViewModel.cs" />
@@ -65,7 +68,6 @@
     <Compile Include="ViewModels\MypageViewModel.cs" />
     <Compile Include="ViewModels\PickupViewModel.cs" />
     <Compile Include="ViewModels\RankingViewModel.cs" />
-    <Compile Include="Models\Section.cs" />
     <Compile Include="Views\Busyo.xaml.cs">
       <DependentUpon>Busyo.xaml</DependentUpon>
     </Compile>
