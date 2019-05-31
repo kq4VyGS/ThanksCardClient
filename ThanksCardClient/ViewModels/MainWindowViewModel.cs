@@ -106,6 +106,10 @@ namespace ThanksCardClient.ViewModels
 
             if (authorizedUser != null) // Logon 成功
             {
+
+                var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+                window.Hide();
+
                 var showmypage = new TransitionMessage(typeof(Views.Mypage), new MainWindowViewModel(), TransitionMode.Modal, "ShowMypage");
                 Messenger.Raise(showmypage);
             
@@ -118,7 +122,67 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        #region Keiziban
+        #region MainWindowCommand
+
+
+        private ViewModelCommand _ShowMainWindowCommand;
+
+        public ViewModelCommand ShowMainWindowCommand
+
+        {
+            get
+            {
+                if (_ShowMainWindowCommand == null)
+                {
+                    _ShowMainWindowCommand = new ViewModelCommand(ShowMainWindow);
+                }
+                return _ShowMainWindowCommand;
+            }
+        }
+
+        public void ShowMainWindow()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showmainwindow = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, "ShowMainWindow");
+            Messenger.Raise(showmainwindow);
+
+        }
+        #endregion
+
+        #region MypageCommand
+
+
+        private ViewModelCommand _ShowMypageCommand;
+
+        public ViewModelCommand ShowMypageCommand
+
+        {
+            get
+            {
+                if (_ShowMypageCommand == null)
+                {
+                    _ShowMypageCommand = new ViewModelCommand(ShowMypage);
+                }
+                return _ShowMypageCommand;
+            }
+        }
+
+        public void ShowMypage()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showmypage = new TransitionMessage(typeof(Views.Mypage), new MainWindowViewModel(), TransitionMode.Modal, "ShowMypage");
+            Messenger.Raise(showmypage);
+
+        }
+        #endregion
+
+        #region KeizibanCommand
 
 
         private ViewModelCommand _ShowKeizibanCommand;
@@ -148,7 +212,7 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        #region Pickup
+        #region PickupCommand
 
 
         private ViewModelCommand _ShowPickupCommand;
@@ -178,7 +242,7 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        #region ShowBusyo
+        #region ShowBusyoCommand
 
 
         private ViewModelCommand _ShowBusyoCommand;
@@ -208,7 +272,7 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        #region ShowRankiing
+        #region ShowRankiingCommand
 
 
         private ViewModelCommand _ShowRankingCommand;

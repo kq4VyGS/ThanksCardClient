@@ -11,10 +11,40 @@
     <Window.DataContext>
         <vm:BusyoViewModel/>
     </Window.DataContext>
-    
-     <i:Interaction.Triggers>
-     
-     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+
+    <i:Interaction.Triggers>
+
+        <l:InteractionMessageTrigger MessageKey="ShowMypage" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+        
+        <l:InteractionMessageTrigger MessageKey="ShowKeiziban" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowPickup" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowBusyo" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowRanking" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
     	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
     	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
         
@@ -31,16 +61,16 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
-    
+
     <Grid>
-      <StackPanel>
-        <UniformGrid  Columns="5">
-          <TextBlock  Height="20" Width="70"   Text="マイページ" RenderTransformOrigin="-1.72,1.6"/>
-          <TextBlock  Height="20" Width="70"   Text="掲示板" RenderTransformOrigin="-1.72,1.6"/>
-          <TextBlock  Height="20" Width="70"   Text="ピックアップ" RenderTransformOrigin="-1.72,1.6"/>
-          <TextBlock  Height="20" Width="70"   Text="部署" RenderTransformOrigin="-1.72,1.6"/>
-          <TextBlock  Height="20" Width="70"   Text="ランキング" RenderTransformOrigin="-1.72,1.6"/>
-        </UniformGrid>
-      </StackPanel>
+        <StackPanel>
+            <UniformGrid  Columns="5">
+                <Button Content="マイページ" Command="{Binding ShowMypageCommand}"/>
+                <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}"/>
+                <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}"/>
+                <Button Content="部署" Command="{Binding ShowBusyoCommand}"/>
+                <Button Content="ランキング" Command="{Binding ShowRankingCommand}"/>
+            </UniformGrid>
+        </StackPanel>
     </Grid>
 </Window>

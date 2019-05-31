@@ -14,6 +14,18 @@
 
     <i:Interaction.Triggers>
 
+        <l:InteractionMessageTrigger MessageKey="ShowMainWindow" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+        
+        <l:InteractionMessageTrigger MessageKey="ShowMypage" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+        
         <l:InteractionMessageTrigger MessageKey="ShowKeiziban" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
