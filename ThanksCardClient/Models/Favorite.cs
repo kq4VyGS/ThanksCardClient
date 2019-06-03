@@ -32,7 +32,21 @@ namespace ThanksCardClient.Models
 
         #endregion
 
-        #region Employee_Fk
+        #region Employee_FK
+        private int _EmployeeId;
+
+        public int EmployeeId
+        {
+            get
+            { return _EmployeeId; }
+            set
+            { 
+                if (_EmployeeId == value)
+                    return;
+                _EmployeeId = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private Employee _Employee;
 
@@ -52,6 +66,20 @@ namespace ThanksCardClient.Models
         #endregion
 
         #region Card_Fk
+        private int _CardId;
+
+        public int CardId
+        {
+            get
+            { return _CardId; }
+            set
+            { 
+                if (_CardId == value)
+                    return;
+                _CardId = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private Card _Card;
 

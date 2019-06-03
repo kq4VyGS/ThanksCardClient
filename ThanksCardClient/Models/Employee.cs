@@ -109,6 +109,36 @@ namespace ThanksCardClient.Models
         #endregion
 
         #region SectionId_FK
+        private int _SectionId;
+
+        public int SectionId
+        {
+            get
+            { return _SectionId; }
+            set
+            { 
+                if (_SectionId == value)
+                    return;
+                _SectionId = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private Section _Section;
+
+        public Section Section
+        {
+            get
+            { return _Section; }
+            set
+            { 
+                if (_Section == value)
+                    return;
+                _Section = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         #endregion
 
@@ -132,6 +162,27 @@ namespace ThanksCardClient.Models
             IRestService rest = new RestService();
             List<Employee> employees = await rest.GetEmployeesAsync();
             return employees;
+        }
+
+        public async Task<Employee> PostUserAsync(Employee employee)
+        {
+            IRestService rest = new RestService();
+            Employee createdEmployee = await rest.PostEmployeeAsync(employee);
+            return createdEmployee;
+        }
+
+        public async Task<Employee> PutEmployeeAsync(Employee employee)
+        {
+            IRestService rest = new RestService();
+            Employee updatedEmployee = await rest.PutEmployeeAsync(employee);
+            return updatedEmployee;
+        }
+
+        public async Task<Employee> DeleteEmployeeAsync(int Id)
+        {
+            IRestService rest = new RestService();
+            Employee deletedEmployee = await rest.DeleteEmployeeAsync(Id);
+            return deletedEmployee;
         }
 
     }

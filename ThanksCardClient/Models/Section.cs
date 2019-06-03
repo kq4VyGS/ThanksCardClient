@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Livet;
+using ThanksCardClient.Services;
 
 namespace ThanksCardClient.Models
 {
@@ -70,7 +71,21 @@ namespace ThanksCardClient.Models
 
         #endregion
 
-        #region Department
+        #region Department_FK
+        private int _DepartmentId;
+
+        public int DepartmentId
+        {
+            get
+            { return _DepartmentId; }
+            set
+            { 
+                if (_DepartmentId == value)
+                    return;
+                _DepartmentId = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private Department _Department;
 
@@ -88,6 +103,34 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
+
+        public async Task<List<Section>> GetSectionsAsync()
+        {
+            IRestService rest = new RestService();
+            List<Section> Sections = await rest.GetSectionsAsync();
+            return Sections;
+        }
+
+        public async Task<Section> PostSectionAsync(Section section)
+        {
+            IRestService rest = new RestService();
+            Section createdSection = await rest.PostSectionAsync(section);
+            return createdSection;
+        }
+
+        public async Task<Section> PutSectionAsync(Section section)
+        {
+            IRestService rest = new RestService();
+            Section updatedSection = await rest.PutSectionAsync(section);
+            return updatedSection;
+        }
+
+        public async Task<Section> DeleteSectionAsync(int Id)
+        {
+            IRestService rest = new RestService();
+            Section deletedSection = await rest.DeleteSectiontAsync(Id);
+            return deletedSection;
+        }
 
     }
 }
