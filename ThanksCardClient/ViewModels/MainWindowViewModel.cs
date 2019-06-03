@@ -18,7 +18,7 @@ namespace ThanksCardClient.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
-        #region UserProperty
+        #region EmployeeProperty
         private Employee _Employee;
 
         public Employee Employee
@@ -89,7 +89,7 @@ namespace ThanksCardClient.ViewModels
         
         public async void Logon2()
         {
-            Employee authorizedUser = await this.Employee.LogonAsync();
+            Employee authorizedUser = await this.Employee.Logon2Async();
 
             if (authorizedUser != null) // Logon 成功
             {
@@ -103,7 +103,7 @@ namespace ThanksCardClient.ViewModels
             }
             else // Logon 失敗
             {
-                System.Diagnostics.Debug.WriteLine("ログオンに失敗しました。");
+                System.Diagnostics.Debug.WriteLine("ログオン2に失敗しました。");
             }
 
         }
@@ -338,5 +338,7 @@ namespace ThanksCardClient.ViewModels
         {
             this.Employee = new Employee();
         }
+
+        //List<Employee> authorizedEmployees = await this.Employee.GetEmployeesAsync();
     }
 }

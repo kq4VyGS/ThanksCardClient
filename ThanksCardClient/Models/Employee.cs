@@ -120,5 +120,19 @@ namespace ThanksCardClient.Models
             return authorizedUser;
         }
 
+        public async Task<Employee> Logon2Async()
+        {
+            IRestService rest = new RestService();
+            Employee authorizedUser = await rest.Logon2Async(this);
+            return authorizedUser;
+        }
+
+        public async Task<List<Employee>> GetEmployeesAsync()
+        {
+            IRestService rest = new RestService();
+            List<Employee> employees = await rest.GetEmployeesAsync();
+            return employees;
+        }
+
     }
 }
