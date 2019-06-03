@@ -6,15 +6,47 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="感謝カード作成" Height="350" Width="525">
+        Title="感謝カード作成" Height="550" Width="525">
     
     <Window.DataContext>
         <vm:KanshaCardViewModel/>
     </Window.DataContext>
     
      <i:Interaction.Triggers>
-     
-     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+        <l:InteractionMessageTrigger MessageKey="ShowMypage" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowKeiziban" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowPickup" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowBusyo" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowRanking" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+
+
+
+        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
     	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
     	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
         
@@ -34,13 +66,32 @@
     
     <Grid>
         <StackPanel>
+            
             <UniformGrid  Columns="5">
-                <TextBlock  Height="20" Width="70"   Text="マイページ" RenderTransformOrigin="-1.72,1.6"/>
-                <TextBlock  Height="20" Width="70"   Text="掲示板" RenderTransformOrigin="-1.72,1.6"/>
-                <TextBlock  Height="20" Width="70"   Text="ピックアップ" RenderTransformOrigin="-1.72,1.6"/>
-                <TextBlock  Height="20" Width="70"   Text="部署" RenderTransformOrigin="-1.72,1.6"/>
-                <TextBlock  Height="20" Width="70"   Text="ランキング" RenderTransformOrigin="-1.72,1.6"/>
+                <Button Content="マイページ" Command="{Binding ShowMypageCommand}"/>
+                <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}"/>
+                <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}"/>
+                <Button Content="部署" Command="{Binding ShowBusyoCommand}"/>
+                <Button Content="ランキング" Command="{Binding ShowRankingCommand}"/>
             </UniformGrid>
+            
+            <TextBlock Text="作成日:"/>
+            <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}"/>
+            <TextBlock Text="タイトル:"/>
+            <TextBox Text="{Binding ThanksCard.Title}"/>
+            <TextBlock Text="From(部署):"/>
+            <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name" SelectedValue="{Binding ThanksCard.FromId}" SelectedValuePath="Id"/>
+            <TextBlock Text="From（名前):"/>
+            <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Name" SelectedValue="{Binding ThanksCard.FromId}" SelectedValuePath="Id"/>
+            <TextBlock Text="To(部署):"/>
+            <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Name" SelectedValue="{Binding ThanksCard.ToId}" SelectedValuePath="Id"/>
+            <TextBlock Text="To(名前):"/>
+            <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Name" SelectedValue="{Binding ThanksCard.ToId}" SelectedValuePath="Id"/>
+            <TextBlock Text="内容:"/>
+            <TextBox Text="{Binding ThanksCard.Body}"/>
+ 
+            <Button Content="作成" Command="{Binding SubmitCommand}"/>
+            <Button Content="キャンセル" Command="{Binding CancelCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
