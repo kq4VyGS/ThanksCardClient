@@ -72,6 +72,43 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
+        #region Logon2Command
+        private ViewModelCommand _Logon2Command;
+
+        public ViewModelCommand Logon2Command
+        {
+            get
+            {
+                if (_Logon2Command == null)
+                {
+                    _Logon2Command = new ViewModelCommand(Logon2);
+                }
+                return _Logon2Command;
+            }
+        }
+        
+        public async void Logon2()
+        {
+            Employee authorizedUser = await this.Employee.LogonAsync();
+
+            if (authorizedUser != null) // Logon 成功
+            {
+
+                var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+                // window.Hide();
+
+                var showkanri = new TransitionMessage(typeof(Views.Kanri), new MainWindowViewModel(), TransitionMode.Modal, "ShowKanri");
+                Messenger.Raise(showkanri);
+
+            }
+            else // Logon 失敗
+            {
+                System.Diagnostics.Debug.WriteLine("ログオンに失敗しました。");
+            }
+
+        }
+        #endregion
+
         #region MainWindowCommand
 
 
