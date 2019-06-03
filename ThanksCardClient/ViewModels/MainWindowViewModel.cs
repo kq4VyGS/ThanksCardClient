@@ -289,6 +289,36 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
+        #region ShowKanshaCardCommand
+
+
+        private ViewModelCommand _ShowKanshaCardCommand;
+
+        public ViewModelCommand ShowKanshaCardCommand
+
+        {
+            get
+            {
+                if (_ShowKanshaCardCommand == null)
+                {
+                    _ShowKanshaCardCommand = new ViewModelCommand(ShowKanshaCard);
+                }
+                return _ShowKanshaCardCommand;
+            }
+        }
+
+        public void ShowKanshaCard()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new MainWindowViewModel(), TransitionMode.Modal, "ShowKanshaCard");
+            Messenger.Raise(showkanshacard);
+
+        }
+        #endregion
+
         #region 説明書
         /* コマンド、プロパティの定義にはそれぞれ 
          * 
