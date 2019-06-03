@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Livet;
+using ThanksCardClient.Services;
 
 namespace ThanksCardClient.Models
 {
@@ -90,6 +91,20 @@ namespace ThanksCardClient.Models
         #endregion
 
         #region From_FK
+        private int _FromId;
+
+        public int FromId
+        {
+            get
+            { return _FromId; }
+            set
+            { 
+                if (_FromId == value)
+                    return;
+                _FromId = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private Employee _From;
 
@@ -108,7 +123,21 @@ namespace ThanksCardClient.Models
 
         #endregion
 
-        #region To
+        #region To_FK
+        private int _ToId;
+
+        public int ToId
+        {
+            get
+            { return _ToId; }
+            set
+            { 
+                if (_ToId == value)
+                    return;
+                _ToId = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private Employee _To;
 
@@ -202,6 +231,20 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
+
+        public async Task<List<Card>> GetCardsAsync()
+        {
+            IRestService rest = new RestService();
+            List<Card> Cards = await rest.GetCardsAsync();
+            return Cards;
+        }
+
+        public async Task<Card> PostCardAsync(Card Card)
+        {
+            IRestService rest = new RestService();
+            Card createdCard = await rest.PostCardAsync(Card);
+            return createdCard;
+        }
 
     }
 }

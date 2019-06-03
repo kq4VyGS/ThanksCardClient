@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Livet;
+using ThanksCardClient.Services;
 
 namespace ThanksCardClient.Models
 {
@@ -69,6 +70,34 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
+
+        public async Task<List<Department>> GetDepartmentsAsync()
+        {
+            IRestService rest = new RestService();
+            List<Department> Departments = await rest.GetDepartmentsAsync();
+            return Departments;
+        }
+
+        public async Task<Department> PostDepartmentAsync(Department department)
+        {
+            IRestService rest = new RestService();
+            Department createdDepartment = await rest.PostDepartmentAsync(department);
+            return createdDepartment;
+        }
+
+        public async Task<Department> PutDepartmentAsync(Department department)
+        {
+            IRestService rest = new RestService();
+            Department updatedDepartment = await rest.PutDepartmentAsync(department);
+            return updatedDepartment;
+        }
+
+        public async Task<Department> DeleteDepartmentAsync(int Id)
+        {
+            IRestService rest = new RestService();
+            Department deletedDepartment = await rest.DeleteDepartmentAsync(Id);
+            return deletedDepartment;
+        }
 
     }
 }
