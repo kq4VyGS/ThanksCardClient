@@ -21,6 +21,8 @@ namespace ThanksCardClient.Services
             this.BaseUrl = "https://localhost:5001";
         }
 
+
+        //ログイン関係
         #region Logon
         public async Task<Employee> LogonAsync(Employee employee)
         {
@@ -81,8 +83,8 @@ namespace ThanksCardClient.Services
         }
         #endregion
 
-        #region Employee
-
+        
+        //社員テーブル編集
         #region GetEmployeesAsync()
         public async Task<List<Employee>> GetEmployeesAsync()
         {
@@ -104,7 +106,6 @@ namespace ThanksCardClient.Services
         }
         #endregion
 
-        /*
         #region PostEmployeeAsync(Employee employee)
         public async Task<Employee> PostEmployeeAsync(Employee employee)
         {
@@ -135,7 +136,7 @@ namespace ThanksCardClient.Services
         #endregion
 
         #region PutEmployeeAsync(Employee employee)
-        public async Task<Employee> PutUserAsync(Employee employee)
+        public async Task<Employee> PutEmployeeAsync(Employee employee)
         {
             var jObject = JsonConvert.SerializeObject(employee);
 
@@ -182,8 +183,266 @@ namespace ThanksCardClient.Services
             return responseEmployee;
         }
         #endregion
-    */
+
+       
+        //部署テーブル編集
+        #region GetDepartmentsAsync()
+        public async Task<List<Department>> GetDepartmentsAsync()
+        {
+            List<Department> responseDepartments = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Departments");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseDepartments = JsonConvert.DeserializeObject<List<Department>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetDepartmentsAsync: " + e);
+            }
+            return responseDepartments;
+        }
+
         #endregion
+
+        #region PostDepartmentAsync(Department department)
+
+        public async Task<Department> PostDepartmentAsync(Department department)
+        {
+            var jObject = JsonConvert.SerializeObject(department);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Department responseDepartment = null;
+            try
+            {
+                var response = await Client.PostAsync(this.BaseUrl + "/api/Departments", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseDepartment = JsonConvert.DeserializeObject<Department>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PostDepartmentAsync: " + e);
+            }
+            return responseDepartment;
+        }
+
+        #endregion
+
+        #region PutDepartmentAsync(Department department)
+        public async Task<Department> PutDepartmentAsync(Department department)
+        {
+            var jObject = JsonConvert.SerializeObject(department);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Department responseDepartment = null;
+            try
+            {
+                var response = await Client.PutAsync(this.BaseUrl + "/api/Departments/" + department.Id, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseDepartment = JsonConvert.DeserializeObject<Department>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PutDepartmentAsync: " + e);
+            }
+            return responseDepartment;
+        }
+
+        #endregion
+
+        #region DeleteDepartmentAsync(int Id)
+        public async Task<Department> DeleteDepartmentAsync(int Id)
+        {
+            Department responseDepartment = null;
+            try
+            {
+                var response = await Client.DeleteAsync(this.BaseUrl + "/api/Departments/" + Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseDepartment = JsonConvert.DeserializeObject<Department>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.DeleteDepartmentAsync: " + e);
+            }
+            return responseDepartment;
+        }
+        #endregion
+
+
+        //課テーブル編集
+        #region SectionsAsync()
+        public async Task<List<Section>> GetSectionsAsync()
+        {
+            List<Section> responseSections = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Sections");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseSections = JsonConvert.DeserializeObject<List<Section>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetSectionsAsync: " + e);
+            }
+            return responseSections;
+        }
+
+        #endregion
+
+        #region PostSectionAsync(Section section)
+
+        public async Task<Section> PostSectionAsync(Section section)
+        {
+            var jObject = JsonConvert.SerializeObject(section);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Section responseSection = null;
+            try
+            {
+                var response = await Client.PostAsync(this.BaseUrl + "/api/Sections", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseSection = JsonConvert.DeserializeObject<Section>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PostSectionAsync: " + e);
+            }
+            return responseSection;
+        }
+
+        #endregion
+
+        #region PutSectionAsync(Section section)
+        public async Task<Section> PutSectionAsync(Section section)
+        {
+            var jObject = JsonConvert.SerializeObject(section);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Section responseSection = null;
+            try
+            {
+                var response = await Client.PutAsync(this.BaseUrl + "/api/Sections/" + section.Id, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseSection = JsonConvert.DeserializeObject<Section>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PutDepartmentAsync: " + e);
+            }
+            return responseSection;
+        }
+
+        #endregion
+
+        #region DeleteSectionAsync(int Id)
+        public async Task<Section> DeleteSectiontAsync(int Id)
+        {
+            Section responseSection = null;
+            try
+            {
+                var response = await Client.DeleteAsync(this.BaseUrl + "/api/Sections/" + Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseSection = JsonConvert.DeserializeObject<Section>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.DeleteSectionAsync: " + e);
+            }
+            return responseSection;
+        }
+        #endregion
+
+
+        //感謝カード作成・読み込み
+        #region GetCardsAsync()
+        public async Task<List<Card>> GetCardsAsync()
+        {
+            List<Card> responseCards = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Cards");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseCards = JsonConvert.DeserializeObject<List<Card>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetCardsAsync: " + e);
+            }
+            return responseCards;
+        }
+        #endregion
+
+        #region PostCardAsync(Card Card)
+        public async Task<Card> PostCardAsync(Card Card)
+        {
+            var jObject = JsonConvert.SerializeObject(Card);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Card responseCard = null;
+            try
+            {
+                var response = await Client.PostAsync(this.BaseUrl + "/api/Cards", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseCard = JsonConvert.DeserializeObject<Card>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PostCardAsync: " + e);
+            }
+            return responseCard;
+        }
+        #endregion
+
 
     }
 }

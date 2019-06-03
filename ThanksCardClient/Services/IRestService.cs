@@ -17,8 +17,26 @@ namespace ThanksCardClient.Services
 
         // Employee REST API Client
         Task<List<Employee>> GetEmployeesAsync();
-        //Task<Employee> PostEmployeesAsync(Employee employee);
-        //Task<Employee> PutEmployeesAsync(Employee employee);
-        //Task<Employee> DeleteEmployeesAsync(int Id);
+        Task<Employee> PostEmployeeAsync(Employee employee);
+        Task<Employee> PutEmployeeAsync(Employee employee);
+        Task<Employee> DeleteEmployeeAsync(int Id);
+
+        // Department REST API Client
+        Task<List<Department>> GetDepartmentsAsync();
+        Task<Department> PostDepartmentAsync(Department department);
+        Task<Department> PutDepartmentAsync(Department department);
+        Task<Department> DeleteDepartmentAsync(int Id);
+
+        // Section REST API Client
+        Task<List<Section>> GetSectionsAsync();
+        Task<Section> PostSectionAsync(Section section);
+        Task<Section> PutSectionAsync(Section section);
+        Task<Section> DeleteSectiontAsync(int Id);
+
+
+        // TanksCard REST API Client
+        Task<List<Card>> GetCardsAsync();
+        Task<Card> PostCardAsync(Card Card);
+
     }
 }
