@@ -12,6 +12,7 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using ThanksCardClient.Models;
+using System.Windows;
 
 namespace ThanksCardClient.ViewModels
 {
@@ -59,6 +60,193 @@ namespace ThanksCardClient.ViewModels
          * LivetのViewModelではプロパティ変更通知(RaisePropertyChanged)やDispatcherCollectionを使ったコレクション変更通知は
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
+        #endregion
+
+        #region MypageCommand
+
+
+        private ViewModelCommand _ShowMypageCommand;
+
+        public ViewModelCommand ShowMypageCommand
+
+        {
+            get
+            {
+                if (_ShowMypageCommand == null)
+                {
+                    _ShowMypageCommand = new ViewModelCommand(ShowMypage);
+                }
+                return _ShowMypageCommand;
+            }
+        }
+
+        public void ShowMypage()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showmypage = new TransitionMessage(typeof(Views.Mypage), new MypageViewModel(), TransitionMode.Modal, "ShowMypage");
+            Messenger.Raise(showmypage);
+
+        }
+        #endregion
+
+        #region KeizibanCommand
+
+
+        private ViewModelCommand _ShowKeizibanCommand;
+
+        public ViewModelCommand ShowKeizibanCommand
+
+        {
+            get
+            {
+                if (_ShowKeizibanCommand == null)
+                {
+                    _ShowKeizibanCommand = new ViewModelCommand(ShowKeiziban);
+                }
+                return _ShowKeizibanCommand;
+            }
+        }
+
+        public void ShowKeiziban()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showkeiziban = new TransitionMessage(typeof(Views.Keiziban), new KeizibanViewModel(), TransitionMode.Modal, "ShowKeiziban");
+            Messenger.Raise(showkeiziban);
+
+        }
+        #endregion
+
+        #region PickupCommand
+
+
+        private ViewModelCommand _ShowPickupCommand;
+
+        public ViewModelCommand ShowPickupCommand
+
+        {
+            get
+            {
+                if (_ShowPickupCommand == null)
+                {
+                    _ShowPickupCommand = new ViewModelCommand(ShowPickup);
+                }
+                return _ShowPickupCommand;
+            }
+        }
+
+        public void ShowPickup()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showpickup = new TransitionMessage(typeof(Views.Pickup), new PickupViewModel(), TransitionMode.Modal, "ShowPickup");
+            Messenger.Raise(showpickup);
+
+        }
+        #endregion
+
+        #region ShowBusyoCommand
+
+
+        private ViewModelCommand _ShowBusyoCommand;
+
+        public ViewModelCommand ShowBusyoCommand
+
+        {
+            get
+            {
+                if (_ShowBusyoCommand == null)
+                {
+                    _ShowBusyoCommand = new ViewModelCommand(ShowBusyo);
+                }
+                return _ShowBusyoCommand;
+            }
+        }
+
+        public void ShowBusyo()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showbusyo = new TransitionMessage(typeof(Views.Busyo), new BusyoViewModel(), TransitionMode.Modal, "ShowBusyo");
+            Messenger.Raise(showbusyo);
+
+        }
+        #endregion
+
+        #region ShowRankiingCommand
+
+
+        private ViewModelCommand _ShowRankingCommand;
+
+        public ViewModelCommand ShowRankingCommand
+
+        {
+            get
+            {
+                if (_ShowRankingCommand == null)
+                {
+                    _ShowRankingCommand = new ViewModelCommand(ShowRanking);
+                }
+                return _ShowRankingCommand;
+            }
+        }
+
+        public void ShowRanking()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showranking = new TransitionMessage(typeof(Views.Ranking), new RankingViewModel(), TransitionMode.Modal, "ShowRanking");
+            Messenger.Raise(showranking);
+
+        }
+        #endregion
+
+        #region ShowKanshaCardCommand
+
+
+        private ViewModelCommand _ShowKanshaCardCommand;
+
+        public ViewModelCommand ShowKanshaCardCommand
+
+        {
+            get
+            {
+                if (_ShowKanshaCardCommand == null)
+                {
+                    _ShowKanshaCardCommand = new ViewModelCommand(ShowKanshaCard);
+                }
+                return _ShowKanshaCardCommand;
+            }
+        }
+
+        public void ShowKanshaCard()
+        {
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new KanshaCardViewModel(), TransitionMode.Modal, "ShowKanshaCard");
+            Messenger.Raise(showkanshacard);
+
+
+            //var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            //window.Close();
+            //KanshaCardViewModel ViewModel = new KanshaCardViewModel();
+            //var message = new TransitionMessage(typeof(Views.KanshaCard), ViewModel, TransitionMode.Modal, "ShowKanshaCard");
+            //   var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new MainWindowViewModel(), TransitionMode.Modal, "ShowKanshaCard");
+            //Messenger.Raise(message);
+
+        }
         #endregion
 
         public void Initialize()

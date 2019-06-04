@@ -43,6 +43,11 @@
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="ShowKanshaCard" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
 
 
 
@@ -80,13 +85,13 @@
             <TextBlock Text="タイトル:"/>
             <TextBox Text="{Binding ThanksCard.Title}"/>
             <TextBlock Text="From(部署):"/>
-            <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name" SelectedValue="{Binding ThanksCard.FromId}" SelectedValuePath="Id"/>
+            <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id"/>
             <TextBlock Text="From（名前):"/>
-            <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Name" SelectedValue="{Binding ThanksCard.FromId}" SelectedValuePath="Id"/>
+            <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name" SelectedValue="{Binding Card.FromId}" SelectedValuePath="Id"/>
             <TextBlock Text="To(部署):"/>
-            <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Name" SelectedValue="{Binding ThanksCard.ToId}" SelectedValuePath="Id"/>
+            <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id"/>
             <TextBlock Text="To(名前):"/>
-            <ComboBox ItemsSource="{Binding Users}" DisplayMemberPath="Name" SelectedValue="{Binding ThanksCard.ToId}" SelectedValuePath="Id"/>
+            <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name" SelectedValue="{Binding Card.ToId}" SelectedValuePath="Id"/>
             <TextBlock Text="内容:"/>
             <TextBox Text="{Binding ThanksCard.Body}"/>
  
