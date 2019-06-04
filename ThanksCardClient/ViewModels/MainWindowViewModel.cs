@@ -13,6 +13,7 @@ using Livet.Messaging.Windows;
 
 using ThanksCardClient.Models;
 using System.Windows;
+using ThanksCardClient.Services;
 
 namespace ThanksCardClient.ViewModels
 {
@@ -56,6 +57,8 @@ namespace ThanksCardClient.ViewModels
 
             if (authorizedUser != null) // Logon 成功
             {
+                SessionService.Instance.IsAuthorized = true;
+                SessionService.Instance.AuthorizedEmployee = authorizedUser;
 
                 var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
                // window.Hide();

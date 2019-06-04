@@ -13,8 +13,14 @@
     </Window.DataContext>
     
      <i:Interaction.Triggers>
-     
-     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+
+        <l:InteractionMessageTrigger MessageKey="ShowMainWindow" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション
+                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
     	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
     	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
         
@@ -33,10 +39,12 @@
     </i:Interaction.Triggers>
     
     <Grid>
-      <StackPanel>
-        <TextBlock  Height="27"   Text="ログアウト" RenderTransformOrigin="-1.72,1.6" Margin="452,0,0,0"/>
-        <TextBlock Text="ユーザー編集"/>
-        <TextBlock Text="新規登録"/>
+        
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="管理画面" VerticalAlignment="Top" Background="#2E8B57"></TextBlock>
+        <StackPanel>
+            <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="454,0,0,0"/>
+            <TextBlock Text="ユーザー編集" Background="AliceBlue"/>
+            <TextBlock Text="新規登録"/>
         <UniformGrid  Columns="2">
           <TextBlock Text="名前：" Margin="32,0,193,0"/>
           <TextBox Text="{Binding User.Name}" Margin="-188,0,307,0"/>
@@ -44,6 +52,6 @@
         <TextBlock Text="部署編集"/>
         <TextBlock Text="部署登録"/>
         
-      </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
