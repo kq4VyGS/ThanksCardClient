@@ -55,7 +55,7 @@ namespace ThanksCardClient.ViewModels
         {
             Employee authorizedUser = await this.Employee.LogonAsync();
 
-            if (authorizedUser != null) // Logon 成功
+            if (authorizedUser != null) // Logon 成功daze
             {
                 SessionService.Instance.IsAuthorized = true;
                 SessionService.Instance.AuthorizedEmployee = authorizedUser;
