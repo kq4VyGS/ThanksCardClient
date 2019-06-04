@@ -6,14 +6,14 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="ログイン" Height="371.615" Width="521.115">
+        Title="ログイン" Height="371.615" Width="521.115" Background="#F5F5F5">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
-   
-    
+
+
     <i:Interaction.Triggers>
 
         <l:InteractionMessageTrigger MessageKey="ShowMypage" Messenger="{Binding Messenger}">
@@ -53,21 +53,31 @@
     </i:Interaction.Triggers>
 
     <Grid>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="" Foreground="White" FontSize="30" VerticalAlignment="Top" Background=" #3CB371"></TextBlock>
+
         <StackPanel>
-            <StackPanel>
-                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red"/>
-                <TextBlock Text="―Logon―" Margin="220,0,234,0"/>
-                <UniformGrid  Columns="2">
-                    <TextBlock Text="メールアドレス　:" Margin="166,0,0,0"/>
-                    <TextBox Text="{Binding Employee.MailAddress}" Margin="0,0,146,0"/>
-                </UniformGrid>
-                <UniformGrid  Columns="2">
-                    <TextBlock Text="パスワード　:" Margin="183,0,0,0"/>
-                    <TextBox Text="{Binding Employee.Password}" Margin="0,0,146,0"/>
-                </UniformGrid>
-                <Button Content="ログイン" Command="{Binding LogonCommand}" Margin="208,0,234,0"/>
-                <Button Content="管理者ログイン" Command="{Binding Logon2Command}" Margin="180,0,234,0"/>
-            </StackPanel>
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red"/>
+            <TextBlock Text="―Login―" Margin="190,50,0,0" FontSize="25" FontWeight="Bold" FontFamily="Aharoni"/>
+            <UniformGrid  Columns="2">
+                <TextBlock Text="メールアドレス" Margin="68,25,0,0" FontWeight="Bold" FontSize="25"/>
+                <TextBox Text="{Binding Employee.MailAddress}" Margin="40,25,50,0" />
+            </UniformGrid>
+            <UniformGrid  Columns="2">
+                <TextBlock Text="パスワード" Margin="68,25,0,0" FontWeight="Bold" FontSize="25"/>
+                <TextBox Text="{Binding Employee.Password}" Margin="40,25,50,0" />
+            </UniformGrid>
+
         </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <Button Content="管理者ログイン" Command="{Binding Logon2Command}" Margin="300,250,0,60" Background="#6495ED" Foreground="White" FontSize="15"/>
+            <Button Content="ログイン" Command="{Binding LogonCommand}" Margin="50,250,0,60" Background="#6495ED" Foreground="White" FontSize="15"/>
+           
+        </StackPanel>
+
+        <TextBlock Grid.Row="2" Grid.Column="0"  FontSize="30" VerticalAlignment="Bottom" Background=" #3CB371"></TextBlock>
+
+
     </Grid>
 </Window>
