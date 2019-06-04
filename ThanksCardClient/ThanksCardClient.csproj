@@ -60,6 +60,7 @@
     <Compile Include="Models\Section.cs" />
     <Compile Include="Services\IRestService.cs" />
     <Compile Include="Services\RestService.cs" />
+    <Compile Include="Services\SessionService.cs" />
     <Compile Include="ViewModels\BusyoViewModel.cs" />
     <Compile Include="ViewModels\KanriViewModel.cs" />
     <Compile Include="ViewModels\KanshaCardViewModel.cs" />

@@ -60,7 +60,7 @@ namespace ThanksCardClient.ViewModels
                 var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
                // window.Hide();
 
-                var showmypage = new TransitionMessage(typeof(Views.Mypage), new MainWindowViewModel(), TransitionMode.Modal, "ShowMypage");
+                var showmypage = new TransitionMessage(typeof(Views.Mypage), new MypageViewModel(), TransitionMode.Modal, "ShowMypage");
                 Messenger.Raise(showmypage);
             
             }
@@ -97,7 +97,7 @@ namespace ThanksCardClient.ViewModels
                 var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
                 // window.Hide();
 
-                var showkanri = new TransitionMessage(typeof(Views.Kanri), new MainWindowViewModel(), TransitionMode.Modal, "ShowKanri");
+                var showkanri = new TransitionMessage(typeof(Views.Kanri), new KanriViewModel(), TransitionMode.Modal, "ShowKanri");
                 Messenger.Raise(showkanri);
 
             }
@@ -163,7 +163,7 @@ namespace ThanksCardClient.ViewModels
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
 
-            var showmypage = new TransitionMessage(typeof(Views.Mypage), new MainWindowViewModel(), TransitionMode.Modal, "ShowMypage");
+            var showmypage = new TransitionMessage(typeof(Views.Mypage), new MypageViewModel(), TransitionMode.Modal, "ShowMypage");
             Messenger.Raise(showmypage);
 
         }
@@ -193,7 +193,7 @@ namespace ThanksCardClient.ViewModels
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
 
-            var showkeiziban = new TransitionMessage(typeof(Views.Keiziban), new MainWindowViewModel(), TransitionMode.Modal, "ShowKeiziban");
+            var showkeiziban = new TransitionMessage(typeof(Views.Keiziban), new KeizibanViewModel(), TransitionMode.Modal, "ShowKeiziban");
             Messenger.Raise(showkeiziban);
 
         }
@@ -223,7 +223,7 @@ namespace ThanksCardClient.ViewModels
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
 
-            var showpickup = new TransitionMessage(typeof(Views.Pickup), new MainWindowViewModel(), TransitionMode.Modal, "ShowPickup");
+            var showpickup = new TransitionMessage(typeof(Views.Pickup), new PickupViewModel(), TransitionMode.Modal, "ShowPickup");
             Messenger.Raise(showpickup);
 
         }
@@ -253,7 +253,7 @@ namespace ThanksCardClient.ViewModels
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
 
-            var showbusyo = new TransitionMessage(typeof(Views.Busyo), new MainWindowViewModel(), TransitionMode.Modal, "ShowBusyo");
+            var showbusyo = new TransitionMessage(typeof(Views.Busyo), new BusyoViewModel(), TransitionMode.Modal, "ShowBusyo");
             Messenger.Raise(showbusyo);
 
         }
@@ -283,7 +283,7 @@ namespace ThanksCardClient.ViewModels
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
 
-            var showranking = new TransitionMessage(typeof(Views.Ranking), new MainWindowViewModel(), TransitionMode.Modal, "ShowRanking");
+            var showranking = new TransitionMessage(typeof(Views.Ranking), new RankingViewModel(), TransitionMode.Modal, "ShowRanking");
             Messenger.Raise(showranking);
 
         }
@@ -311,10 +311,11 @@ namespace ThanksCardClient.ViewModels
         {
 
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
-            window.Hide();
-
-            var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new MainWindowViewModel(), TransitionMode.Modal, "ShowKanshaCard");
-            Messenger.Raise(showkanshacard);
+            window.Close();
+            KanshaCardViewModel ViewModel = new KanshaCardViewModel();
+            var message = new TransitionMessage(typeof(Views.KanshaCard), ViewModel, TransitionMode.Modal, "ShowKanshaCard");
+            //   var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new MainWindowViewModel(), TransitionMode.Modal, "ShowKanshaCard");
+            Messenger.Raise(message);
 
         }
         #endregion

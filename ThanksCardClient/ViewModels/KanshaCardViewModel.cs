@@ -12,6 +12,8 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using ThanksCardClient.Models;
+using ThanksCardClient.Services;
+using System.Windows;
 
 namespace ThanksCardClient.ViewModels
 {
@@ -61,8 +63,261 @@ namespace ThanksCardClient.ViewModels
          */
         #endregion
 
-        public void Initialize()
+        #region EmployeesProperty
+        private List<Employee> _Employees;
+
+        public List<Employee> Employees
         {
+            get
+            { return _Employees; }
+            set
+            {
+                if (_Employees == value)
+                    return;
+                _Employees = value;
+                RaisePropertyChanged();
+            }
         }
+        #endregion
+
+        #region ThanksCardProperty
+        private Card _Card;
+
+        public Card Card
+        {
+            get
+            { return _Card; }
+            set
+            {
+                if (_Card == value)
+                    return;
+                _Card = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region MypageCommand
+
+
+        private ViewModelCommand _ShowMypageCommand;
+
+        public ViewModelCommand ShowMypageCommand
+
+        {
+            get
+            {
+                if (_ShowMypageCommand == null)
+                {
+                    _ShowMypageCommand = new ViewModelCommand(ShowMypage);
+                }
+                return _ShowMypageCommand;
+            }
+        }
+
+        public void ShowMypage()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showmypage = new TransitionMessage(typeof(Views.Mypage), new MypageViewModel(), TransitionMode.Modal, "ShowMypage");
+            Messenger.Raise(showmypage);
+
+        }
+        #endregion
+
+        #region KeizibanCommand
+
+
+        private ViewModelCommand _ShowKeizibanCommand;
+
+        public ViewModelCommand ShowKeizibanCommand
+
+        {
+            get
+            {
+                if (_ShowKeizibanCommand == null)
+                {
+                    _ShowKeizibanCommand = new ViewModelCommand(ShowKeiziban);
+                }
+                return _ShowKeizibanCommand;
+            }
+        }
+
+        public void ShowKeiziban()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showkeiziban = new TransitionMessage(typeof(Views.Keiziban), new KeizibanViewModel(), TransitionMode.Modal, "ShowKeiziban");
+            Messenger.Raise(showkeiziban);
+
+        }
+        #endregion
+
+        #region PickupCommand
+
+
+        private ViewModelCommand _ShowPickupCommand;
+
+        public ViewModelCommand ShowPickupCommand
+
+        {
+            get
+            {
+                if (_ShowPickupCommand == null)
+                {
+                    _ShowPickupCommand = new ViewModelCommand(ShowPickup);
+                }
+                return _ShowPickupCommand;
+            }
+        }
+
+        public void ShowPickup()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showpickup = new TransitionMessage(typeof(Views.Pickup), new PickupViewModel(), TransitionMode.Modal, "ShowPickup");
+            Messenger.Raise(showpickup);
+
+        }
+        #endregion
+
+        #region ShowBusyoCommand
+
+
+        private ViewModelCommand _ShowBusyoCommand;
+
+        public ViewModelCommand ShowBusyoCommand
+
+        {
+            get
+            {
+                if (_ShowBusyoCommand == null)
+                {
+                    _ShowBusyoCommand = new ViewModelCommand(ShowBusyo);
+                }
+                return _ShowBusyoCommand;
+            }
+        }
+
+        public void ShowBusyo()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showbusyo = new TransitionMessage(typeof(Views.Busyo), new BusyoViewModel(), TransitionMode.Modal, "ShowBusyo");
+            Messenger.Raise(showbusyo);
+
+        }
+        #endregion
+
+        #region ShowRankiingCommand
+
+
+        private ViewModelCommand _ShowRankingCommand;
+
+        public ViewModelCommand ShowRankingCommand
+
+        {
+            get
+            {
+                if (_ShowRankingCommand == null)
+                {
+                    _ShowRankingCommand = new ViewModelCommand(ShowRanking);
+                }
+                return _ShowRankingCommand;
+            }
+        }
+
+        public void ShowRanking()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showranking = new TransitionMessage(typeof(Views.Ranking), new RankingViewModel(), TransitionMode.Modal, "ShowRanking");
+            Messenger.Raise(showranking);
+
+        }
+        #endregion
+
+        #region ShowKanshaCardCommand
+
+
+        private ViewModelCommand _ShowKanshaCardCommand;
+
+        public ViewModelCommand ShowKanshaCardCommand
+
+        {
+            get
+            {
+                if (_ShowKanshaCardCommand == null)
+                {
+                    _ShowKanshaCardCommand = new ViewModelCommand(ShowKanshaCard);
+                }
+                return _ShowKanshaCardCommand;
+            }
+        }
+
+        public void ShowKanshaCard()
+        {
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new KanshaCardViewModel(), TransitionMode.Modal, "ShowKanshaCard");
+            Messenger.Raise(showkanshacard);
+
+
+            //var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            //window.Close();
+            //KanshaCardViewModel ViewModel = new KanshaCardViewModel();
+            //var message = new TransitionMessage(typeof(Views.KanshaCard), ViewModel, TransitionMode.Modal, "ShowKanshaCard");
+            //   var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new MainWindowViewModel(), TransitionMode.Modal, "ShowKanshaCard");
+            //Messenger.Raise(message);
+
+        }
+        #endregion
+
+
+        public async void Initialize()
+        {
+            
+            Employee employee = new Employee();
+            this.Employees = await employee.GetEmployeesAsync();
+           
+            if (SessionService.Instance.AuthorizedEmployee != null)
+            {
+                this.Employees = await SessionService.Instance.AuthorizedEmployee.GetEmployeesAsync();
+            }
+        }
+
+        #region SubmitCommand
+        private ViewModelCommand _SubmitCommand;
+        
+        public ViewModelCommand SubmitCommand
+        {
+            get
+            {
+                if (_SubmitCommand == null)
+                {
+                    _SubmitCommand = new ViewModelCommand(Submit);
+                }
+                return _SubmitCommand;
+            }
+        }
+
+        public async void Submit()
+        {
+            Card createdThanksCard = await Card.PostCardAsync(this.Card);
+            //TODO: Error handling
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Created"));
+        }
+        #endregion
     }
 }
