@@ -6,13 +6,13 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="感謝カード作成" Height="550" Width="525">
-    
+        Title="感謝カード作成" Height="500" Width="600" Background="#F5F5F5">
+
     <Window.DataContext>
         <vm:KanshaCardViewModel/>
     </Window.DataContext>
-    
-     <i:Interaction.Triggers>
+
+    <i:Interaction.Triggers>
         <l:InteractionMessageTrigger MessageKey="ShowMypage" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
@@ -52,9 +52,9 @@
 
 
         <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
-    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
-    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
-        
+        <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+        <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
         <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
         <i:EventTrigger EventName="ContentRendered">
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
@@ -68,35 +68,54 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
-    
+
     <Grid>
+
         <StackPanel>
             
-            <UniformGrid  Columns="5">
-                <Button Content="マイページ" Command="{Binding ShowMypageCommand}"/>
-                <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}"/>
-                <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}"/>
-                <Button Content="部署" Command="{Binding ShowBusyoCommand}"/>
-                <Button Content="ランキング" Command="{Binding ShowRankingCommand}"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="感謝カード作成" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"></TextBlock>
+
+            <UniformGrid  Columns="5" Background="#9ACD32">
+                <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
+                <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
+                <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
+                <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
+                <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
             </UniformGrid>
             
-            <TextBlock Text="作成日:"/>
-            <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}"/>
-            <TextBlock Text="タイトル:"/>
-            <TextBox Text="{Binding ThanksCard.Title}"/>
-            <TextBlock Text="From(部署):"/>
-            <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id"/>
-            <TextBlock Text="From（名前):"/>
-            <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name" SelectedValue="{Binding Card.FromId}" SelectedValuePath="Id"/>
-            <TextBlock Text="To(部署):"/>
-            <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id"/>
-            <TextBlock Text="To(名前):"/>
-            <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name" SelectedValue="{Binding Card.ToId}" SelectedValuePath="Id"/>
-            <TextBlock Text="内容:"/>
-            <TextBox Text="{Binding ThanksCard.Body}"/>
- 
-            <Button Content="作成" Command="{Binding SubmitCommand}"/>
-            <Button Content="キャンセル" Command="{Binding CancelCommand}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="日付:" Margin="20,20,0,20" Height="20" FontWeight="Bold" FontSize="15"/>
+                <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="5,20,20,20"/>
+                <TextBlock Text="タイトル:" Width="48" Margin="20,20,0,20" FontWeight="Bold" FontSize="15" Height="21"/>
+                <TextBox Text="{Binding ThanksCard.Title}" Width="267" Margin="5,20,20,20"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="From: 部署" Margin="20,0,0,20" Height="20" FontWeight="Bold" FontSize="15"/>
+                <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id" Margin="5,10,0,30" Width="87"/>
+                <TextBlock Text="名前" Margin="5,0,0,20" FontWeight="Bold" FontSize="15" Height="21"/>
+                <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name" SelectedValue="{Binding Card.FromId}" SelectedValuePath="Id" Margin="5,10,20,30" Width="87"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="　 To: 部署"  Margin="20,0,0,20" Height="20" FontWeight="Bold" FontSize="15" />
+                <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="5,10,0,30" Width="87"/>
+                <TextBlock Text="名前" Margin="5,0,0,20" FontWeight="Bold" FontSize="15" Height="21"/>
+                <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name" SelectedValue="{Binding Card.ToId}" SelectedValuePath="Id" Margin="5,10,20,30" Width="87"/>
+            </StackPanel>
+
+            <StackPanel Height="167">
+                <TextBlock Text="内容" FontWeight="Bold" FontSize="15" Margin="20,0,0,0" Height="23"/>
+                <TextBox Text="{Binding ThanksCard.Body}" Height="124" Margin="20,0" AcceptsReturn="True"/>
+            </StackPanel>
+
         </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="送信" Command="{Binding SubmitCommand}" Margin="370,422,0,10" Background="#6495ED" Foreground="White" FontSize="15" Width="83"/>
+            <Button Content="キャンセル" Command="{Binding CancelCommand}" Margin="30,422,0,10" Background="#6495ED" Foreground="White" FontSize="15" Width="88"/>
+        </StackPanel>
+
     </Grid>
 </Window>
