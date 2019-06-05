@@ -362,6 +362,7 @@ namespace ThanksCardClient.ViewModels
             Card.Reply = 0;
             Card.PickUp = 0;
             Card.Favorite = 0;
+            Card.FromId = AuthorizedEmployee.Id;
 
             Card createdThanksCard = await Card.PostCardAsync(this.Card);
             //TODO: Error handling
