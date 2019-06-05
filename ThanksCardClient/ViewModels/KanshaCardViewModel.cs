@@ -324,19 +324,21 @@ namespace ThanksCardClient.ViewModels
 
         public async void Initialize()
         {
-            this.Card = new Card();            
-            Employee employee = new Employee();
+            this.Card = new Card();
+            //Employee employee = new Employee();
+            Department Departments = new Department();
 
-          
+
             //下のやつは、ログイン者のEmployee情報をAuthorizedEMployeeに入れてます。
             this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
 
             if (SessionService.Instance.AuthorizedEmployee != null)
             {
-                
                 this.Employees = await SessionService.Instance.AuthorizedEmployee.GetEmployeesAsync();
+                this.Departments = await SessionService.Instance.AuthorizedEmployee.GetDepartmentAsync();
             }
            
+
         
         }
 
