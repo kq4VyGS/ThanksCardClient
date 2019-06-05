@@ -62,6 +62,7 @@ namespace ThanksCardClient.ViewModels
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
         #endregion
+
         //プロパティ
         #region LogonEmployeeProperty
 
@@ -307,17 +308,20 @@ namespace ThanksCardClient.ViewModels
         //
         public async void Initialize()
         {
-            
+            this.Card = new Card();            
             Employee employee = new Employee();
-            this.Employees = await employee.GetEmployeesAsync();
 
+          
+            //下のやつは、ログイン者のEmployee情報をAuthorizedEMployeeに入れてます。
             this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
-            /*
+
             if (SessionService.Instance.AuthorizedEmployee != null)
             {
+                
                 this.Employees = await SessionService.Instance.AuthorizedEmployee.GetEmployeesAsync();
             }
-            */
+           
+        
         }
 
         #region SubmitCommand
@@ -337,6 +341,10 @@ namespace ThanksCardClient.ViewModels
 
         public async void Submit()
         {
+            Card.Reply = 0;
+            Card.PickUp = 0;
+            Card.Favorite = 0;
+
             Card createdThanksCard = await Card.PostCardAsync(this.Card);
             //TODO: Error handling
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Created"));

@@ -6,7 +6,7 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="⌂マイページ" Height="350" Width="525">
+        Title="⌂マイページ" Height="350" Width="525" Background="AliceBlue">
 
     <Window.DataContext>
         <vm:MypageViewModel/>
@@ -74,22 +74,24 @@
     </i:Interaction.Triggers>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="468*"/>
-            <ColumnDefinition Width="49*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="2">
-            <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="454,0,0,0"/>
-            <UniformGrid  Columns="5">
-                <Button Content="マイページ" Command="{Binding ShowMypageCommand}"/>
-                <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}"/>
-                <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}"/>
-                <Button Content="部署" Command="{Binding ShowBusyoCommand}"/>
-                <Button Content="ランキング" Command="{Binding ShowRankingCommand}"/>
-            </UniformGrid>
 
-            <Button Content="感謝カード作成" Command="{Binding ShowKanshaCardCommand}" Margin="440,0,0,0"/>
+
+        <StackPanel>
+
+            <StackPanel Grid.ColumnSpan="2" Height="127">
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="マイページ" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"></TextBlock>
+                <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="454,0,0,0"/>
+                <UniformGrid  Columns="5" Background="#9ACD32">
+                    <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
+                    <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
+                    <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
+                    <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
+                    <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
+                </UniformGrid>
+
+                <Button Content="感謝カード作成" Command="{Binding ShowKanshaCardCommand}" Margin="440,0,0,0"/>
             
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
