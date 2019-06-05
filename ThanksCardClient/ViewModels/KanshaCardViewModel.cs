@@ -99,6 +99,25 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
+        #region DepartmentProperty
+
+        private List<Department> _Department;
+
+        public List<Department> Department
+        {
+            get
+            { return _Department; }
+            set
+            { 
+                if (_Department == value)
+                    return;
+                _Department = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion
+
         #region ThanksCardProperty
         private Card _Card;
 
@@ -239,8 +258,6 @@ namespace ThanksCardClient.ViewModels
         #endregion
 
         #region ShowRankiingCommand
-
-
         private ViewModelCommand _ShowRankingCommand;
 
         public ViewModelCommand ShowRankingCommand
@@ -269,8 +286,6 @@ namespace ThanksCardClient.ViewModels
         #endregion
 
         #region ShowKanshaCardCommand
-
-
         private ViewModelCommand _ShowKanshaCardCommand;
 
         public ViewModelCommand ShowKanshaCardCommand
@@ -305,7 +320,8 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        //
+
+
         public async void Initialize()
         {
             this.Card = new Card();            
