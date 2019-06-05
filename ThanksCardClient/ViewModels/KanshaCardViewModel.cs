@@ -62,6 +62,24 @@ namespace ThanksCardClient.ViewModels
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
         #endregion
+        //プロパティ
+        #region LogonEmployeeProperty
+
+        private Employee _AuthorizedEmployee;
+
+        public Employee AuthorizedEmployee
+        {
+            get
+            { return _AuthorizedEmployee; }
+            set
+            {
+                if (_AuthorizedEmployee == value)
+                    return;
+                _AuthorizedEmployee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
 
         #region EmployeesProperty
         private List<Employee> _Employees;
@@ -97,6 +115,8 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
+
+        //コマンド
         #region MypageCommand
 
 
@@ -290,11 +310,14 @@ namespace ThanksCardClient.ViewModels
             
             Employee employee = new Employee();
             this.Employees = await employee.GetEmployeesAsync();
-           
+
+            this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
+            /*
             if (SessionService.Instance.AuthorizedEmployee != null)
             {
                 this.Employees = await SessionService.Instance.AuthorizedEmployee.GetEmployeesAsync();
             }
+            */
         }
 
         #region SubmitCommand
