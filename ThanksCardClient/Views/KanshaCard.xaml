@@ -85,16 +85,16 @@
             
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="日付:" Margin="20,20,0,20" Height="20" FontWeight="Bold" FontSize="15"/>
-                <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="5,20,20,20"/>
+                <DatePicker SelectedDate="{Binding Card.Date}" Margin="5,20,20,20"/>
                 <TextBlock Text="タイトル:" Width="48" Margin="20,20,0,20" FontWeight="Bold" FontSize="15" Height="21"/>
-                <TextBox Text="{Binding ThanksCard.Title}" Width="267" Margin="5,20,20,20"/>
+                <TextBox Text="{Binding Card.Title}" Width="267" Margin="5,20,20,20"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="From: 部署" Margin="20,0,0,20" Height="20" FontWeight="Bold" FontSize="15"/>
-                <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id" Margin="5,10,0,30" Width="87"/>
+                <TextBlock Text="{Binding AuthorizedEmployee.Section.Department.Name}" Margin="5,10,0,30" Width="87"/>
                 <TextBlock Text="名前" Margin="5,0,0,20" FontWeight="Bold" FontSize="15" Height="21"/>
-                <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name" SelectedValue="{Binding Card.FromId}" SelectedValuePath="Id" Margin="5,10,20,30" Width="87"/>
+                <TextBlock Text="{Binding AuthorizedEmployee.Name}"  Margin="5,10,20,30" Width="87"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -106,7 +106,7 @@
 
             <StackPanel Height="167">
                 <TextBlock Text="内容" FontWeight="Bold" FontSize="15" Margin="20,0,0,0" Height="23"/>
-                <TextBox Text="{Binding ThanksCard.Body}" Height="124" Margin="20,0" AcceptsReturn="True"/>
+                <TextBox Text="{Binding Card.Text}" Height="124" Margin="20,0" AcceptsReturn="True"/>
             </StackPanel>
 
         </StackPanel>
@@ -116,6 +116,8 @@
             <Button Content="送信" Command="{Binding SubmitCommand}" Margin="370,422,0,10" Background="#6495ED" Foreground="White" FontSize="15" Width="83"/>
             <Button Content="キャンセル" Command="{Binding CancelCommand}" Margin="30,422,0,10" Background="#6495ED" Foreground="White" FontSize="15" Width="88"/>
         </StackPanel>
+
+        
 
     </Grid>
 </Window>
