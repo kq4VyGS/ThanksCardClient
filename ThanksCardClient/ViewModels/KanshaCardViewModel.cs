@@ -284,7 +284,7 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-
+        //
         public async void Initialize()
         {
             
