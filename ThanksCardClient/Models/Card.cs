@@ -124,9 +124,9 @@ namespace ThanksCardClient.Models
         #endregion
 
         #region To_FK
-        private int _ToId;
+        private int? _ToId;
 
-        public int ToId
+        public int? ToId
         {
             get
             { return _ToId; }
