@@ -6,7 +6,7 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="ランキング" Height="350" Width="525">
+        Title="ランキング" Height="350" Width="525" Background="#F5F5F5">
     
     <Window.DataContext>
         <vm:RankingViewModel/>
@@ -67,18 +67,26 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
-    
-    <Grid>
-        <StackPanel>
+
+    <ScrollViewer>
+        <Grid>
             <StackPanel>
-                <UniformGrid  Columns="5">
-                    <Button Content="マイページ" Command="{Binding ShowMypageCommand}"/>
-                    <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}"/>
-                    <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}"/>
-                    <Button Content="部署" Command="{Binding ShowBusyoCommand}"/>
-                    <Button Content="ランキング" Command="{Binding ShowRankingCommand}"/>
-                </UniformGrid>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="ランキング" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"/>
+                <StackPanel>
+                    <UniformGrid  Columns="5">
+                        <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
+                        <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
+                    </UniformGrid>
+                    <UniformGrid  Columns="3">
+                        <TextBlock Text="順位"/>
+                        <TextBlock Text="名前"/>
+                        <TextBlock Text="枚数"/>
+                    </UniformGrid>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

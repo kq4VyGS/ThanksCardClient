@@ -6,7 +6,7 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title=" 管理" Height="350" Width="525">
+Title=" 管理" Height="687.5" Width="798" Background="#F5F5F5">
     
     <Window.DataContext>
         <vm:KanriViewModel/>
@@ -37,21 +37,124 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
-    
-    <Grid>
-        
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="管理画面" VerticalAlignment="Top" Background="#2E8B57"></TextBlock>
-        <StackPanel>
-            <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="454,0,0,0"/>
-            <TextBlock Text="ユーザー編集" Background="AliceBlue"/>
-            <TextBlock Text="新規登録"/>
-        <UniformGrid  Columns="2">
-          <TextBlock Text="名前：" Margin="32,0,193,0"/>
-          <TextBox Text="{Binding User.Name}" Margin="-188,0,307,0"/>
-        </UniformGrid>
-        <TextBlock Text="部署編集"/>
-        <TextBlock Text="部署登録"/>
-        
-        </StackPanel>
-    </Grid>
+
+    <ScrollViewer Margin="0,0,-8,76">
+
+        <Grid Height="640">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel Grid.ColumnSpan="2" Margin="0,0,0,31">
+                <UniformGrid  Columns="2">
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="管理画面" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#3CB371" Margin="0,0,-259,0"></TextBlock>
+                    <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Background="#3CB371" Foreground="White" Margin="220,0,-1,0" RenderTransformOrigin="0.5,0.5"/>
+                </UniformGrid>
+
+                <TextBlock Text="ユーザー編集" Background="#6495ED"/>
+
+                <UniformGrid  Columns="2" RenderTransformOrigin="0.424,0.85">
+                    <Button Content="名前検索" Margin="10,0,310,0"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-292,0,494,0"/>
+                </UniformGrid>
+                <UniformGrid  Columns="4" Height="143">
+                    <TextBlock Text="名前" Margin="54,19,0,-4" HorizontalAlignment="Left" Width="38"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-98,19,117,-4"/>
+                    <TextBlock Text="メールアドレス" Margin="-93,19,214,-4" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+                    </TextBlock>
+                    <TextBox Text="{Binding Employee.MailAddress}" Margin="-209,19,86,-4" Height="21" VerticalAlignment="Top" />
+                    <TextBlock Text="部署ID" Margin="0,19,103,-9" HorizontalAlignment="Right" Width="38"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-98,19,117,-9"/>
+                    <TextBlock Text="課ID" Margin="-94,19,214,-9" RenderTransformOrigin="-2.796,1.292"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-209,19,217,-9"/>
+                    <TextBlock Text="ID" Margin="54,25,115,-14"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-98,25,117,-14"/>
+                    <TextBlock Text="パスワード" Margin="-94,25,214,-14" RenderTransformOrigin="-7.582,2.444"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-209,25,217,-14" HorizontalAlignment="Right" Width="187"/>
+                    <Button Content="更新" Margin="600,-11,-476,22"/>
+                    <Button Content="削除" Margin="481,-11,-352,22"/>
+                </UniformGrid>
+
+                <TextBlock Text="新規登録" Background="#6495ED"/>
+                <UniformGrid  Columns="4" Height="128">
+                    <TextBlock Text="名前" Margin="10,10,117,37"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-117,10,0,37" HorizontalAlignment="Left" Width="156"/>
+                    <TextBlock Text="メールアドレス" Margin="-94,8,168,10" FontWeight="Bold"/>
+                    <TextBox Text="{Binding Employee.MailAddress}" Margin="-205,10,126,37" />
+
+                    <UniformGrid  Columns="4" Margin="0,0,56,0">
+                        <TextBlock Text="部署ID" Margin="0,-16,-39,23"/>
+                        <TextBox Text="{Binding User.Name}" Margin="44,-16,-159,23"/>
+                        <TextBlock Text="課ID" Margin="226,-16,-255,23" RenderTransformOrigin="-2.796,1.292"/>
+                        <TextBox Text="{Binding User.Name}" Margin="0,-16,-457,23" HorizontalAlignment="Right" Width="216" Height="25" VerticalAlignment="Bottom"/>
+                        <TextBlock Text="ID" Margin="23,-10,-39,22"/>
+
+                        <TextBox Text="{Binding User.Name}" Margin="0,-10,-159,22" HorizontalAlignment="Right" Width="150"/>
+                        <TextBlock Text="パスワード" Margin="226,-10,-255,22" RenderTransformOrigin="-7.582,2.444"/>
+                        <TextBox Text="{Binding User.Name}" Margin="0,-10,-457,22" HorizontalAlignment="Right" Width="216"/>
+                    </UniformGrid>
+                    <Button Content="登録" Height="20" Margin="482,22,-340,22" RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.037"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                </UniformGrid>
+
+                <TextBlock Text="部署編集" Background="#6495ED"/>
+                <UniformGrid  Columns="4" Height="41">
+                    <Button Content="部署検索" Margin="10,8,71,10"/>
+                    <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id" Margin="-51,10,30,10"/>
+                    <Button Content="課検索" Margin="-1,10,83,10"/>
+                    <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id" Margin="-66,10,30,10"/>
+                </UniformGrid>
+
+                <UniformGrid  Columns="4">
+                    <TextBlock Text="部署" Height="18" Margin="22,0,140,0"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-109,8,0,8" Height="18" HorizontalAlignment="Left" Width="109"/>
+                    <TextBlock Text="課"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-115,8,0,8" Height="18" HorizontalAlignment="Left" Width="115"/>
+                    <TextBlock Text="部署ID" Margin="10,0,140,0"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-109,8,0,8" Height="16" HorizontalAlignment="Left" Width="109"/>
+                    <TextBlock Text="課ID"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-115,8,0,8" Height="18" HorizontalAlignment="Left" Width="115"/>
+                </UniformGrid>
+
+                <UniformGrid  Columns="4" RenderTransformOrigin="0.5,0.5">
+                    <UniformGrid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.445"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </UniformGrid.RenderTransform>
+                    <Button Content="削除" Margin="301,0,-164,0" Height="20"/>
+                    <Button Content="更新" Margin="50,0,94,0"/>
+                    <Button Content="削除" Margin="304,0,-164,0" Height="20"/>
+                    <Button Content="更新" Margin="44,0,92,0"/>
+                </UniformGrid>
+                <TextBlock Text="部署登録" Background="#6495ED" Height="18"/>
+                <UniformGrid  Columns="4" Height="100" HorizontalAlignment="Left" Width="781">
+                    <TextBlock Text="部署" Margin="30,10,114,0"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-109,10,0,0" HorizontalAlignment="Left" Width="109"/>
+                    <TextBlock Text="課" Margin="0,10,150,0"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-151,10,0,0" HorizontalAlignment="Left" Width="151"/>
+                    <TextBlock Text="部署ID" Margin="18,0,114,5"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-109,8,0,5" HorizontalAlignment="Left" Width="109"/>
+                    <TextBlock Text="課ID" Margin="-11,19,160,-7"/>
+                    <TextBox Text="{Binding User.Name}" Margin="-151,5,0,5" HorizontalAlignment="Left" Width="151"/>
+                    <Button Content="登録" Margin="230,-26,-143,39"/>
+                    <Button Content="登録" Margin="465,-26,-353,39"/>
+                </UniformGrid>
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>
