@@ -115,7 +115,6 @@ namespace ThanksCardClient.ViewModels
                 RaisePropertyChanged();
             }
         }
-
         #endregion
 
         #region ThanksCardProperty
@@ -136,7 +135,7 @@ namespace ThanksCardClient.ViewModels
         #endregion
 
 
-
+        #region DepartmentIdProperty
         private Department _DepartmentId;
 
         public Department DepartmentId
@@ -151,7 +150,7 @@ namespace ThanksCardClient.ViewModels
                 RaisePropertyChanged();
             }
         }
-
+        #endregion
 
 
         //public int DepartmentId = 10;
@@ -345,10 +344,13 @@ namespace ThanksCardClient.ViewModels
 
         public async void Initialize()
         {
+            //Card card = new Card();
+            //this.Card = card;
+
             this.Card = new Card();
             Employee employees = new Employee();
             Department departments = new Department();
-            this.Card = new Card();
+           
 
             //下のやつは、ログイン者のEmployee情報をAuthorizedEMployeeに入れてます。
             this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
