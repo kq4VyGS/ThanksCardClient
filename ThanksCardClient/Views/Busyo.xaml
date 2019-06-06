@@ -6,8 +6,8 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-Title="部署" Height="350" Width="525" Background="#F5F5F5">
-    
+Title="部署" Height="449.5" Width="532.5" Background="#F5F5F5">
+
     <Window.DataContext>
         <vm:BusyoViewModel/>
     </Window.DataContext>
@@ -19,7 +19,7 @@ Title="部署" Height="350" Width="525" Background="#F5F5F5">
                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
-        
+
         <l:InteractionMessageTrigger MessageKey="ShowKeiziban" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
@@ -45,9 +45,9 @@ Title="部署" Height="350" Width="525" Background="#F5F5F5">
         </l:InteractionMessageTrigger>
 
         <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
-    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
-    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
-        
+        <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+        <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
         <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
         <i:EventTrigger EventName="ContentRendered">
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
@@ -62,16 +62,62 @@ Title="部署" Height="350" Width="525" Background="#F5F5F5">
 
     </i:Interaction.Triggers>
 
-    <Grid>
-        <StackPanel>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="部署" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#3CB371"></TextBlock>
-            <UniformGrid  Columns="5">
-                <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
-                <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
-                <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
-                <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
-                <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
-            </UniformGrid>
-        </StackPanel>
-    </Grid>
+    <ScrollViewer>
+        <Grid Height="643">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="0*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Margin="0,0,0,186">
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="部署" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#3CB371"></TextBlock>
+                <UniformGrid  Columns="5">
+                    <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
+                    <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
+                    <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
+                    <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
+                    <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
+                </UniformGrid>
+
+                <TextBlock Grid.Column="0" Text="管理部" FontSize="20" Background="#FFFF00" Margin="34,0,51,0"/>
+                <UniformGrid  Columns="3">
+                    <TextBlock Text="他部署名" Background="#00CED1" Margin="34,0,0,0" />
+                    <TextBlock Text="受け取り枚数" Background="#00CED1"/>
+                    <TextBlock Text="送信枚数" Background="#00CED1" Margin="0,0,51,0"/>
+                </UniformGrid>
+                <ScrollViewer Margin="34,0,51,0">
+                </ScrollViewer>
+
+                <TextBlock Grid.Column="0" Text="経理部" FontSize="20" Background="#FFFF00" Height="28" Margin="34,0,51,0"/>
+                <UniformGrid  Columns="3">
+                    <TextBlock Text="他部署名" Background="#00CED1" Margin="35,0,0,0" />
+                    <TextBlock Text="受け取り枚数" Background="#00CED1"/>
+                    <TextBlock Text="送信枚数" Background="#00CED1" Margin="0,0,52,0"/>
+                </UniformGrid>
+                <ScrollViewer Margin="34,0,51,0">
+                </ScrollViewer>
+
+                <TextBlock Grid.Column="0" Text="営業部" FontSize="20" Background="#FFFF00" Height="28" Margin="34,0,51,0"/>
+                <UniformGrid  Columns="3">
+                    <TextBlock Text="他部署名" Background="#00CED1" Margin="35,0,0,0" />
+                    <TextBlock Text="受け取り枚数" Background="#00CED1"/>
+                    <TextBlock Text="送信枚数" Background="#00CED1" Margin="0,0,51,0"/>
+                </UniformGrid>
+                <ScrollViewer Margin="34,0,51,0">
+                </ScrollViewer>
+
+                <TextBlock Grid.Column="0" Text="卸事業部" FontSize="20" Background="#FFFF00" Height="28" Margin="34,0,51,0"/>
+                <UniformGrid  Columns="3">
+                    <TextBlock Text="他部署名" Background="#00CED1" Margin="35,0,0,0" />
+                    <TextBlock Text="受け取り枚数" Background="#00CED1"/>
+                    <TextBlock Text="送信枚数" Background="#00CED1" Margin="0,0,51,0"/>
+                </UniformGrid>
+                <ScrollViewer Margin="34,0,51,0">
+                </ScrollViewer>
+            </StackPanel>
+
+
+
+
+        </Grid>
+    </ScrollViewer>
 </Window>
