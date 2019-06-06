@@ -99,9 +99,43 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="　 To: 部署"  Margin="20,0,0,20" Height="20" FontWeight="Bold" FontSize="15" />
-                <ComboBox ItemsSource="{Binding Department}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="5,10,0,30" Width="87"/>
+
+
+
+
+
+                <ComboBox x:Name="FromDepartments" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedValuePath="Id">
+                    <!-- Deparment が選択されたら FromDepartmentsChangedCommand を発行する -->
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding FromDepartmentsChangedCommand}" CommandParameter="{Binding ElementName=FromDepartments, Path=SelectedValue}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+
+
+
+
+
+
+
+
+
+                <ComboBox x:Name="FromDepartments" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedValue="{Binding DepartmentId}" SelectedValuePath="Id" Margin="5,10,0,30" Width="87">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=FromDepartments, Path=SelectedValue}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+
+                                
+                
+                
+                
+                
                 <TextBlock Text="名前" Margin="5,0,0,20" FontWeight="Bold" FontSize="15" Height="21"/>
-                <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name" SelectedValue="{Binding Card.ToId}" SelectedValuePath="Id" Margin="5,10,20,30" Width="87"/>
+                <ComboBox ItemsSource="{Binding EmployeesInDep}" DisplayMemberPath="Name" SelectedValue="{Binding Card.ToId}" SelectedValuePath="Id" Margin="5,10,20,30" Width="87"/>
             </StackPanel>
 
             <StackPanel Height="167">

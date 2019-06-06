@@ -101,17 +101,17 @@ namespace ThanksCardClient.ViewModels
 
         #region DepartmentProperty
 
-        private List<Department> _Department;
+        private List<Department> _Departments;
 
-        public List<Department> Department
+        public List<Department> Departments
         {
             get
-            { return _Department; }
+            { return _Departments; }
             set
             { 
-                if (_Department == value)
+                if (_Departments == value)
                     return;
-                _Department = value;
+                _Departments = value;
                 RaisePropertyChanged();
             }
         }
@@ -134,6 +134,27 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
+
+
+
+        private Department _DepartmentId;
+
+        public Department DepartmentId
+        {
+            get
+            { return _DepartmentId; }
+            set
+            { 
+                if (_DepartmentId == value)
+                    return;
+                _DepartmentId = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+
+        //public int DepartmentId = 10;
 
 
         //コマンド
@@ -325,22 +346,48 @@ namespace ThanksCardClient.ViewModels
         public async void Initialize()
         {
             this.Card = new Card();
-            //Employee employee = new Employee();
-            Department Departments = new Department();
-
+            Employee employees = new Employee();
+            Department departments = new Department();
+            this.Card = new Card();
 
             //下のやつは、ログイン者のEmployee情報をAuthorizedEMployeeに入れてます。
             this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
 
             if (SessionService.Instance.AuthorizedEmployee != null)
             {
-                this.Employees = await SessionService.Instance.AuthorizedEmployee.GetEmployeesAsync();
-                this.Departments = await SessionService.Instance.AuthorizedEmployee.GetDepartmentAsync();
+                this.Employees = await employees.GetEmployeesAsync();
+                this.Departments = await departments.GetDepartmentsAsync();
             }
            
-
-        
         }
+
+
+        //To部署が変更されたときに発生するコマンド
+
+        private ListenerCommand<int> _SelectionChangedCommand;
+
+        public ListenerCommand<int> SelectionChangedCommand
+        {
+            get
+            {
+                if (_SelectionChangedCommand == null)
+                {
+                    _SelectionChangedCommand = new ListenerCommand<int>(SelectionChanged);
+                }
+                return _SelectionChangedCommand;
+            }
+        }
+
+        public void SelectionChanged(int parameter)
+        {
+            
+           IEnumerable<Employee> EmployeesInDep=Employees.TakeWhile(e => parameter == e.Section.Department.Id);
+        }
+
+
+
+
+
 
         #region SubmitCommand
         private ViewModelCommand _SubmitCommand;
