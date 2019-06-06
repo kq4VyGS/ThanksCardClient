@@ -148,7 +148,7 @@ Title=" 管理" Height="687.5" Width="798" Background="#F5F5F5">
                     <TextBox Text="{Binding User.Name}" Margin="-151,10,0,0" HorizontalAlignment="Left" Width="151"/>
                     <TextBlock Text="部署ID" Margin="18,0,114,5"/>
                     <TextBox Text="{Binding User.Name}" Margin="-109,8,0,5" HorizontalAlignment="Left" Width="109"/>
-                    <TextBlock Text="課ID" Margin="-11,19,160,-7"/>
+                    <TextBlock Text="課ID" Margin="-11,8,160,5"/>
                     <TextBox Text="{Binding User.Name}" Margin="-151,5,0,5" HorizontalAlignment="Left" Width="151"/>
                     <Button Content="登録" Margin="230,-26,-143,39"/>
                     <Button Content="登録" Margin="465,-26,-353,39"/>
