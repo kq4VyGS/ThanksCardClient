@@ -81,9 +81,9 @@
                         <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
                     </UniformGrid>
                     <UniformGrid  Columns="3">
-                        <TextBlock Text="順位"/>
-                        <TextBlock Text="名前"/>
-                        <TextBlock Text="枚数"/>
+                        <TextBlock Text="順位" Margin="53,0,0,0"/>
+                        <TextBlock Text="名前" Margin="27,0,0,0"/>
+                        <TextBlock Text="枚数" Margin="21,0,56,0"/>
                     </UniformGrid>
                 </StackPanel>
             </StackPanel>
