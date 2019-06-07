@@ -52,6 +52,10 @@
 
     </i:Interaction.Triggers>
 
+    
+    
+    
+    
     <Grid>
         <TextBlock Grid.Row="2" Grid.Column="0" Text="" Foreground="White" FontSize="30" VerticalAlignment="Top" Background=" #3CB371"></TextBlock>
 

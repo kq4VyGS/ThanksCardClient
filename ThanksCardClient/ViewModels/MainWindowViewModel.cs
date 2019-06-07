@@ -36,6 +36,8 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
+
+
         #region LogonCommand
         private ViewModelCommand _LogonCommand;
 
@@ -111,6 +113,10 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
+
+
+
+
 
         #region MainWindowCommand
 

@@ -184,7 +184,7 @@ namespace ThanksCardClient.Services
         }
         #endregion
 
-       
+
         //部署テーブル編集
         #region GetDepartmentsAsync()
         public async Task<List<Department>> GetDepartmentsAsync()

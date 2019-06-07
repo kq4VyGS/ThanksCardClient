@@ -20,6 +20,7 @@ namespace ThanksCardClient.Services
         Task<Employee> PostEmployeeAsync(Employee employee);
         Task<Employee> PutEmployeeAsync(Employee employee);
         Task<Employee> DeleteEmployeeAsync(int Id);
+       
 
         // Department REST API Client
         Task<List<Department>> GetDepartmentsAsync();

@@ -246,5 +246,12 @@ namespace ThanksCardClient.Models
             return createdCard;
         }
 
+        //日付機能に使うやつ
+        public Card()
+        {
+            this.Date = DateTime.Now;
+        }
+
+
     }
 }
