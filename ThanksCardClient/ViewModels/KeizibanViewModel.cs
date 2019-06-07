@@ -62,6 +62,26 @@ namespace ThanksCardClient.ViewModels
          */
         #endregion
 
+        //プロパティ
+        #region Cards
+        private List<Card> _Cards;
+
+        public List<Card> Cards
+        {
+            get
+            { return _Cards; }
+            set
+            { 
+                if (_Cards == value)
+                    return;
+                _Cards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+
+        //ページ遷移コマンド
         #region MypageCommand
 
 
@@ -249,8 +269,10 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        public void Initialize()
+        public async void Initialize()
         {
+            Card card = new Card();
+            this.Cards = await card.GetCardsAsync();
         }
     }
 }
