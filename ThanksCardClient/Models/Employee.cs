@@ -164,7 +164,7 @@ namespace ThanksCardClient.Models
             return employees;
         }
 
-        public async Task<Employee> PostUserAsync(Employee employee)
+        public async Task<Employee> PostEmployeeAsync(Employee employee)
         {
             IRestService rest = new RestService();
             Employee createdEmployee = await rest.PostEmployeeAsync(employee);

@@ -149,9 +149,6 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-
-
-        //public int DepartmentId = 10;
         //コマンド
         #region MypageCommand
         private ViewModelCommand _ShowMypageCommand;
