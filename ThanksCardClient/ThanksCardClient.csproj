@@ -62,6 +62,8 @@
     <Compile Include="Services\RestService.cs" />
     <Compile Include="Services\SessionService.cs" />
     <Compile Include="ViewModels\BusyoViewModel.cs" />
+    <Compile Include="ViewModels\CreatedBusyoViewModel.cs" />
+    <Compile Include="ViewModels\CreatedEmployeeViewModel.cs" />
     <Compile Include="ViewModels\KanriViewModel.cs" />
     <Compile Include="ViewModels\KanshaCardViewModel.cs" />
     <Compile Include="ViewModels\KeizibanViewModel.cs" />
@@ -71,6 +73,12 @@
     <Compile Include="ViewModels\RankingViewModel.cs" />
     <Compile Include="Views\Busyo.xaml.cs">
       <DependentUpon>Busyo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreatedBusyo.xaml.cs">
+      <DependentUpon>CreatedBusyo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreatedEmployee.xaml.cs">
+      <DependentUpon>CreatedEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Kanri.xaml.cs">
       <DependentUpon>Kanri.xaml</DependentUpon>
@@ -94,6 +102,14 @@
       <DependentUpon>Ranking.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Busyo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreatedBusyo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreatedEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
