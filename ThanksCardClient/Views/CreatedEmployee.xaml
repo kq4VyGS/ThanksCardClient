@@ -1,0 +1,68 @@
+﻿<Window x:Class="ThanksCardClient.Views.CreatedEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+        xmlns:v="clr-namespace:ThanksCardClient.Views"
+        xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
+        Title="CreatedEmployee" Height="350" Width="669">
+    
+    <Window.DataContext>
+        <vm:CreatedEmployeeViewModel/>
+    </Window.DataContext>
+    
+     <i:Interaction.Triggers>
+     
+     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
+        
+        <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
+        <i:EventTrigger EventName="ContentRendered">
+            <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
+        </i:EventTrigger>
+
+        <!--Windowが閉じたタイミングでViewModelのDisposeメソッドが呼ばれます-->
+        <i:EventTrigger EventName="Closed">
+            <l:DataContextDisposeAction/>
+        </i:EventTrigger>
+
+        <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
+
+        <!-- EditUserViewModel からの TransitionMessage("Created") を受け取とってログオン画面を閉じる処理。 -->
+        <l:InteractionMessageTrigger MessageKey="Created" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
+
+    </i:Interaction.Triggers>
+    
+    <Grid>
+        <StackPanel Height="200">
+            <TextBlock Text="新規登録" Background="#6495ED"/>
+
+            <StackPanel Orientation="Horizontal" Height="60">
+                <TextBlock Text="名前" Margin="20,20,0,20" />
+                <TextBox Text="{Binding Employee.Name}" Margin="20,20,0,20" Width="200" AcceptsReturn="True"/>
+                <TextBlock Text="メールアドレス" Margin="20,20,0,20" FontWeight="Bold"/>
+                <TextBox Text="{Binding Employee.MailAddress}" Margin="20" Width="244" AcceptsReturn="True"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Height="60">
+                <TextBlock Text="CD    " Margin="20,20,0,20"/>
+                <TextBox Text="{Binding Employee.CD}" Margin="20,20,0,20" Width="200" AcceptsReturn="True"/>
+                <TextBlock Text="パスワード" Margin="20,20,0,20" />
+                <TextBox Text="{Binding Employee.Password}" Margin="20,20,0,20"  Width="200" AcceptsReturn="True"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Height="60">
+                <TextBlock Text="課名" Margin="20,20,0,20"/>
+                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Employee.SectionId}" Margin="5,20,0,20" Width="87"/>
+                <Button Content="登録" Command="{Binding Submit2Command}" Height="20" Margin="20,20,0,20" Width="41"/>
+                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Margin="20,20,0,20" />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

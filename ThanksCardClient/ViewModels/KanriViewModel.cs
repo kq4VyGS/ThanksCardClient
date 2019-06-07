@@ -62,38 +62,52 @@ namespace ThanksCardClient.ViewModels
          */
         #endregion
 
-        #region MainWindowCommand
-
-
-        private ViewModelCommand _ShowMainWindowCommand;
-
-        public ViewModelCommand ShowMainWindowCommand
-
+        //コマンド
+        #region ShowCreatedEmployeeCommand
+        private ViewModelCommand _ShowCreatedEmployeeCommand;
+        public ViewModelCommand ShowCreatedEmployeeCommand
         {
             get
             {
-                if (_ShowMainWindowCommand == null)
+                if (_ShowCreatedEmployeeCommand == null)
                 {
-                    _ShowMainWindowCommand = new ViewModelCommand(ShowMainWindow);
+                    _ShowCreatedEmployeeCommand = new ViewModelCommand(ShowCreatedEmployee);
                 }
-                return _ShowMainWindowCommand;
+                return _ShowCreatedEmployeeCommand;
             }
         }
-
-        public void ShowMainWindow()
+        public void ShowCreatedEmployee()
         {
+            var showcreatedemployee = new TransitionMessage(typeof(Views.CreatedEmployee), new CreatedEmployeeViewModel(), TransitionMode.Modal, "ShowCreatedEmployee");
+            Messenger.Raise(showcreatedemployee);
+        }
+        #endregion
 
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
-            window.Hide();
-
-            var showmainwindow = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, "ShowMainWindow");
-            Messenger.Raise(showmainwindow);
-
+        #region ShowCreatedBusyoCommand
+        private ViewModelCommand _ShowCreatedBusyoCommand;
+        public ViewModelCommand ShowCreatedBusyoCommand
+        {
+            get
+            {
+                if (_ShowCreatedBusyoCommand == null)
+                {
+                    _ShowCreatedBusyoCommand = new ViewModelCommand(ShowCreatedBusyo);
+                }
+                return _ShowCreatedBusyoCommand;
+            }
+        }
+        public void ShowCreatedBusyo()
+        {
+            var showcreatedbusyo = new TransitionMessage(typeof(Views.CreatedBusyo), new CreatedBusyoViewModel(), TransitionMode.Modal, "ShowCreatedBusyo");
+            Messenger.Raise(showcreatedbusyo);
         }
         #endregion
 
         public void Initialize()
         {
+       
+
         }
+        
     }
 }
