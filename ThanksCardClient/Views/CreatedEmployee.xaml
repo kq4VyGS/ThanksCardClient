@@ -6,18 +6,18 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="CreatedEmployee" Height="350" Width="669">
-    
+        Title="新規登録" Height="350" Width="669" Background="#F5F5F5">
+
     <Window.DataContext>
         <vm:CreatedEmployeeViewModel/>
     </Window.DataContext>
-    
-     <i:Interaction.Triggers>
-     
-     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
-    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
-    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
-        
+
+    <i:Interaction.Triggers>
+
+        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+        <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+        <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
         <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
         <i:EventTrigger EventName="ContentRendered">
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
@@ -37,30 +37,35 @@
 
 
     </i:Interaction.Triggers>
-    
+
     <Grid>
-        <StackPanel Height="200">
-            <TextBlock Text="新規登録" Background="#6495ED"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="262*"/>
+            <ColumnDefinition Width="330*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="3">
+            <TextBlock Text="新規登録" Background="#9ACD32" Foreground="White" FontSize="20" Height="34"/>
 
             <StackPanel Orientation="Horizontal" Height="60">
-                <TextBlock Text="名前" Margin="20,20,0,20" />
-                <TextBox Text="{Binding Employee.Name}" Margin="20,20,0,20" Width="200" AcceptsReturn="True"/>
-                <TextBlock Text="メールアドレス" Margin="20,20,0,20" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.MailAddress}" Margin="20" Width="244" AcceptsReturn="True"/>
+                <TextBlock Text="名前" Margin="20,50,0,-14" FontWeight="Bold"/>
+                <TextBox Text="{Binding Employee.Name}" Margin="20,50,0,-14" Width="200" AcceptsReturn="True"/>
+                <TextBlock Text="メールアドレス" Margin="20,50,0,-23" FontWeight="Bold"/>
+                <TextBox Text="{Binding Employee.MailAddress}" Margin="20,50,20,-14" Width="244" AcceptsReturn="True"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Height="60">
-                <TextBlock Text="CD    " Margin="20,20,0,20"/>
-                <TextBox Text="{Binding Employee.CD}" Margin="20,20,0,20" Width="200" AcceptsReturn="True"/>
-                <TextBlock Text="パスワード" Margin="20,20,0,20" />
-                <TextBox Text="{Binding Employee.Password}" Margin="20,20,0,20"  Width="200" AcceptsReturn="True"/>
+            <StackPanel Orientation="Horizontal" Height="64">
+                <TextBlock Text="CD    " Margin="20,69,0,-33" FontWeight="Bold"/>
+                <TextBox Text="{Binding Employee.CD}" Margin="20,69,0,-33" Width="200" AcceptsReturn="True"/>
+                <TextBlock Text="パスワード" Margin="20,69,0,-33" FontWeight="Bold"/>
+                <TextBox Text="{Binding Employee.Password}" Margin="20,69,0,-33"  Width="200" AcceptsReturn="True"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Height="60">
-                <TextBlock Text="課名" Margin="20,20,0,20"/>
-                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Employee.SectionId}" Margin="5,20,0,20" Width="87"/>
-                <Button Content="登録" Command="{Binding Submit2Command}" Height="20" Margin="20,20,0,20" Width="41"/>
-                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Margin="20,20,0,20" />
+            <StackPanel Orientation="Horizontal" Height="116">
+                <TextBlock Text="課名" Margin="20,75,0,20" FontWeight="Bold"/>
+                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Employee.SectionId}" Margin="20,75,0,20" Width="87"/>
+                <Button Content="登録" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Margin="330,75,0,20" Width="49"/>
+                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White" Margin="20,75,0,20" Width="80" />
             </StackPanel>
         </StackPanel>
 
