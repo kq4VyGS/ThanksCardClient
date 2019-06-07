@@ -15,7 +15,6 @@ namespace ThanksCardClient.Models
          */
 
         #region Id
-
         private int _Id;
 
         public int Id
@@ -30,11 +29,8 @@ namespace ThanksCardClient.Models
                 RaisePropertyChanged();
             }
         }
-
         #endregion
-
         #region CD
-
         private int _CD;
 
         public int CD
@@ -49,11 +45,8 @@ namespace ThanksCardClient.Models
                 RaisePropertyChanged();
             }
         }
-
         #endregion
-
         #region Text
-
         private string _Text;
 
         public string Text
@@ -70,7 +63,6 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-
         #region Date
 
         private DateTime _Date;
@@ -87,9 +79,7 @@ namespace ThanksCardClient.Models
                 RaisePropertyChanged();
             }
         }
-
         #endregion
-
         #region From_FK
         private int _FromId;
 
@@ -122,7 +112,6 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-
         #region To_FK
         private int? _ToId;
 
@@ -155,7 +144,6 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-
         #region Title
 
         private string _Title;
@@ -174,7 +162,6 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-
         #region Reply
 
         private int _Reply;
@@ -193,7 +180,6 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-
         #region Favorite
 
         private int _Favorite;
@@ -212,7 +198,6 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-
         #region PickUp
 
         private int _PickUp;

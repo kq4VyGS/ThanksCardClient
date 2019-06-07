@@ -80,7 +80,6 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-
         //ページ遷移コマンド
         #region MypageCommand
 
@@ -111,7 +110,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region KeizibanCommand
 
 
@@ -141,7 +139,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region PickupCommand
 
 
@@ -171,7 +168,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region ShowBusyoCommand
 
 
@@ -201,7 +197,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region ShowRankiingCommand
 
 
@@ -231,7 +226,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region ShowKanshaCardCommand
 
 
