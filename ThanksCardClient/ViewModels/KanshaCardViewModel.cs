@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-
 using Livet;
 using Livet.Commands;
 using Livet.Messaging;
 using Livet.Messaging.IO;
 using Livet.EventListeners;
 using Livet.Messaging.Windows;
-
 using ThanksCardClient.Models;
 using ThanksCardClient.Services;
 using System.Windows;
-
 namespace ThanksCardClient.ViewModels
 {
     public class KanshaCardViewModel : ViewModel
@@ -37,11 +34,9 @@ namespace ThanksCardClient.ViewModels
          * ViewModelのコマンドを呼び出せるLivetのすべてのビヘイビア・トリガー・アクションは
          * 同様に直接ViewModelのメソッドを呼び出し可能です。
          */
-
         /* ViewModelからViewを操作したい場合は、View側のコードビハインド無で処理を行いたい場合は
          * Messengerプロパティからメッセージ(各種InteractionMessage)を発信する事を検討してください。
          */
-
         /* Modelからの変更通知などの各種イベントを受け取る場合は、PropertyChangedEventListenerや
          * CollectionChangedEventListenerを使うと便利です。各種ListenerはViewModelに定義されている
          * CompositeDisposableプロパティ(LivetCompositeDisposable型)に格納しておく事でイベント解放を容易に行えます。
@@ -54,7 +49,6 @@ namespace ThanksCardClient.ViewModels
          * 
          * ViewModelを使いまわしたい時などは、ViewからDataContextDisposeActionを取り除くか、発動のタイミングをずらす事で対応可能です。
          */
-
         /* UIDispatcherを操作する場合は、DispatcherHelperのメソッドを操作してください。
          * UIDispatcher自体はApp.xaml.csでインスタンスを確保してあります。
          * 
@@ -62,12 +56,9 @@ namespace ThanksCardClient.ViewModels
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
         #endregion
-
         //プロパティ
         #region LogonEmployeeProperty
-
         private Employee _AuthorizedEmployee;
-
         public Employee AuthorizedEmployee
         {
             get
@@ -81,10 +72,8 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
-
         #region EmployeesProperty
         private List<Employee> _Employees;
-
         public List<Employee> Employees
         {
             get
@@ -98,17 +87,14 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
-
-        #region DepartmentProperty
-
+        #region DepartmentsProperty
         private List<Department> _Departments;
-
         public List<Department> Departments
         {
             get
             { return _Departments; }
             set
-            { 
+            {
                 if (_Departments == value)
                     return;
                 _Departments = value;
@@ -116,10 +102,8 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
-
         #region ThanksCardProperty
         private Card _Card;
-
         public Card Card
         {
             get
@@ -133,17 +117,14 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
-
-
         #region DepartmentIdProperty
         private Department _DepartmentId;
-
         public Department DepartmentId
         {
             get
             { return _DepartmentId; }
             set
-            { 
+            {
                 if (_DepartmentId == value)
                     return;
                 _DepartmentId = value;
@@ -151,19 +132,30 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
+        #region _EmployeesInDep
+        private IEnumerable<Employee> _EmployeesInDep;
+
+        public IEnumerable<Employee> EmployeesInDep
+        {
+            get
+            { return _EmployeesInDep; }
+            set
+            { 
+                if (_EmployeesInDep == value)
+                    return;
+                _EmployeesInDep = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
 
 
         //public int DepartmentId = 10;
-
-
         //コマンド
         #region MypageCommand
-
-
         private ViewModelCommand _ShowMypageCommand;
-
         public ViewModelCommand ShowMypageCommand
-
         {
             get
             {
@@ -174,26 +166,17 @@ namespace ThanksCardClient.ViewModels
                 return _ShowMypageCommand;
             }
         }
-
         public void ShowMypage()
         {
-
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
-
             var showmypage = new TransitionMessage(typeof(Views.Mypage), new MypageViewModel(), TransitionMode.Modal, "ShowMypage");
             Messenger.Raise(showmypage);
-
         }
         #endregion
-
         #region KeizibanCommand
-
-
         private ViewModelCommand _ShowKeizibanCommand;
-
         public ViewModelCommand ShowKeizibanCommand
-
         {
             get
             {
@@ -204,26 +187,17 @@ namespace ThanksCardClient.ViewModels
                 return _ShowKeizibanCommand;
             }
         }
-
         public void ShowKeiziban()
         {
-
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
-
             var showkeiziban = new TransitionMessage(typeof(Views.Keiziban), new KeizibanViewModel(), TransitionMode.Modal, "ShowKeiziban");
             Messenger.Raise(showkeiziban);
-
         }
         #endregion
-
         #region PickupCommand
-
-
         private ViewModelCommand _ShowPickupCommand;
-
         public ViewModelCommand ShowPickupCommand
-
         {
             get
             {
@@ -234,26 +208,17 @@ namespace ThanksCardClient.ViewModels
                 return _ShowPickupCommand;
             }
         }
-
         public void ShowPickup()
         {
-
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
-
             var showpickup = new TransitionMessage(typeof(Views.Pickup), new PickupViewModel(), TransitionMode.Modal, "ShowPickup");
             Messenger.Raise(showpickup);
-
         }
         #endregion
-
         #region ShowBusyoCommand
-
-
         private ViewModelCommand _ShowBusyoCommand;
-
         public ViewModelCommand ShowBusyoCommand
-
         {
             get
             {
@@ -264,24 +229,17 @@ namespace ThanksCardClient.ViewModels
                 return _ShowBusyoCommand;
             }
         }
-
         public void ShowBusyo()
         {
-
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
-
             var showbusyo = new TransitionMessage(typeof(Views.Busyo), new BusyoViewModel(), TransitionMode.Modal, "ShowBusyo");
             Messenger.Raise(showbusyo);
-
         }
         #endregion
-
         #region ShowRankiingCommand
         private ViewModelCommand _ShowRankingCommand;
-
         public ViewModelCommand ShowRankingCommand
-
         {
             get
             {
@@ -292,24 +250,17 @@ namespace ThanksCardClient.ViewModels
                 return _ShowRankingCommand;
             }
         }
-
         public void ShowRanking()
         {
-
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
-
             var showranking = new TransitionMessage(typeof(Views.Ranking), new RankingViewModel(), TransitionMode.Modal, "ShowRanking");
             Messenger.Raise(showranking);
-
         }
         #endregion
-
         #region ShowKanshaCardCommand
         private ViewModelCommand _ShowKanshaCardCommand;
-
         public ViewModelCommand ShowKanshaCardCommand
-
         {
             get
             {
@@ -320,80 +271,56 @@ namespace ThanksCardClient.ViewModels
                 return _ShowKanshaCardCommand;
             }
         }
-
         public void ShowKanshaCard()
         {
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             window.Hide();
-
             var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new KanshaCardViewModel(), TransitionMode.Modal, "ShowKanshaCard");
             Messenger.Raise(showkanshacard);
-
-
             //var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
             //window.Close();
             //KanshaCardViewModel ViewModel = new KanshaCardViewModel();
             //var message = new TransitionMessage(typeof(Views.KanshaCard), ViewModel, TransitionMode.Modal, "ShowKanshaCard");
             //   var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new MainWindowViewModel(), TransitionMode.Modal, "ShowKanshaCard");
             //Messenger.Raise(message);
-
         }
         #endregion
-
-
-
         public async void Initialize()
         {
-            //Card card = new Card();
-            //this.Card = card;
-
             this.Card = new Card();
             Employee employees = new Employee();
             Department departments = new Department();
-           
-
+            
             //下のやつは、ログイン者のEmployee情報をAuthorizedEMployeeに入れてます。
             this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
-
             if (SessionService.Instance.AuthorizedEmployee != null)
             {
                 this.Employees = await employees.GetEmployeesAsync();
                 this.Departments = await departments.GetDepartmentsAsync();
             }
-           
+
         }
-
-
         //To部署が変更されたときに発生するコマンド
-
-        private ListenerCommand<int> _SelectionChangedCommand;
-
-        public ListenerCommand<int> SelectionChangedCommand
+        private ListenerCommand<int> _FromDepartmentsChangedCommand;
+        public ListenerCommand<int> FromDepartmentsChangedCommand
         {
             get
             {
-                if (_SelectionChangedCommand == null)
+                if (_FromDepartmentsChangedCommand == null)
                 {
-                    _SelectionChangedCommand = new ListenerCommand<int>(SelectionChanged);
+                    _FromDepartmentsChangedCommand = new ListenerCommand<int>(SelectionChanged);
                 }
-                return _SelectionChangedCommand;
+                return _FromDepartmentsChangedCommand;  
             }
         }
-
         public void SelectionChanged(int parameter)
         {
-            
-           IEnumerable<Employee> EmployeesInDep=Employees.TakeWhile(e => parameter == e.Section.Department.Id);
+
+            this.EmployeesInDep = Employees.Where(e => parameter == e.Section.Department.Id);
         }
-
-
-
-
-
-
         #region SubmitCommand
         private ViewModelCommand _SubmitCommand;
-        
+
         public ViewModelCommand SubmitCommand
         {
             get
@@ -405,14 +332,12 @@ namespace ThanksCardClient.ViewModels
                 return _SubmitCommand;
             }
         }
-
         public async void Submit()
         {
             Card.Reply = 0;
             Card.PickUp = 0;
             Card.Favorite = 0;
             Card.FromId = AuthorizedEmployee.Id;
-
             Card createdThanksCard = await Card.PostCardAsync(this.Card);
             //TODO: Error handling
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Created"));
