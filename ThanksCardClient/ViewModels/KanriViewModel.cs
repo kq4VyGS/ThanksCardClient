@@ -62,7 +62,7 @@ namespace ThanksCardClient.ViewModels
          */
         #endregion
 
-        //コマンド
+        //コマンド!
         #region ShowCreatedEmployeeCommand
         private ViewModelCommand _ShowCreatedEmployeeCommand;
         public ViewModelCommand ShowCreatedEmployeeCommand
