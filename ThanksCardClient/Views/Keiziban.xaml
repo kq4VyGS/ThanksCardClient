@@ -69,6 +69,7 @@
     </i:Interaction.Triggers>
 
     <ScrollViewer>
+       
         <Grid Height="539">
             <StackPanel>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="掲示板" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"/>
@@ -81,6 +82,7 @@
                 </UniformGrid>
             </StackPanel>
 
+           
             <StackPanel Orientation="Horizontal">
                 <UniformGrid  Columns="4" Width="514">
                     <TextBlock Text="日付:" Margin="10,66,76,221" FontWeight="Bold" FontSize="15"/>
@@ -89,6 +91,9 @@
                     <Button Content="更新" Command="{Binding ShowKeizibanCommand}" Foreground="White" Margin="26,66,0,441" Background="#6495ED" HorizontalAlignment="Left" Width="80"/>
                 </UniformGrid>
             </StackPanel>
+        
+        
+        <!---
             <UniformGrid  Columns="6">
                 <TextBlock Text="☆" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="10,135,45,0"/>
                 <TextBlock Text="✔" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-45,135,97,0"/>
@@ -100,5 +105,48 @@
                 </ScrollViewer>
             </UniformGrid>
         </Grid>
+        -->
+
+
+
+
+            <StackPanel>
+                <DataGrid ItemsSource="{Binding Path = Cards}" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="DataGrid_SelectionChanged" FontWeight="Bold" Foreground="Black" FontSize="10"  Margin="10,135,10,0">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#00CED1" />
+                            <Setter Property="BorderBrush" Value="White" /> 
+                            <Setter Property="BorderThickness" Value="0.5" />
+                            <Setter Property="Foreground" Value="white" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="お気に入り" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path = Favorite}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="ピックアップ">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path = PickUp}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+       
+        
+        
+        
     </ScrollViewer>
 </Window>

@@ -132,7 +132,7 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
-        #region _EmployeesInDep
+        #region EmployeesInDep
         private IEnumerable<Employee> _EmployeesInDep;
 
         public IEnumerable<Employee> EmployeesInDep
