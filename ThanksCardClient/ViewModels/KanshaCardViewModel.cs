@@ -338,6 +338,30 @@ namespace ThanksCardClient.ViewModels
             Card createdThanksCard = await Card.PostCardAsync(this.Card);
             //TODO: Error handling
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Created"));
+
+                var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Close();
+        }
+        #endregion
+
+        #region CancelCommand
+        private ViewModelCommand _CancelCommand;
+
+        public ViewModelCommand CancelCommand
+        {
+            get
+            {
+                if (_CancelCommand == null)
+                {
+                    _CancelCommand = new ViewModelCommand(Cancel);
+                }
+                return _CancelCommand;
+            }
+        }
+        public void Cancel()
+        {
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Close();
         }
         #endregion
     }
