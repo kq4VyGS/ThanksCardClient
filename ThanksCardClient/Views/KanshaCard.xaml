@@ -116,6 +116,7 @@
                     </i:Interaction.Triggers>
                 </ComboBox>
 
+                
                 <TextBlock Text="名前" Margin="5,0,0,20" FontWeight="Bold" FontSize="15" Height="21"/>
                 <ComboBox ItemsSource="{Binding EmployeesInDep}" DisplayMemberPath="Name" SelectedValue="{Binding Card.ToId}" SelectedValuePath="Id" Margin="5,10,20,30" Width="87"/>
             </StackPanel>
