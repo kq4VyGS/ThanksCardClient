@@ -6,7 +6,7 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="CreatedBusyo" Height="350" Width="525">
+        Title="部署登録" Height="350" Width="525" Background="#F5F5F5">
     
     <Window.DataContext>
         <vm:CreatedBusyoViewModel/>
@@ -39,37 +39,37 @@
 
 
     </i:Interaction.Triggers>
-    
+
     <Grid>
-        
+
         <StackPanel>
             <StackPanel>
-                <TextBlock Text="部署登録" Background="#6495ED" Height="18"/>
+                <TextBlock Text="部署登録" Background="#9ACD32" Foreground="White" FontSize="20" Height="40"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="部署名" Margin="20,20,0,20" FontWeight="Bold" FontSize="15"/>
                 <TextBox Text="{Binding Department.Name}" Margin="20,20,0,20" Width="100" AcceptsReturn="True"/>
                 <TextBlock Text="課名" Margin="20,20,0,20" Height="20" FontWeight="Bold" FontSize="15"/>
-                <TextBox Text="{Binding Section.Name}" Margin="20,20,0,20" Width="100" AcceptsReturn="True"/>
+                <TextBox Text="{Binding Section.Name}" Margin="20,20,0,20" Width="119" AcceptsReturn="True"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="部署CD" Margin="20,20,0,20" FontWeight="Bold" FontSize="15"/>
                 <TextBox Text="{Binding Department.CD}" Margin="20,20,0,20" Width="100" AcceptsReturn="True"/>
                 <TextBlock Text="課CD" Margin="20,20,0,20" Height="20" FontWeight="Bold" FontSize="15"/>
-                <TextBox Text="{Binding Section.CD}" Margin="20,20,0,20" Width="100" AcceptsReturn="True"/>
+                <TextBox Text="{Binding Section.CD}" Margin="20,20,0,20" Width="106" AcceptsReturn="True"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="部署名" Margin="200,20,0,20" FontWeight="Bold" FontSize="15"/>
+                <TextBlock Text="部署名" Margin="20,20,10,20" FontWeight="Bold" FontSize="15" Width="51"/>
                 <ComboBox ItemsSource="{Binding Departments}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Section.DepartmentId}" Margin="5,20,0,20" Width="87"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <Button Content="部署登録" Command="{Binding Submit2Command}" Height="20" Margin="20,20,0,20" Width="59"/>
-                <Button Content="課登録" Command="{Binding SubmitCommand}" Height="20" Margin="20,20,0,20" Width="41"/>
-                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Margin="20,20,0,20" />
+                <Button Content="部署登録" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Height="20" Margin="240,20,0,20" Width="59"/>
+                <Button Content="課登録" Command="{Binding SubmitCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="41"/>
+                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White"  Margin="20,20,0,20" />
             </StackPanel>
         </StackPanel>
 
