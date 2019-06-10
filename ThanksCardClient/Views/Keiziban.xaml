@@ -111,35 +111,37 @@
 
 
             <StackPanel>
-                <DataGrid ItemsSource="{Binding Path = Cards}" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="DataGrid_SelectionChanged" FontWeight="Bold" Foreground="Black" FontSize="10"  Margin="10,135,10,0">
+                <DataGrid ItemsSource="{Binding Path = Cards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                          SelectionChanged="DataGrid_SelectionChanged" FontWeight="Bold" Foreground="Black" FontSize="10"  Margin="10,135,10,0">
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="#00CED1" />
                             <Setter Property="BorderBrush" Value="White" /> 
                             <Setter Property="BorderThickness" Value="0.5" />
                             <Setter Property="Foreground" Value="white" />
+                            <Setter Property="BorderBrush" Value="Black" />
                         </Style>
                     </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="お気に入り" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Path = Favorite}"/>
+                                    <CheckBox IsChecked="{Binding Path = Favorite}" Width="25"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="ピックアップ">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Path = PickUp}"/>
+                                    <CheckBox IsChecked="{Binding Path = PickUp}" Width="25"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}"/>
-                        <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}"/>
-                        <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}"/>
-                        <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}"/>
-                        <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="150"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="150"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
