@@ -71,6 +71,8 @@
     <Compile Include="ViewModels\MypageViewModel.cs" />
     <Compile Include="ViewModels\PickupViewModel.cs" />
     <Compile Include="ViewModels\RankingViewModel.cs" />
+    <Compile Include="ViewModels\UpdatedBusyoViewModel.cs" />
+    <Compile Include="ViewModels\UpdatedEmployeeViewModel.cs" />
     <Compile Include="Views\Busyo.xaml.cs">
       <DependentUpon>Busyo.xaml</DependentUpon>
     </Compile>
@@ -100,6 +102,12 @@
     </Compile>
     <Compile Include="Views\Ranking.xaml.cs">
       <DependentUpon>Ranking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdatedBusyo.xaml.cs">
+      <DependentUpon>UpdatedBusyo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdatedEmployee.xaml.cs">
+      <DependentUpon>UpdatedEmployee.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Busyo.xaml">
       <SubType>Designer</SubType>
@@ -142,6 +150,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Ranking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdatedBusyo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdatedEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
