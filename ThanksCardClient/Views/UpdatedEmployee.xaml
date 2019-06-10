@@ -31,9 +31,15 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
         <!-- EditUserViewModel からの TransitionMessage("Updated") を受け取とってログオン画面を閉じる処理。 -->
-        <l:InteractionMessageTrigger MessageKey="Created" Messenger="{Binding Messenger}">
+        <l:InteractionMessageTrigger MessageKey="Updated" Messenger="{Binding Messenger}">
             <l:WindowInteractionMessageAction/>
         </l:InteractionMessageTrigger>
+
+        <!-- EditUserViewModel からの TransitionMessage("Deleted") を受け取とってログオン画面を閉じる処理。 -->
+        <l:InteractionMessageTrigger MessageKey="Deleted" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
 
     </i:Interaction.Triggers>
 
@@ -46,9 +52,23 @@
 
             <StackPanel  Orientation="Horizontal">
                 <TextBlock Text="課検索" Margin="20,10,0,10" FontWeight="Bold" FontSize="15"/>
-                <ComboBox x:Name="SearchSection" ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="20,10,0,0" Width="106"  VerticalAlignment="Top" Height="24"/>
+                <ComboBox x:Name="SearchSection" ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="20,10,0,0" Width="106"  VerticalAlignment="Top" Height="24">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SectionSearchCommand}" CommandParameter="{Binding ElementName=SearchSection, Path=SelectedValue}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+                
                 <TextBlock Text="名前検索" Margin="20,10,0,10" FontWeight="Bold" FontSize="15"/>
-                <ComboBox x:Name="SearchName" ItemsSource="{Binding Employees}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="20,10,0,0" Width="106"  VerticalAlignment="Top" Height="24"/>
+                
+                <ComboBox x:Name="EditEmployee" ItemsSource="{Binding EmployeesInDep}" DisplayMemberPath="Name"  SelectedValuePath="Id" Margin="20,10,0,0" Width="106"  VerticalAlignment="Top" Height="24">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding EditEmployeeCommand}" CommandParameter="{Binding ElementName=EditEmployee, Path=SelectedValue}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
             </StackPanel>
 
 
@@ -67,13 +87,13 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="課検索" Margin="20,10,0,10" FontWeight="Bold" FontSize="15"/>
-                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="20,10,0,0" Width="106"  VerticalAlignment="Top" Height="24"/>
+                <TextBlock Text="所属課" Margin="20,10,0,10" FontWeight="Bold" FontSize="15"/>
+                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="20,10,0,0" Width="106"  VerticalAlignment="Top" Height="24" SelectedValue="{Binding Employee.SectionId}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <Button Content="更新" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="59"/>
-                <Button Content="削除" Command="{Binding EmployeeDeleteCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="59"/>
+                <Button Content="削除" Command="{Binding EmployeeDeleteCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="59" CommandParameter="{Binding Employee}"/>
                 <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White"  Margin="20,20,0,20" />
             </StackPanel>
 
