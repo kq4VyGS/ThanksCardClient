@@ -18,7 +18,7 @@ namespace ThanksCardClient.ViewModels
 {
     public class UpdatedBusyoViewModel : ViewModel
     {
-        #region
+        #region 説明書
         /* コマンド、プロパティの定義にはそれぞれ 
          * 
          *  lvcom   : ViewModelCommand
@@ -63,40 +63,6 @@ namespace ThanksCardClient.ViewModels
         #endregion]
 
         //プロパティ
-
-        #region EmployeesProperty
-        private List<Employee> _Employees;
-
-        public List<Employee> Employees
-        {
-            get
-            { return _Employees; }
-            set
-            {
-                if (_Employees == value)
-                    return;
-                _Employees = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-
-        #region EmployeeProperty
-        private Employee _Employee;
-
-        public Employee Employee
-        {
-            get
-            { return _Employee; }
-            set
-            {
-                if (_Employee == value)
-                    return;
-                _Employee = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
 
         #region DepartmentProperty
         private Department _Department;
@@ -262,7 +228,8 @@ namespace ThanksCardClient.ViewModels
             System.Diagnostics.Debug.WriteLine("DeleteCommand" + Department.Id);
             Department deletedDepartment = await Department.DeleteDepartmentAsync(Department.Id);
 
-            this.Initialize();
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Close();
         }
         #endregion
 
@@ -281,17 +248,71 @@ namespace ThanksCardClient.ViewModels
             }
         }
 
-        public async void SectionDelete (Section Section)
+        public async void SectionDelete(Section Section)
         {
             System.Diagnostics.Debug.WriteLine("DeleteCommand" + Section.Id);
             Section deletedSection = await Section.DeleteSectionAsync(Section.Id);
 
-            this.Initialize();
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Close();
+
         }
         #endregion
 
-        public void Initialize()
+        //絞り込み用
+
+        #region EditDepartmentCommand
+        private ListenerCommand<int> _EditDepartmentCommand;
+        public ListenerCommand<int> EditDepartmentCommand
         {
+            get
+            {
+                if (_EditDepartmentCommand == null)
+                {
+                    _EditDepartmentCommand = new ListenerCommand<int>(SelectionChanged2);
+                }
+                return _EditDepartmentCommand;
+            }
+        }
+        public void SelectionChanged2(int parameter)
+        {
+            this.Department = Departments.Find(e => parameter == e.Id);
+        }
+        #endregion
+
+        #region EditSectionCommand
+        private ListenerCommand<int> _EditSectionCommand;
+        public ListenerCommand<int> EditSectionCommand
+        {
+            get
+            {
+                if (_EditSectionCommand == null)
+                {
+                    _EditSectionCommand = new ListenerCommand<int>(SelectionChanged);
+                }
+                return _EditSectionCommand;
+            }
+        }
+        public void SelectionChanged(int parameter)
+        {
+            this.Section = Sections.Find(e => parameter == e.Id);
+        }
+        #endregion
+
+        public async　void Initialize()
+        {
+            this.Department = new Department();
+            this.Section = new Section();
+
+            //comboBox用
+            Section sections = new Section();
+            this.Sections = await sections.GetSectionsAsync();
+            Department departments = new Department();
+            this.Departments = await departments.GetDepartmentsAsync();
+
+            
+
+
         }
     }
 }

@@ -31,7 +31,7 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
         <!-- EditUserViewModel からの TransitionMessage("Updated") を受け取とってログオン画面を閉じる処理。 -->
-        <l:InteractionMessageTrigger MessageKey="Created" Messenger="{Binding Messenger}">
+        <l:InteractionMessageTrigger MessageKey="Updated" Messenger="{Binding Messenger}">
             <l:WindowInteractionMessageAction/>
         </l:InteractionMessageTrigger>
 
@@ -49,7 +49,7 @@
                 <ComboBox x:Name="SearchDepartments" ItemsSource="{Binding Departments}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="5,10,0,30" Width="87">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding FromDepartmentsChangedCommand}" CommandParameter="{Binding ElementName=SearchDepartments, Path=SelectedValue}"/>
+                            <i:InvokeCommandAction Command="{Binding EditDepartmentCommand}" CommandParameter="{Binding ElementName=SearchDepartments, Path=SelectedValue}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBox>
@@ -58,7 +58,7 @@
                 <ComboBox x:Name="SearchSection" ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="5,10,0,30" Width="87">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding FromSectionsChangedCommand}" CommandParameter="{Binding ElementName=SearchSection, Path=SelectedValue}"/>
+                            <i:InvokeCommandAction Command="{Binding EditSectionCommand}" CommandParameter="{Binding ElementName=SearchSection, Path=SelectedValue}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBox>
@@ -80,14 +80,14 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="部署"  Margin="200,0,0,20" Height="20" FontWeight="Bold" FontSize="15" />
-                <ComboBox ItemsSource="{Binding Departments}" DisplayMemberPath="Name"  SelectedValuePath="Id" Margin="5,10,0,30" Width="87"/>
+                <ComboBox ItemsSource="{Binding Departments}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Section.DepartmentId}" Margin="5,10,0,30" Width="87"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <Button Content="部署更新" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="59"/>
                 <Button Content="課更新" Command="{Binding SubmitCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="41"/>
-                <Button Content="部署削除" Command="{Binding DepartmentDeleteCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="59"/>
-                <Button Content="課削除" Command="{Binding SectionDeleteCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="41"/>
+                <Button Content="部署削除" Command="{Binding DepartmentDeleteCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="59" CommandParameter="{Binding Department}"/>
+                <Button Content="課削除" Command="{Binding SectionDeleteCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="41"  CommandParameter="{Binding Section}"/>
                 <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White"  Margin="20,20,0,20" />
             </StackPanel>
         </StackPanel>
