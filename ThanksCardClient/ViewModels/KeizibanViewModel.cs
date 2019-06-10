@@ -13,6 +13,7 @@ using Livet.Messaging.Windows;
 
 using ThanksCardClient.Models;
 using System.Windows;
+using ThanksCardClient.Services;
 
 namespace ThanksCardClient.ViewModels
 {
@@ -63,6 +64,21 @@ namespace ThanksCardClient.ViewModels
         #endregion
 
         //プロパティ
+        #region LogonEmployeeProperty
+        private Employee _AuthorizedEmployee;
+        public Employee AuthorizedEmployee
+        {
+            get
+            { return _AuthorizedEmployee; }
+            set
+            {
+                if (_AuthorizedEmployee == value)
+                    return;
+                _AuthorizedEmployee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
         #region Cards
         private List<Card> _Cards;
 
@@ -79,11 +95,57 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
+        #region DateProperty
+        private Card _Date;
+
+        public Card Date
+        {
+            get
+            { return _Date; }
+            set
+            { 
+                if (_Date == value)
+                    return;
+                _Date = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region AllCards
+        private List<Card> _AllCards;
+
+        public List<Card> AllCards
+        {
+            get
+            { return _AllCards; }
+            set
+            { 
+                if (_AllCards == value)
+                    return;
+                _AllCards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region Favorite
+        private Favorite _Favorite;
+
+        public Favorite Favorite
+        {
+            get
+            { return _Favorite; }
+            set
+            {
+                if (_Favorite == value)
+                    return;
+                _Favorite = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
 
         //ページ遷移コマンド
         #region MypageCommand
-
-
         private ViewModelCommand _ShowMypageCommand;
 
         public ViewModelCommand ShowMypageCommand
@@ -262,11 +324,40 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
+        #region FavoriteCheck
+        private ListenerCommand<int> _FavoriteCheckCommand;
+
+        public ListenerCommand<int> FavoriteCheckCommand
+        {
+            get
+            {
+                if (_FavoriteCheckCommand == null)
+                {
+                    _FavoriteCheckCommand = new ListenerCommand<int>(FavoriteCheck);
+                }
+                return _FavoriteCheckCommand;
+            }
+        }
+
+        public async void FavoriteCheck(int cardId)
+        {
+            this.Favorite.EmployeeId = AuthorizedEmployee.Id;
+            this.Favorite.CardId = cardId;
+
+            Favorite createfavorite = await Favorite.PostFavoriteAsync(Favorite);
+        }
+        #endregion
+
 
         public async void Initialize()
         {
+            this.Date= new Card();
+
             Card card = new Card();
             this.Cards = await card.GetCardsAsync();
+
+            this.AllCards = Cards;
+            this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
         }
     }
 }

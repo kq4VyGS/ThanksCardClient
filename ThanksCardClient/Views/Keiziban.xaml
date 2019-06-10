@@ -86,8 +86,10 @@
             <StackPanel Orientation="Horizontal">
                 <UniformGrid  Columns="4" Width="514">
                     <TextBlock Text="日付:" Margin="10,66,76,221" FontWeight="Bold" FontSize="15"/>
-                    <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="-71,66,90,441"/>
-                    <Button Content="履歴" Margin="-86,66,154,441" Background="#6495ED" Foreground="White"/>
+                    <DatePicker SelectedDate="{Binding Date.Date}" Margin="-71,66,90,441"/>
+                    <Button Content="履歴" Command="{Binding ShowRefineCardsCommand}" Margin="-86,66,154,441" Background="#6495ED" Foreground="White">
+                        
+                    </Button>
                     <Button Content="更新" Command="{Binding ShowKeizibanCommand}" Foreground="White" Margin="26,66,0,441" Background="#6495ED" HorizontalAlignment="Left" Width="80"/>
                 </UniformGrid>
             </StackPanel>
@@ -122,14 +124,28 @@
                             <Setter Property="BorderBrush" Value="Black" />
                         </Style>
                     </DataGrid.ColumnHeaderStyle>
+                    
+                    
+                    
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="お気に入り" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Path = Favorite}" Width="25"/>
+                                    <CheckBox x:Name="FavoriteCheck" Width="25" IsChecked={Binding DataContext.FavoriteCheckedCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked" >
+                                                <i:InvokeCommandAction Command="{Binding FavoriteCheckedCommand}" />
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked" >
+                                                <i:InvokeCommandAction Command="{Binding FavoriteUnCheckedCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                        
+                        
                         <DataGridTemplateColumn Header="ピックアップ">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -137,6 +153,9 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                        
+                        
+                        
                         <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
                         <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
                         <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>

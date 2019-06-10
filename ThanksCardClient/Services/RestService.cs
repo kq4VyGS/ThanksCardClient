@@ -444,5 +444,107 @@ namespace ThanksCardClient.Services
         #endregion
 
 
+        //お気に入り登録
+        #region GetFavoritesAsync()
+        public async Task<List<Favorite>> GetFavoritesAsync()
+        {
+            List<Favorite> responseFavorites = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Favorites");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseFavorites = JsonConvert.DeserializeObject<List<Favorite>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetFavoritesAsync: " + e);
+            }
+            return responseFavorites;
+        }
+        #endregion
+
+        #region PostFavoriteAsync(Favorite favorite)
+        public async Task<Favorite> PostFavoriteAsync(Favorite favorite)
+        {
+            var jObject = JsonConvert.SerializeObject(favorite);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Favorite responseFavorite = null;
+            try
+            {
+                var response = await Client.PostAsync(this.BaseUrl + "/api/Favorites", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseFavorite = JsonConvert.DeserializeObject<Favorite>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PostFavoriteAsync: " + e);
+            }
+            return responseFavorite;
+        }
+
+        #endregion
+
+        #region PutFavoriteAsync(Favorite favorite)
+        public async Task<Favorite> PutFavoriteAsync(Favorite favorite)
+        {
+            var jObject = JsonConvert.SerializeObject(favorite);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Favorite responseFavorite = null;
+            try
+            {
+                var response = await Client.PutAsync(this.BaseUrl + "/api/Favorites/" + favorite.Id, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseFavorite = JsonConvert.DeserializeObject<Favorite>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PutFavoriteAsync: " + e);
+            }
+            return responseFavorite;
+        }
+        #endregion
+
+        #region DeleteFavoriteAsync(int Id)
+        public async Task<Favorite> DeleteFavoriteAsync(int Id)
+        {
+            Favorite responseFavorite = null;
+            try
+            {
+                var response = await Client.DeleteAsync(this.BaseUrl + "/api/Favorites/" + Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseFavorite = JsonConvert.DeserializeObject<Favorite>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.DeleteEmployeeAsync: " + e);
+            }
+            return responseFavorite;
+        }
+        #endregion
+
+
+
     }
 }

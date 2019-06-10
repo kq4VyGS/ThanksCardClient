@@ -39,5 +39,12 @@ namespace ThanksCardClient.Services
         Task<List<Card>> GetCardsAsync();
         Task<Card> PostCardAsync(Card Card);
 
+
+        // Favorite REST API Client
+        Task<List<Favorite>> GetFavoritesAsync();
+        Task<Favorite> PostFavoriteAsync(Favorite favorite);
+        Task<Favorite> PutFavoriteAsync(Favorite favorite);
+        Task<Favorite> DeleteFavoriteAsync(int Id);
+
     }
 }

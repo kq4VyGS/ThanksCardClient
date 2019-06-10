@@ -297,6 +297,8 @@ namespace ThanksCardClient.ViewModels
             }
 
         }
+
+        #region FromDepartmentsChangedCommand
         //To部署が変更されたときに発生するコマンド
         private ListenerCommand<int> _FromDepartmentsChangedCommand;
         public ListenerCommand<int> FromDepartmentsChangedCommand
@@ -315,6 +317,8 @@ namespace ThanksCardClient.ViewModels
 
             this.EmployeesInDep = Employees.Where(e => parameter == e.Section.Department.Id);
         }
+        #endregion
+
         #region SubmitCommand
         private ViewModelCommand _SubmitCommand;
 

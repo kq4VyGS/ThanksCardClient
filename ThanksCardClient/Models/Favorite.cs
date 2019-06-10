@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Livet;
+using ThanksCardClient.Services;
 
 namespace ThanksCardClient.Models
 {
@@ -97,6 +98,35 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
+
+
+        public async Task<List<Favorite>> GetFavoritesAsync()
+        {
+            IRestService rest = new RestService();
+            List<Favorite> favorites = await rest.GetFavoritesAsync();
+            return favorites;
+        }
+
+        public async Task<Favorite> PostFavoriteAsync(Favorite favorite)
+        {
+            IRestService rest = new RestService();
+            Favorite createdFavorite = await rest.PostFavoriteAsync(favorite);
+            return createdFavorite;
+        }
+
+        public async Task<Favorite> PutFavoriteAsync(Favorite favorite)
+        {
+            IRestService rest = new RestService();
+            Favorite updatedFavorite = await rest.PutFavoriteAsync(favorite);
+            return updatedFavorite;
+        }
+
+        public async Task<Favorite> DeleteFavoriteAsync(int Id)
+        {
+            IRestService rest = new RestService();
+            Favorite deletedFavorite = await rest.DeleteFavoriteAsync(Id);
+            return deletedFavorite;
+        }
 
     }
 }
