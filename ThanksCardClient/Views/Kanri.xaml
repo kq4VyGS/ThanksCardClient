@@ -38,7 +38,7 @@ Title=" 管理" Height="687.5" Width="798" Background="#F5F5F5">
                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
-        
+
         <l:InteractionMessageTrigger MessageKey="ShowMainWindow" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
@@ -85,10 +85,10 @@ Title=" 管理" Height="687.5" Width="798" Background="#F5F5F5">
                 </UniformGrid>
             </StackPanel>
 
-            <Button Content="新規登録" Command="{Binding ShowCreatedEmployeeCommand}" Background="#9ACD32" Foreground="White" Height="32" Margin="0,304" />
-            <Button Content="部署登録＆課登録" Command="{Binding ShowCreatedBusyoCommand}" Background="#9ACD32" Foreground="White" Height="32" Margin="0,341,0,267"  />
-            <Button Content="部署登録＆課編集" Command="{Binding ShowUpdatedBusyoCommand}" Background="#9ACD32" Foreground="White" Height="32" Margin="0,423,0,185"  />
-            <Button Content="ユーザー編集" Command="{Binding ShowUpdatedEmployeeCommand}" Background="#9ACD32" Foreground="White" Margin="0,378,0,222" RenderTransformOrigin="0.5,0.5"  />
+            <Button Content="新規登録" Command="{Binding ShowCreatedEmployeeCommand}" Background="#9ACD32" Foreground="White" Height="68" Margin="116,144,0,428" />
+            <Button Content="部署登録＆課登録" Command="{Binding ShowCreatedBusyoCommand}" Background="#9ACD32" Foreground="White" Height="68" Margin="116,235,0,337"  />
+            <Button Content="部署登録＆課編集" Command="{Binding ShowUpdatedBusyoCommand}" Background="#9ACD32" Foreground="White" Height="68" Margin="116,419,0,153"  />
+            <Button Content="ユーザー編集" Command="{Binding ShowUpdatedEmployeeCommand}" Background="#9ACD32" Foreground="White" Height="68" Margin="116,326,0,246" RenderTransformOrigin="0.5,0.5"  />
 
 
 
