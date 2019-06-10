@@ -16,7 +16,7 @@ using System.Windows;
 
 namespace ThanksCardClient.ViewModels
 {
-    public class KanriViewModel : ViewModel
+    public class UpdatedEmployeeViewModel : ViewModel
     {
         #region 説明書
         /* コマンド、プロパティの定義にはそれぞれ 
@@ -62,87 +62,112 @@ namespace ThanksCardClient.ViewModels
          */
         #endregion
 
-        //コマンド!
-        #region ShowCreatedEmployeeCommand
-        private ViewModelCommand _ShowCreatedEmployeeCommand;
-        public ViewModelCommand ShowCreatedEmployeeCommand
+        //プロパティ
+
+        #region EmployeesProperty
+        private List<Employee> _Employees;
+
+        public List<Employee> Employees
         {
             get
+            { return _Employees; }
+            set
             {
-                if (_ShowCreatedEmployeeCommand == null)
-                {
-                    _ShowCreatedEmployeeCommand = new ViewModelCommand(ShowCreatedEmployee);
-                }
-                return _ShowCreatedEmployeeCommand;
+                if (_Employees == value)
+                    return;
+                _Employees = value;
+                RaisePropertyChanged();
             }
-        }
-        public void ShowCreatedEmployee()
-        {
-            var showcreatedemployee = new TransitionMessage(typeof(Views.CreatedEmployee), new CreatedEmployeeViewModel(), TransitionMode.Modal, "ShowCreatedEmployee");
-            Messenger.Raise(showcreatedemployee);
         }
         #endregion
 
-        #region ShowCreatedBusyoCommand
-        private ViewModelCommand _ShowCreatedBusyoCommand;
-        public ViewModelCommand ShowCreatedBusyoCommand
+        #region EmployeeProperty
+        private Employee _Employee;
+
+        public Employee Employee
         {
             get
+            { return _Employee; }
+            set
             {
-                if (_ShowCreatedBusyoCommand == null)
-                {
-                    _ShowCreatedBusyoCommand = new ViewModelCommand(ShowCreatedBusyo);
-                }
-                return _ShowCreatedBusyoCommand;
+                if (_Employee == value)
+                    return;
+                _Employee = value;
+                RaisePropertyChanged();
             }
-        }
-        public void ShowCreatedBusyo()
-        {
-            var showcreatedbusyo = new TransitionMessage(typeof(Views.CreatedBusyo), new CreatedBusyoViewModel(), TransitionMode.Modal, "ShowCreatedBusyo");
-            Messenger.Raise(showcreatedbusyo);
         }
         #endregion
 
-        #region ShowUpdatedBusyoCommand
-        private ViewModelCommand _ShowUpdatedBusyoCommand;
-        public ViewModelCommand ShowUpdatedBusyoCommand
+        #region DepartmentProperty
+        private Department _Department;
+
+        public Department Department
         {
             get
+            { return _Department; }
+            set
             {
-                if (_ShowUpdatedBusyoCommand == null)
-                {
-                    _ShowUpdatedBusyoCommand = new ViewModelCommand(ShowUpdatedBusyo);
-                }
-                return _ShowUpdatedBusyoCommand;
+                if (_Department == value)
+                    return;
+                _Department = value;
+                RaisePropertyChanged();
             }
-        }
-        public void ShowUpdatedBusyo()
-        {
-            var showupdatedbusyo = new TransitionMessage(typeof(Views.UpdatedBusyo), new UpdatedBusyoViewModel(), TransitionMode.Modal, "ShowUpdatedBusyo");
-            Messenger.Raise(showupdatedbusyo);
         }
         #endregion
 
-        #region ShowUpdatedEmployeeCommand
-        private ViewModelCommand _ShowUpdatedEmployeeCommand;
-        public ViewModelCommand ShowUpdatedEmployeeCommand
+        #region DepartmentsProperty
+
+        private List<Department> _Departments;
+
+        public List<Department> Departments
         {
             get
+            { return _Departments; }
+            set
             {
-                if (_ShowUpdatedEmployeeCommand == null)
-                {
-                    _ShowUpdatedEmployeeCommand = new ViewModelCommand(ShowUpdatedEmployee);
-                }
-                return _ShowUpdatedEmployeeCommand;
+                if (_Departments == value)
+                    return;
+                _Departments = value;
+                RaisePropertyChanged();
             }
-        }
-        public void ShowUpdatedEmployee()
-        {
-            var showupdatedemployee = new TransitionMessage(typeof(Views.UpdatedEmployee), new UpdatedEmployeeViewModel(), TransitionMode.Modal, "ShowUpdatedEmployee");
-            Messenger.Raise(showupdatedemployee);
         }
         #endregion
 
+        #region SectionProperty
+        private Section _Section;
+
+        public Section Section
+        {
+            get
+            { return _Section; }
+            set
+            {
+                if (_Section == value)
+                    return;
+                _Section = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region SectionsProperty
+        private List<Section> _Sections;
+
+        public List<Section> Sections
+        {
+            get
+            { return _Sections; }
+            set
+            {
+                if (_Sections == value)
+                    return;
+                _Sections = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        //コマンド
         #region MainWindowCommand
 
 
@@ -173,11 +198,83 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        public void Initialize()
+        #region Submit2Command
+        private ViewModelCommand _Submit2Command;
+
+        public ViewModelCommand Submit2Command
         {
-       
+            get
+            {
+                if (_Submit2Command == null)
+                {
+                    _Submit2Command = new ViewModelCommand(Submit2);
+                }
+                return _Submit2Command;
+            }
+        }
+
+        public async void Submit2()
+        {
+
+            Employee updatedEmployee = await Employee.PutEmployeeAsync(this.Employee);
+            //TODO: Error handling
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Updated"));
+        }
+        #endregion
+
+        #region CancelCommand
+
+
+        private ViewModelCommand _CancelCommand;
+
+        public ViewModelCommand CancelCommand
+
+        {
+            get
+            {
+                if (_CancelCommand == null)
+                {
+                    _CancelCommand = new ViewModelCommand(Cancel);
+                }
+                return _CancelCommand;
+            }
+        }
+
+        public void Cancel()
+        {
+
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Close();
 
         }
-        
+        #endregion
+
+        #region EmployeeDeleteCommand
+        private ListenerCommand<Employee> _EmployeeDeleteCommand;
+
+        public ListenerCommand<Employee> EmployeeDeleteCommand
+        {
+            get
+            {
+                if (_EmployeeDeleteCommand == null)
+                {
+                    _EmployeeDeleteCommand = new ListenerCommand<Employee>(EmployeeDelete);
+                }
+                return _EmployeeDeleteCommand;
+            }
+        }
+
+        public async void EmployeeDelete(Employee Employee)
+        {
+            System.Diagnostics.Debug.WriteLine("DeleteCommand" + Employee.Id);
+            Employee deletedEmployee = await Employee.DeleteEmployeeAsync(Employee.Id);
+
+            this.Initialize();
+        }
+        #endregion
+
+        public void Initialize()
+        {
+        }
     }
 }
