@@ -14,6 +14,7 @@ using Livet.Messaging.Windows;
 
 using ThanksCardClient.Models;
 using System.Windows;
+using ThanksCardClient.Services;
 
 namespace ThanksCardClient.ViewModels
 {
@@ -63,6 +64,42 @@ namespace ThanksCardClient.ViewModels
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
         #endregion
+
+        //プロパ
+        #region LogonEmployeeProperty
+        private Employee _AuthorizedEmployee;
+        public Employee AuthorizedEmployee
+        {
+            get
+            { return _AuthorizedEmployee; }
+            set
+            {
+                if (_AuthorizedEmployee == value)
+                    return;
+                _AuthorizedEmployee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region EmployeesProperty
+        private List<Employee> _Employees;
+        public List<Employee> Employees
+        {
+            get
+            { return _Employees; }
+            set
+            {
+                if (_Employees == value)
+                    return;
+                _Employees = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private List<Department> Departments;
+        #endregion
+
+        //コマンド
 
         #region MainWindowCommand
 
@@ -282,8 +319,19 @@ namespace ThanksCardClient.ViewModels
         #endregion
 
 
-        public void Initialize()
+        public async void Initialize()
         {
+            Employee employees = new Employee();
+            Department departments = new Department();
+
+            //下のやつは、ログイン者のEmployee情報をAuthorizedEMployeeに入れてます。
+            this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
+            if (SessionService.Instance.AuthorizedEmployee != null)
+            {
+                this.Employees = await employees.GetEmployeesAsync();
+                this.Departments = await departments.GetDepartmentsAsync();
+            }
+
         }
     }
 }
