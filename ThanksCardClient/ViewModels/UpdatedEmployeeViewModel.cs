@@ -167,6 +167,42 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
+        //絞り込み用
+
+        #region EmployeesInDep
+        private IEnumerable<Employee> _EmployeesInDep;
+
+        public IEnumerable<Employee> EmployeesInDep
+        {
+            get
+            { return _EmployeesInDep; }
+            set
+            {
+                if (_EmployeesInDep == value)
+                    return;
+                _EmployeesInDep = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region EmployeesInDep2
+        private IEnumerable<Employee> _EmployeesInDep2;
+
+        public IEnumerable<Employee> EmployeesInDep2
+        {
+            get
+            { return _EmployeesInDep2; }
+            set
+            {
+                if (_EmployeesInDep2 == value)
+                    return;
+                _EmployeesInDep2 = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
         //コマンド
         #region MainWindowCommand
 
@@ -269,12 +305,61 @@ namespace ThanksCardClient.ViewModels
             System.Diagnostics.Debug.WriteLine("DeleteCommand" + Employee.Id);
             Employee deletedEmployee = await Employee.DeleteEmployeeAsync(Employee.Id);
 
-            this.Initialize();
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Close();
+
         }
         #endregion
 
-        public void Initialize()
+        //絞り込み用
+        #region SectionSearchCommand
+        private ListenerCommand<int> _SectionSearchCommand;
+        public ListenerCommand<int> SectionSearchCommand
         {
+            get
+            {
+                if (_SectionSearchCommand == null)
+                {
+                    _SectionSearchCommand = new ListenerCommand<int>(SelectionChanged);
+                }
+                return _SectionSearchCommand;
+            }
+        }
+        public void SelectionChanged(int parameter)
+        {
+            this.EmployeesInDep = Employees.Where(e => parameter == e.Section.Id);
+        }
+        #endregion
+
+        #region EditEmployeeCommand
+        private ListenerCommand<int> _EditEmployeeCommand;
+        public ListenerCommand<int> EditEmployeeCommand
+        {
+            get
+            {
+                if (_EditEmployeeCommand == null)
+                {
+                    _EditEmployeeCommand = new ListenerCommand<int>(SelectionChanged2);
+                }
+                return _EditEmployeeCommand;
+            }
+        }
+        public void SelectionChanged2 (int parameter)
+        {
+            this.Employee = Employees.Find(e => parameter == e.Id);
+        }
+        #endregion
+
+        public async void Initialize()
+        {
+            this.Employee = new Employee();
+
+            //comboBox用
+            Employee employees = new Employee();
+            Section sections = new Section();
+            this.Employees = await employees.GetEmployeesAsync();
+            this.Sections = await sections.GetSectionsAsync();
+  
         }
     }
 }
