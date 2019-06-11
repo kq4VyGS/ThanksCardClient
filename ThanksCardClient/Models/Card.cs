@@ -182,7 +182,7 @@ namespace ThanksCardClient.Models
         #endregion
         #region Favorite
 
-        private int _Favorite;
+        private bool _Favorite;
 
         public int Favorite
         {

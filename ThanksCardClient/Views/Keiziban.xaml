@@ -87,9 +87,7 @@
                 <UniformGrid  Columns="4" Width="514">
                     <TextBlock Text="日付:" Margin="10,66,76,221" FontWeight="Bold" FontSize="15"/>
                     <DatePicker SelectedDate="{Binding Date.Date}" Margin="-71,66,90,441"/>
-                    <Button Content="履歴" Command="{Binding ShowRefineCardsCommand}" Margin="-86,66,154,441" Background="#6495ED" Foreground="White">
-                        
-                    </Button>
+                    <Button Content="履歴" Command="{Binding ShowRefineCardsCommand}" Margin="-86,66,154,441" Background="#6495ED" Foreground="White"/>
                     <Button Content="更新" Command="{Binding ShowKeizibanCommand}" Foreground="White" Margin="26,66,0,441" Background="#6495ED" HorizontalAlignment="Left" Width="80"/>
                 </UniformGrid>
             </StackPanel>
@@ -113,7 +111,7 @@
 
 
             <StackPanel>
-                <DataGrid ItemsSource="{Binding Path = Cards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                <DataGrid ItemsSource="{Binding Cards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
                           SelectionChanged="DataGrid_SelectionChanged" FontWeight="Bold" Foreground="Black" FontSize="10"  Margin="10,135,10,0">
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -131,13 +129,13 @@
                         <DataGridTemplateColumn Header="お気に入り" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox x:Name="FavoriteCheck" Width="25" IsChecked={Binding DataContext.FavoriteCheckedCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}>
+                                    <CheckBox x:Name="FavoriteCheck" Width="25" IsChecked="{Binding Favorites, RelativeSource = {RelativeSource AncestorType=DataGrid}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked" >
-                                                <i:InvokeCommandAction Command="{Binding FavoriteCheckedCommand}" />
+                                                <i:InvokeCommandAction Command="{Binding DataContext.FavoriteCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
                                             </i:EventTrigger>
                                             <i:EventTrigger EventName="Unchecked" >
-                                                <i:InvokeCommandAction Command="{Binding FavoriteUnCheckedCommand}" />
+                                                <i:InvokeCommandAction Command="{Binding DataContext.FavoriteUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </CheckBox>
