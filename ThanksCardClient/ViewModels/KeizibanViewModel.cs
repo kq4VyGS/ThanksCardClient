@@ -393,7 +393,7 @@ namespace ThanksCardClient.ViewModels
         public async void FavoriteCheck(int cardId)
         {
             this.UpdateCard = AllCards.Find(al => cardId == al.Id);
-            this.UpdateCard.Favorite = true;
+           // this.UpdateCard.Favorite = true;
             Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
             this.AllCards = await UpdateCard.GetCardsAsync();
             
@@ -422,7 +422,7 @@ namespace ThanksCardClient.ViewModels
         public async void FavoriteUnChecked(int cardId)
         {
             this.UpdateCard = AllCards.Find(al => cardId == al.Id);
-            this.UpdateCard.Favorite = false;
+            //this.UpdateCard.Favorite = false;
             Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
           
 

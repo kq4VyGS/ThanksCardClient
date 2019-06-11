@@ -337,7 +337,7 @@ namespace ThanksCardClient.ViewModels
         {
             Card.Reply = false;
             Card.PickUp = false;
-            Card.Favorite = false;
+            //Card.Favorite = false;
             Card.FromId = AuthorizedEmployee.Id;
             Card createdThanksCard = await Card.PostCardAsync(this.Card);
             //TODO: Error handling
