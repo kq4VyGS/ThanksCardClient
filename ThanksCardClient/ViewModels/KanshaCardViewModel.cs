@@ -335,9 +335,9 @@ namespace ThanksCardClient.ViewModels
         }
         public async void Submit()
         {
-            Card.Reply = 0;
-            Card.PickUp = 0;
-            Card.Favorite = 0;
+            Card.Reply = false;
+            Card.PickUp = false;
+            Card.Favorite = false;
             Card.FromId = AuthorizedEmployee.Id;
             Card createdThanksCard = await Card.PostCardAsync(this.Card);
             //TODO: Error handling

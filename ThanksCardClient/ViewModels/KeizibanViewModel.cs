@@ -426,6 +426,9 @@ namespace ThanksCardClient.ViewModels
 
         public async void FavoriteUnChecked(int cardId)
         {
+            Favorite favorite = new Favorite();
+            this.Favorites = await favorite.GetFavoritesAsync();
+
             this.DeleteFavorite = new Favorite();
             this.Favorite.EmployeeId = AuthorizedEmployee.Id;
             this.Favorite.CardId = cardId;
@@ -466,9 +469,6 @@ namespace ThanksCardClient.ViewModels
 
             Card card = new Card();
             this.Cards = await card.GetCardsAsync();
-
-            Favorite favorite = new Favorite();
-            this.Favorites = await favorite.GetFavoritesAsync();
 
             this.AllCards = Cards;
             this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;

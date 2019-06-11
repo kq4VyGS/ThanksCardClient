@@ -164,9 +164,9 @@ namespace ThanksCardClient.Models
         #endregion
         #region Reply
 
-        private int _Reply;
+        private bool _Reply;
 
-        public int Reply
+        public bool Reply
         {
             get
             { return _Reply; }
@@ -184,7 +184,7 @@ namespace ThanksCardClient.Models
 
         private bool _Favorite;
 
-        public int Favorite
+        public bool Favorite
         {
             get
             { return _Favorite; }
@@ -200,9 +200,9 @@ namespace ThanksCardClient.Models
         #endregion
         #region PickUp
 
-        private int _PickUp;
+        private bool _PickUp;
 
-        public int PickUp
+        public bool PickUp
         {
             get
             { return _PickUp; }
