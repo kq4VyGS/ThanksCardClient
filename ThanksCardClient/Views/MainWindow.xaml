@@ -81,13 +81,14 @@
             <TextBlock Text="{Binding ErrorMessage}" Foreground="Red"/>
             <TextBlock Text="―Login―" Margin="190,50,0,0" FontSize="25" FontWeight="Bold" FontFamily="Aharoni"/>
             <UniformGrid  Columns="2">
-                <TextBlock Text="メールアドレス" Margin="68,25,0,0" FontWeight="Bold" FontSize="25" Height="33" />
-                <TextBox Text="{Binding Employee.MailAddress}" Height="25" Width="200" Style="{StaticResource WatermarkTextbox}"  Tag="名前を入力してください" Margin="28,0" />
+                <TextBlock Text="メールアドレス" Margin="65,25,19,0" FontWeight="Bold" FontSize="25" Height="33" Width="175"/>
+                <TextBox Text="{Binding Employee.MailAddress}" Height="33" Width="200" Style="{StaticResource WatermarkTextbox}" 
+                         Tag="名前を入力してください" Margin="0,25,0,0" />
             </UniformGrid>
-            <UniformGrid  Columns="2">
-                <TextBlock Text="パスワード" Margin="68,25,0,0" FontWeight="Bold" FontSize="25"/>
-                <PasswordBox Height="27" Width="200"
-                            InputMethod.PreferredImeState="On" InputMethod.PreferredImeConversionMode="Alphanumeric" Margin="28,0">
+            <UniformGrid  Columns="2" Height="80">
+                <TextBlock Text="パスワード" Margin="66,20,9,0" FontWeight="Bold" FontSize="25" Height="33" Width="175"/>
+                <PasswordBox Height="33" Width="200"
+                            InputMethod.PreferredImeState="On" InputMethod.PreferredImeConversionMode="Alphanumeric" Margin="0,20,9,0">
                     <i:Interaction.Behaviors>
                         <l:PasswordBoxBindingSupportBehavior Password="{Binding Employee.Password}" />
                     </i:Interaction.Behaviors>
@@ -98,8 +99,10 @@
 
         <StackPanel Orientation="Horizontal">
 
-            <Button Content="管理者ログイン" Command="{Binding Logon2Command}" Margin="300,250,0,60" Background="#6495ED" Foreground="White" FontSize="15"/>
-            <Button Content="ログイン" Command="{Binding LogonCommand}" Margin="50,250,0,60" Background="#6495ED" Foreground="White" FontSize="15"/>
+            <Button Content="管理者ログイン" Command="{Binding Logon2Command}" Margin="280,250,0,60" 
+                    Background="#6495ED" Foreground="White" FontSize="15" Width="100"/>
+            <Button Content="ログイン" Command="{Binding LogonCommand}" Margin="20,250,0,60"
+                    Background="#6495ED" Foreground="White" FontSize="15" Width="80"/>
 
         </StackPanel>
 

@@ -42,9 +42,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="69*"/>
             <ColumnDefinition Width="262*"/>
-            <ColumnDefinition Width="330*"/>
+            <ColumnDefinition Width="286*"/>
+            <ColumnDefinition Width="44*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="3">
+        <StackPanel Grid.ColumnSpan="4">
             <TextBlock Text="新規登録" Background="#9ACD32" Foreground="White" FontSize="20" Height="34"/>
 
             <StackPanel Orientation="Horizontal" Height="60">

@@ -59,9 +59,9 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBox>
-                
+
                 <TextBlock Text="名前検索" Margin="20,10,0,10" FontWeight="Bold" FontSize="15"/>
-                
+
                 <ComboBox x:Name="EditEmployee" ItemsSource="{Binding EmployeesInDep}" DisplayMemberPath="Name"  SelectedValuePath="Id" Margin="20,10,0,0" Width="106"  VerticalAlignment="Top" Height="24">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
@@ -74,27 +74,27 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="名前" Margin="20,20,0,20" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.Name}" Margin="20,20,0,20" Width="200" AcceptsReturn="True"/>
+                <TextBox Text="{Binding Employee.Name}" Margin="20,20,0,20" Width="200" AcceptsReturn="True" Height="28"/>
                 <TextBlock Text="メールアドレス" Margin="20,20,0,20" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.MailAddress}" Margin="20,20,0,24" Width="244" AcceptsReturn="True"/>
+                <TextBox Text="{Binding Employee.MailAddress}" Margin="20,20,0,24" Width="244" AcceptsReturn="True" Height="28"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="CD    " Margin="20,20,0,20" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.CD}" Margin="20,20,0,20" Width="200" AcceptsReturn="True"/>
+                <TextBox Text="{Binding Employee.CD}" Margin="20,20,0,20" Width="200" AcceptsReturn="True" Height="27"/>
                 <TextBlock Text="パスワード" Margin="20,20,0,20" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.Password}" Margin="20,20,0,20"  Width="200" AcceptsReturn="True"/>
+                <TextBox Text="{Binding Employee.Password}" Margin="20,20,0,20"  Width="200" AcceptsReturn="True" Height="28"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="所属課" Margin="20,10,0,10" FontWeight="Bold" FontSize="15"/>
-                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="20,10,0,0" Width="106"  VerticalAlignment="Top" Height="24" SelectedValue="{Binding Employee.SectionId}"/>
+            <StackPanel Orientation="Horizontal" Height="48">
+                <TextBlock Text="所属課" Margin="20,36,0,-19" FontWeight="Bold" FontSize="15"/>
+                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id"  Margin="20,36,0,-19" Width="106"  VerticalAlignment="Top" Height="31" SelectedValue="{Binding Employee.SectionId}"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <Button Content="更新" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="59"/>
-                <Button Content="削除" Command="{Binding EmployeeDeleteCommand}" Background="#6495ED" Foreground="White" Height="20" Margin="20,20,0,20" Width="59" CommandParameter="{Binding Employee}"/>
-                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White"  Margin="20,20,0,20" />
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0" Height="195">
+                <Button Content="更新" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Margin="380,100,0,61" Width="59"/>
+                <Button Content="削除" Command="{Binding EmployeeDeleteCommand}" Background="#6495ED" Foreground="White" Margin="20,100,0,61" Width="59" CommandParameter="{Binding Employee}"/>
+                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White"  Margin="20,100,0,61" Width="68" />
             </StackPanel>
 
         </StackPanel>
