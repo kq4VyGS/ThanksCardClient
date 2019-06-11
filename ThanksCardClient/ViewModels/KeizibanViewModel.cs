@@ -95,6 +95,22 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
+        #region UpdateCard
+        private Card _UpdateCard;
+
+        public Card UpdateCard
+        {
+            get
+            { return _UpdateCard; }
+            set
+            { 
+                if (_UpdateCard == value)
+                    return;
+                _UpdateCard = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
         #region DateProperty
         private Card _Date;
 
@@ -375,41 +391,19 @@ namespace ThanksCardClient.ViewModels
 
         public async void FavoriteCheck(int cardId)
         {
+            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+            this.UpdateCard.Favorite = true;
+            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+            this.AllCards = await UpdateCard.GetCardsAsync();
+            
+
             this.Favorite.EmployeeId = AuthorizedEmployee.Id;
-            this.Favorite.CardId = cardId;
+            this.Favorite.CardId = cardId;           
 
             Favorite createfavorite = await Favorite.PostFavoriteAsync(Favorite);
         }
         #endregion
-        /*
-        #region FavoriteUnCheck
-        private ListenerCommand<int> _FavoriteCheckUnCommandCommand;
-
-        public ListenerCommand<int> FavoriteCheckUnCommandCommand
-        {
-            get
-            {
-                if (_FavoriteCheckUnCommandCommand == null)
-                {
-                    _FavoriteCheckUnCommandCommand = new ListenerCommand<int>(FavoriteUnCheckCommand);
-                }
-                return _FavoriteCheckUnCommandCommand;
-            }
-        }
-
-        public async void FavoriteUnCheckCommand(int cardId)
-        {
-            this.Favorite.EmployeeId = AuthorizedEmployee.Id;
-            this.Favorite.CardId = cardId;
-
-            this.DeleteFavorite = Favorites.Find(f => Favorite.EmployeeId == f.EmployeeId && Favorite.CardId == f.CardId);
-
-            Favorite DeleteFavorite = await Favorite.PostFavoriteAsync(Favorite);
-        }
-        #endregion
-    */
-
-
+        #region FavoriteUnChecked
         private ListenerCommand<int> _FavoriteUnCheckedCommand;
 
         public ListenerCommand<int> FavoriteUnCheckedCommand
@@ -426,6 +420,11 @@ namespace ThanksCardClient.ViewModels
 
         public async void FavoriteUnChecked(int cardId)
         {
+            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+            this.UpdateCard.Favorite = false;
+            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+          
+
             Favorite favorite = new Favorite();
             this.Favorites = await favorite.GetFavoritesAsync();
 
@@ -437,7 +436,7 @@ namespace ThanksCardClient.ViewModels
 
             Favorite deletefavorite = await Favorite.DeleteFavoriteAsync(DeleteFavorite.Id);
         }
-
+        #endregion
 
 
 
@@ -458,19 +457,23 @@ namespace ThanksCardClient.ViewModels
 
         public void ShowRefineCards()
         {
-            this.Cards = AllCards.Where(ac => ac.Date.Date == Date.Date).ToList();
+            this.Cards = AllCards.Where(ac => ac.Date.Date == this.Date.Date).ToList();
         }
         #endregion
 
         public async void Initialize()
         {
             this.Date= new Card();
+            this.Date.Date = this.Date.Date.Date;
             this.Favorite = new Favorite();
 
             Card card = new Card();
-            this.Cards = await card.GetCardsAsync();
+            this.AllCards = await card.GetCardsAsync();
+            this.AllCards = AllCards.OrderBy(ac => ac.Date).ToList();
+           
 
-            this.AllCards = Cards;
+
+            this.Cards = AllCards;
             this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
         }
     }

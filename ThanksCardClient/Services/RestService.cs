@@ -443,6 +443,34 @@ namespace ThanksCardClient.Services
         }
         #endregion
 
+        #region PutCardAsync(Card card)
+        public async Task<Card> PutCardAsync(Card card)
+        {
+            var jObject = JsonConvert.SerializeObject(card);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Card responseCard = null;
+            try
+            {
+                var response = await Client.PutAsync(this.BaseUrl + "/api/Cards/" + card.Id, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseCard = JsonConvert.DeserializeObject<Card>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PutCardAsync: " + e);
+            }
+            return responseCard;
+        }
+        #endregion
+
 
         //お気に入り登録
         #region GetFavoritesAsync()

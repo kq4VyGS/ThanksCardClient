@@ -38,6 +38,7 @@ namespace ThanksCardClient.Services
         // TanksCard REST API Client
         Task<List<Card>> GetCardsAsync();
         Task<Card> PostCardAsync(Card Card);
+        Task<Card> PutCardAsync(Card card);
 
 
         // Favorite REST API Client

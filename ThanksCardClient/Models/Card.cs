@@ -217,6 +217,14 @@ namespace ThanksCardClient.Models
 
         #endregion
 
+
+        //日付機能に使うやつ
+        public Card()
+        {
+            this.Date = DateTime.Now;
+        }
+
+
         public async Task<List<Card>> GetCardsAsync()
         {
             IRestService rest = new RestService();
@@ -231,11 +239,14 @@ namespace ThanksCardClient.Models
             return createdCard;
         }
 
-        //日付機能に使うやつ
-        public Card()
+        public async Task<Card> PutCardAsync(Card card)
         {
-            this.Date = DateTime.Now;
+            IRestService rest = new RestService();
+            Card updatedcard = await rest.PutCardAsync(card);
+            return updatedcard;
         }
+
+       
 
 
     }
