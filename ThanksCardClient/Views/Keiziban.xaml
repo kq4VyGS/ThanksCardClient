@@ -93,19 +93,7 @@
             </StackPanel>
         
         
-        <!---
-            <UniformGrid  Columns="6">
-                <TextBlock Text="☆" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="10,135,45,0"/>
-                <TextBlock Text="✔" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-45,135,97,0"/>
-                <TextBlock Text="日付" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-97,135,95,0"/>
-                <TextBlock Text="送信者" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-95,135,91,0"/>
-                <TextBlock Text="受信者" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-91,135,100,0"/>
-                <TextBlock Text="内容" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-100,135,10,0"/>
-                <ScrollViewer Margin="10,-258,-395,632">
-                </ScrollViewer>
-            </UniformGrid>
-        </Grid>
-        -->
+   
 
 
 
@@ -147,7 +135,17 @@
                         <DataGridTemplateColumn Header="ピックアップ">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Path = PickUp}" Width="25"/>
+                                    
+                                    <CheckBox x:Name="PickUpCheck" Width="25" IsChecked="{Binding Path=PickUp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked" >
+                                                <i:InvokeCommandAction Command="{Binding DataContext.PickUpCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked" >
+                                                <i:InvokeCommandAction Command="{Binding DataContext.PickUpUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

@@ -13,6 +13,8 @@ using Livet.Messaging.Windows;
 
 using ThanksCardClient.Models;
 using System.Windows;
+using ThanksCardClient.Services;
+
 
 namespace ThanksCardClient.ViewModels
 {
@@ -60,12 +62,141 @@ namespace ThanksCardClient.ViewModels
          * LivetのViewModelではプロパティ変更通知(RaisePropertyChanged)やDispatcherCollectionを使ったコレクション変更通知は
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
+        #endregion
+
+        //プロパティ
+        #region LogonEmployeeProperty
+        private Employee _AuthorizedEmployee;
+        public Employee AuthorizedEmployee
+        {
+            get
+            { return _AuthorizedEmployee; }
+            set
+            {
+                if (_AuthorizedEmployee == value)
+                    return;
+                _AuthorizedEmployee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region Cards
+        private List<Card> _Cards;
+
+        public List<Card> Cards
+        {
+            get
+            { return _Cards; }
+            set
+            {
+                if (_Cards == value)
+                    return;
+                _Cards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region UpdateCard
+        private Card _UpdateCard;
+
+        public Card UpdateCard
+        {
+            get
+            { return _UpdateCard; }
+            set
+            {
+                if (_UpdateCard == value)
+                    return;
+                _UpdateCard = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region DateProperty
+        private Card _Date;
+
+        public Card Date
+        {
+            get
+            { return _Date; }
+            set
+            {
+                if (_Date == value)
+                    return;
+                _Date = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region AllCards
+        private List<Card> _AllCards;
+
+        public List<Card> AllCards
+        {
+            get
+            { return _AllCards; }
+            set
+            {
+                if (_AllCards == value)
+                    return;
+                _AllCards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region FavoritesProperty
+        private List<Favorite> _Favorites;
+
+        public List<Favorite> Favorites
+        {
+            get
+            { return _Favorites; }
+            set
+            {
+                if (_Favorites == value)
+                    return;
+                _Favorites = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region Favorite
+        private Favorite _Favorite;
+
+        public Favorite Favorite
+        {
+            get
+            { return _Favorite; }
+            set
+            {
+                if (_Favorite == value)
+                    return;
+                _Favorite = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region DeleteFavoriteProperty
+
+        private Favorite _DeleteFavorite;
+
+        public Favorite DeleteFavorite
+        {
+            get
+            { return _DeleteFavorite; }
+            set
+            {
+                if (_DeleteFavorite == value)
+                    return;
+                _DeleteFavorite = value;
+                RaisePropertyChanged();
+            }
+        }
 
         #endregion
 
+        //ページ遷移コマンド
         #region MypageCommand
-
-
         private ViewModelCommand _ShowMypageCommand;
 
         public ViewModelCommand ShowMypageCommand
@@ -92,7 +223,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region KeizibanCommand
 
 
@@ -122,7 +252,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region PickupCommand
 
 
@@ -152,7 +281,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region ShowBusyoCommand
 
 
@@ -182,7 +310,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region ShowRankiingCommand
 
 
@@ -212,7 +339,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region ShowKanshaCardCommand
 
 
@@ -250,8 +376,150 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        public void Initialize()
+        #region FavoriteCheck
+        private ListenerCommand<int> _FavoriteCheckCommand;
+
+        public ListenerCommand<int> FavoriteCheckCommand
         {
+            get
+            {
+                if (_FavoriteCheckCommand == null)
+                {
+                    _FavoriteCheckCommand = new ListenerCommand<int>(FavoriteCheck);
+                }
+                return _FavoriteCheckCommand;
+            }
+        }
+
+        public async void FavoriteCheck(int cardId)
+        {
+            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+            this.UpdateCard.Favorite = true;
+            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+            this.AllCards = await UpdateCard.GetCardsAsync();
+
+
+            this.Favorite.EmployeeId = AuthorizedEmployee.Id;
+            this.Favorite.CardId = cardId;
+
+            Favorite createfavorite = await Favorite.PostFavoriteAsync(Favorite);
+        }
+        #endregion
+        #region FavoriteUnChecked
+        private ListenerCommand<int> _FavoriteUnCheckedCommand;
+
+        public ListenerCommand<int> FavoriteUnCheckedCommand
+        {
+            get
+            {
+                if (_FavoriteUnCheckedCommand == null)
+                {
+                    _FavoriteUnCheckedCommand = new ListenerCommand<int>(FavoriteUnChecked);
+                }
+                return _FavoriteUnCheckedCommand;
+            }
+        }
+
+        public async void FavoriteUnChecked(int cardId)
+        {
+            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+            this.UpdateCard.Favorite = false;
+            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+
+
+            Favorite favorite = new Favorite();
+            this.Favorites = await favorite.GetFavoritesAsync();
+
+            this.DeleteFavorite = new Favorite();
+            this.Favorite.EmployeeId = AuthorizedEmployee.Id;
+            this.Favorite.CardId = cardId;
+
+            this.DeleteFavorite = Favorites.Find(f => Favorite.EmployeeId == f.EmployeeId && Favorite.CardId == f.CardId);
+
+            Favorite deletefavorite = await Favorite.DeleteFavoriteAsync(DeleteFavorite.Id);
+        }
+        #endregion
+        #region PickUpCheckCommand
+        private ListenerCommand<int> _PickUpCheckCommand;
+
+        public ListenerCommand<int> PickUpCheckCommand
+        {
+            get
+            {
+                if (_PickUpCheckCommand == null)
+                {
+                    _PickUpCheckCommand = new ListenerCommand<int>(PickUpCheck);
+                }
+                return _PickUpCheckCommand;
+            }
+        }
+
+        public async void PickUpCheck(int cardId)
+        {
+            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+            this.UpdateCard.PickUp = true;
+            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+            //this.AllCards = await UpdateCard.GetCardsAsync();
+        }
+        #endregion
+        #region PickUpUnCheckedCommand
+        private ListenerCommand<int> _PickUpUnCheckedCommand;
+
+        public ListenerCommand<int> PickUpUnCheckedCommand
+        {
+            get
+            {
+                if (_PickUpUnCheckedCommand == null)
+                {
+                    _PickUpUnCheckedCommand = new ListenerCommand<int>(PickUpUnChecked);
+                }
+                return _PickUpUnCheckedCommand;
+            }
+        }
+
+        public async void PickUpUnChecked(int cardId)
+        {
+            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+            this.UpdateCard.PickUp = false;
+            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+        }
+        #endregion
+        #region ShowRefineCardsCommand
+        private ViewModelCommand _ShowRefineCardsCommand;
+
+        public ViewModelCommand ShowRefineCardsCommand
+        {
+            get
+            {
+                if (_ShowRefineCardsCommand == null)
+                {
+                    _ShowRefineCardsCommand = new ViewModelCommand(ShowRefineCards);
+                }
+                return _ShowRefineCardsCommand;
+            }
+        }
+
+        public void ShowRefineCards()
+        {
+            this.Cards = AllCards.Where(ac => ac.Date.Date == this.Date.Date).ToList();
+        }
+        #endregion
+
+        public async void Initialize()
+        {
+            this.Date = new Card();
+            this.Date.Date = this.Date.Date.Date;
+            this.Favorite = new Favorite();
+
+            Card card = new Card();
+            this.AllCards = await card.GetCardsAsync();
+            this.AllCards = AllCards.Where(ac => ac.PickUp==true).ToList();
+            this.AllCards = AllCards.OrderBy(ac => ac.Date).ToList();
+
+
+
+            this.Cards = AllCards;
+            this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
         }
     }
 }

@@ -374,6 +374,7 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
+
         #region FavoriteCheck
         private ListenerCommand<int> _FavoriteCheckCommand;
 
@@ -437,9 +438,51 @@ namespace ThanksCardClient.ViewModels
             Favorite deletefavorite = await Favorite.DeleteFavoriteAsync(DeleteFavorite.Id);
         }
         #endregion
+        #region PickUpCheckCommand
+        private ListenerCommand<int> _PickUpCheckCommand;
 
+        public ListenerCommand<int> PickUpCheckCommand
+        {
+            get
+            {
+                if (_PickUpCheckCommand == null)
+                {
+                    _PickUpCheckCommand = new ListenerCommand<int>(PickUpCheck);
+                }
+                return _PickUpCheckCommand;
+            }
+        }
 
+        public async void PickUpCheck(int cardId)
+        {
+            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+            this.UpdateCard.PickUp = true;
+            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+            //this.AllCards = await UpdateCard.GetCardsAsync();
+        }
+        #endregion
+        #region PickUpUnCheckedCommand
+        private ListenerCommand<int> _PickUpUnCheckedCommand;
 
+        public ListenerCommand<int> PickUpUnCheckedCommand
+        {
+            get
+            {
+                if (_PickUpUnCheckedCommand == null)
+                {
+                    _PickUpUnCheckedCommand = new ListenerCommand<int>(PickUpUnChecked);
+                }
+                return _PickUpUnCheckedCommand;
+            }
+        }
+
+        public async void PickUpUnChecked(int cardId)
+        {
+            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+            this.UpdateCard.PickUp = false;
+            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);         
+        }
+        #endregion
         #region ShowRefineCardsCommand
         private ViewModelCommand _ShowRefineCardsCommand;
 

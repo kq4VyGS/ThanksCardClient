@@ -50,7 +50,6 @@
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
-
         <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
         <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
         <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
@@ -70,9 +69,10 @@
     </i:Interaction.Triggers>
 
     <ScrollViewer>
-        <Grid Height="857" Width="486">
+
+        <Grid Height="539">
             <StackPanel>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="ピックアップ" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="23"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="掲示板" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"/>
                 <UniformGrid  Columns="5">
                     <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
                     <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
@@ -82,24 +82,88 @@
                 </UniformGrid>
             </StackPanel>
 
+
             <StackPanel Orientation="Horizontal">
                 <UniformGrid  Columns="4" Width="514">
                     <TextBlock Text="日付:" Margin="10,66,76,221" FontWeight="Bold" FontSize="15"/>
-                    <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="-71,66,90,760"/>
-                    <Button Content="履歴" Margin="-86,66,154,772" Background="#6495ED" Foreground="White"/>
-                    <Button Content="更新" Command="{Binding ShowPickupCommand}" Background="#6495ED" Foreground="White" Margin="36,66,24,772"/>
+                    <DatePicker SelectedDate="{Binding Date.Date}" Margin="-71,66,90,441"/>
+                    <Button Content="履歴" Command="{Binding ShowRefineCardsCommand}" Margin="-86,66,154,441" Background="#6495ED" Foreground="White"/>
+                    <Button Content="更新" Command="{Binding ShowKeizibanCommand}" Foreground="White" Margin="26,66,0,441" Background="#6495ED" HorizontalAlignment="Left" Width="80"/>
                 </UniformGrid>
             </StackPanel>
-            <UniformGrid  Columns="6">
-                <TextBlock Text="☆" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="10,135,45,0"/>
-                <TextBlock Text="✔" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-45,135,97,0"/>
-                <TextBlock Text="日付" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-97,135,95,0"/>
-                <TextBlock Text="送信者" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-95,135,91,0"/>
-                <TextBlock Text="受信者" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-91,135,100,0"/>
-                <TextBlock Text="内容" FontWeight="Bold" Foreground="Black" FontSize="20" VerticalAlignment="Top" Background="#00CED1" Height="30" Margin="-100,135,10,0"/>
-                <ScrollViewer Margin="10,-258,-395,632">
-                </ScrollViewer>
-            </UniformGrid>
+
+
+
+
+
+
+
+            <StackPanel>
+                <DataGrid ItemsSource="{Binding Cards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                           FontWeight="Bold" Foreground="Black" FontSize="10"  Margin="10,135,10,0">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#00CED1" />
+                            <Setter Property="BorderBrush" Value="White" />
+                            <Setter Property="BorderThickness" Value="0.5" />
+                            <Setter Property="Foreground" Value="white" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="お気に入り" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox x:Name="FavoriteCheck" Width="25" IsChecked="{Binding Path=Favorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked" >
+                                                <i:InvokeCommandAction Command="{Binding DataContext.FavoriteCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked" >
+                                                <i:InvokeCommandAction Command="{Binding DataContext.FavoriteUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+
+                        <DataGridTemplateColumn Header="ピックアップ">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <CheckBox x:Name="PickUpCheck" Width="25" IsChecked="{Binding Path=PickUp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked" >
+                                                <i:InvokeCommandAction Command="{Binding DataContext.PickUpCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked" >
+                                                <i:InvokeCommandAction Command="{Binding DataContext.PickUpUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+
+
+                        <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="150"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
         </Grid>
+
+
+
+
     </ScrollViewer>
 </Window>

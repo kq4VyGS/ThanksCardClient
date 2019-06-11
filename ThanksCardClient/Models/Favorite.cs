@@ -99,6 +99,8 @@ namespace ThanksCardClient.Models
 
         #endregion
 
+        
+
 
         public async Task<List<Favorite>> GetFavoritesAsync()
         {
