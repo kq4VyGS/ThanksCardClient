@@ -6,9 +6,8 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-Title=" 管理" Height="687.5" Width="798" Background="#F5F5F5"
-        WindowStartupLocation="CenterOwner"
-        WindowState="Maximized">
+Title=" 管理" Height="500" Width="750" Background="#F5F5F5"
+        WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
         <vm:KanriViewModel/>
@@ -70,30 +69,34 @@ Title=" 管理" Height="687.5" Width="798" Background="#F5F5F5"
 
     </i:Interaction.Triggers>
 
-    <ScrollViewer Margin="0,0,-8,76">
+
+    <Grid Height="640">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2" Margin="0,0,-54,10">
+            <UniformGrid  Columns="2" Margin="0,0,51,0">
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="管理画面" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#3CB371" Margin="0,0,-373,0" Height="32"/>
+                <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Background="#3CB371" Foreground="White" Margin="272,0,-1,0" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="20"/>
+            </UniformGrid>
+        </StackPanel>
+
+        <StackPanel>
+            <Button Content="新規登録" Command="{Binding ShowCreatedEmployeeCommand}" Background="#9ACD32" Foreground="White" Margin="116,100,0,527" FontSize="20" FontWeight="Bold" Height="45"/>
+        </StackPanel>
+        <StackPanel>
+            <Button Content="部署登録＆課登録" Command="{Binding ShowCreatedBusyoCommand}" Background="#9ACD32" Foreground="White" Margin="116,160,0,430"  FontSize="20" FontWeight="Bold" Height="45"/>
+        </StackPanel>
+        <StackPanel>
+            <Button Content="部署編集＆課編集" Command="{Binding ShowUpdatedBusyoCommand}" Background="#9ACD32" Foreground="White" Margin="116,220,0,216"  FontSize="20" FontWeight="Bold" Height="45"/>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="2">
+            <Button Content="ユーザー編集" Command="{Binding ShowUpdatedEmployeeCommand}" Background="#9ACD32" Foreground="White" Margin="116,280,102,324" RenderTransformOrigin="0.5,0.5"  FontSize="20" FontWeight="Bold" Height="45"/>
+        </StackPanel>
 
 
 
-        <Grid Height="640">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="43*"/>
-                <ColumnDefinition Width="7*"/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.ColumnSpan="2" Margin="0,0,0,31">
-                <UniformGrid  Columns="2">
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="管理画面" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#3CB371" Margin="0,0,-259,0"></TextBlock>
-                    <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Background="#3CB371" Foreground="White" Margin="220,0,-1,0" RenderTransformOrigin="0.5,0.5"/>
-                </UniformGrid>
-            </StackPanel>
-
-            <Button Content="新規登録" Command="{Binding ShowCreatedEmployeeCommand}" Background="#9ACD32" Foreground="White" Height="68" Margin="116,144,0,428" />
-            <Button Content="部署登録＆課登録" Command="{Binding ShowCreatedBusyoCommand}" Background="#9ACD32" Foreground="White" Height="68" Margin="116,235,0,337"  />
-            <Button Content="部署編集＆課編集" Command="{Binding ShowUpdatedBusyoCommand}" Background="#9ACD32" Foreground="White" Height="68" Margin="116,419,0,153"  />
-            <Button Content="ユーザー編集" Command="{Binding ShowUpdatedEmployeeCommand}" Background="#9ACD32" Foreground="White" Height="68" Margin="116,326,0,246" RenderTransformOrigin="0.5,0.5"  />
-
-
-
-        </Grid>
-    </ScrollViewer>
+    </Grid>
 </Window>
