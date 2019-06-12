@@ -110,8 +110,7 @@
                             <Setter Property="BorderBrush" Value="Black" />
                         </Style>
                     </DataGrid.ColumnHeaderStyle>
-                    
-                    
+
                     
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="お気に入り" >
