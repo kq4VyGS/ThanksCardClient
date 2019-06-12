@@ -572,6 +572,36 @@ namespace ThanksCardClient.Services
         }
         #endregion
 
+        //ランキング読み込み
+        #region GetRankingAsync
+        public async Task<List<Ranking>> GetRankings()
+        {
+            List<Ranking> responseRankings = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Ranking");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseRankings = JsonConvert.DeserializeObject<List<Ranking>>(responseContent);
+                    //ランク付け
+                    int Index = 1;
+                    foreach (Ranking a in responseRankings)
+                    {
+                        a.Rank = Index++;
+                    }
+                }
+            }
+
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.LogonAsync: " + e);
+            }
+
+            return responseRankings;
+        }
+        #endregion
+
 
 
     }
