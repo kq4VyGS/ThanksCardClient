@@ -159,7 +159,7 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
-        #region Favorite
+        #region FavoriteProperty
         private Favorite _Favorite;
 
         public Favorite Favorite
@@ -392,14 +392,12 @@ namespace ThanksCardClient.ViewModels
 
         public async void FavoriteCheck(int cardId)
         {
-            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
-           // this.UpdateCard.Favorite = true;
-            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
-            this.AllCards = await UpdateCard.GetCardsAsync();
-            
+           
 
             this.Favorite.EmployeeId = AuthorizedEmployee.Id;
-            this.Favorite.CardId = cardId;           
+            this.Favorite.CardId = cardId;
+            //this.Favorite.FavoriteCheck = true;
+
 
             Favorite createfavorite = await Favorite.PostFavoriteAsync(Favorite);
         }
@@ -455,10 +453,13 @@ namespace ThanksCardClient.ViewModels
 
         public async void PickUpCheck(int cardId)
         {
-            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
-            this.UpdateCard.PickUp = true;
-            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
-            //this.AllCards = await UpdateCard.GetCardsAsync();
+            if (AuthorizedEmployee.Id == 1)
+            {
+                this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+                this.UpdateCard.PickUp = true;
+                Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+                
+            }
         }
         #endregion
         #region PickUpUnCheckedCommand
@@ -478,9 +479,12 @@ namespace ThanksCardClient.ViewModels
 
         public async void PickUpUnChecked(int cardId)
         {
-            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
-            this.UpdateCard.PickUp = false;
-            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);         
+            if (AuthorizedEmployee.Id == 1)
+            {
+                this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+                this.UpdateCard.PickUp = false;
+                Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+            }
         }
         #endregion
         #region ShowRefineCardsCommand
@@ -506,18 +510,48 @@ namespace ThanksCardClient.ViewModels
 
         public async void Initialize()
         {
+            this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
+
             this.Date= new Card();
             this.Date.Date = this.Date.Date.Date;
-            this.Favorite = new Favorite();
+
+            Favorite favorite = new Favorite();
+            this.Favorites = await favorite.GetFavoritesAsync();
 
             Card card = new Card();
             this.AllCards = await card.GetCardsAsync();
-            this.AllCards = AllCards.OrderBy(ac => ac.Date).ToList();
+
+            /*            for (var i = 0; i < AllCards.Count; i++)
+            {
+                card = AllCards.ElementAt(i);
+                //card.Id == Favorites.CardId && this.AuthorizedEmployee.Id == Favorites.EmployeeId
+                if (Favorites.Any(f=>f.CardId==card.Id && f.EmployeeId== this.AuthorizedEmployee.Id))
+                {
+                    card.Favorite = true;
+
+
+                    this.Cards.Add(card);
+                    //this.AllCards.Insert(i, new Card() { Id = card.Id, CD = card.CD, Text = card.Text, Date = card.Date, FromId = card.FromId, ToId = card.ToId, Title = card.Title, Reply = card.Reply, Favorite = card.Favorite, PickUp = card.PickUp }); 
+                    //this.Cards.Add(new Card() { Id = card.Id, CD = card.CD, Text = card.Text, Date = card.Date, FromId = card.FromId, ToId = card.ToId, Title=card.Title, Reply=card.Reply, Favorite=card.Favorite, PickUp=card.PickUp});
+                }
+                else
+                {
+                    this.Cards.Add(card);
+                }
+            } 
+            */
+            this.Cards = AllCards;
+            this.Cards = Cards.OrderBy(c => c.Date).ToList();
+
+
+
            
 
 
-            this.Cards = AllCards;
-            this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
+            
+            
+
+
         }
     }
 }

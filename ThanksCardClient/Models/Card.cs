@@ -180,7 +180,7 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-        /*
+        
         #region Favorite
 
         private bool _Favorite;
@@ -199,7 +199,7 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-    */
+    
         #region PickUp
 
         private bool _PickUp;

@@ -398,7 +398,7 @@ namespace ThanksCardClient.ViewModels
 
             this.Favorite.EmployeeId = AuthorizedEmployee.Id;
             this.Favorite.CardId = cardId;
-            this.Favorite.FavoriteCheck = true;
+            //this.Favorite.FavoriteCheck = true;
 
             Favorite createfavorite = await Favorite.PostFavoriteAsync(Favorite);
         }
@@ -454,10 +454,12 @@ namespace ThanksCardClient.ViewModels
 
         public async void PickUpCheck(int cardId)
         {
-            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
-            this.UpdateCard.PickUp = true;
-            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
-            //this.AllCards = await UpdateCard.GetCardsAsync();
+            if (AuthorizedEmployee.Id == 1)
+            {
+                this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+                this.UpdateCard.PickUp = true;
+                Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+            }
         }
         #endregion
         #region PickUpUnCheckedCommand
@@ -477,9 +479,12 @@ namespace ThanksCardClient.ViewModels
 
         public async void PickUpUnChecked(int cardId)
         {
-            this.UpdateCard = AllCards.Find(al => cardId == al.Id);
-            this.UpdateCard.PickUp = false;
-            Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+            if (AuthorizedEmployee.Id == 1)
+            {
+                this.UpdateCard = AllCards.Find(al => cardId == al.Id);
+                this.UpdateCard.PickUp = false;
+                Card card = await UpdateCard.PutCardAsync(this.UpdateCard);
+            }              
         }
         #endregion
         #region ShowRefineCardsCommand

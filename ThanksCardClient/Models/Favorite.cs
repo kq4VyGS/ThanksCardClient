@@ -98,7 +98,7 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-
+        /*
         #region FavoriteCheck
         private bool _FavoriteCheck;
 
@@ -115,7 +115,7 @@ namespace ThanksCardClient.Models
             }
         }
         #endregion
-
+        */
 
 
         public async Task<List<Favorite>> GetFavoritesAsync()
