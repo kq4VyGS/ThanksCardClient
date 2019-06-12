@@ -6,9 +6,8 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="ランキング" Height="350" Width="525" Background="#F5F5F5"
-        WindowStartupLocation="CenterOwner"
-        WindowState="Maximized">
+        Title="ランキング" Height="500" Width="750" Background="#F5F5F5"
+        WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
         <vm:RankingViewModel/>
@@ -89,7 +88,7 @@
 
                 <StackPanel>
                     <DataGrid ItemsSource="{Binding Ranking}" AutoGenerateColumns="False" CanUserAddRows="False"
-                             FontWeight="Bold" Foreground="Black" FontSize="10"  Margin="10,20,10,0">
+                             FontWeight="Bold" Foreground="Black" FontSize="10"  Margin="0,20,0,0">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#00CED1" />
@@ -101,9 +100,9 @@
                         </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="True" Header="順位" Binding="{Binding Rank}" Width="154"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="名前" Binding="{Binding Name}" Width="155"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="受け取った枚数" Binding="{Binding Count}" Width="155"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="順位" Binding="{Binding Rank}" Width="250"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="名前" Binding="{Binding Name}" Width="250"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="受け取った枚数" Binding="{Binding Count}" Width="250"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
