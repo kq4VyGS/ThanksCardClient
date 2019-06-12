@@ -568,10 +568,6 @@ namespace ThanksCardClient.ViewModels
 
 
 
-        //
-
-
-
 
         public async void Initialize()
         {

@@ -156,7 +156,7 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="30" HorizontalAlignment="Left" Width="500"/>
+                    <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#FFD700" Height="30" HorizontalAlignment="Left" Width="500"/>
 
 
                     <DataGrid ItemsSource="{Binding Favorites}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
@@ -200,7 +200,7 @@
                     </DataGrid>
                 </StackPanel>
                 <StackPanel>
-                    <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+                    <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#800080" Height="26"/>
 
                     <DataGrid ItemsSource="{Binding ReceiveCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
@@ -244,7 +244,7 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+                    <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#FF0000" Height="26"/>
 
 
                     <DataGrid ItemsSource="{Binding FavoriteCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
@@ -290,7 +290,7 @@
 
 
                 <StackPanel>
-                    <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+                    <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #0000CD" Height="26"/>
 
                     <DataGrid ItemsSource="{Binding SendCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
