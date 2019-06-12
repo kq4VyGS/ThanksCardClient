@@ -55,12 +55,12 @@
          Foreground="White" FontSize="15" Margin="0,41,0,10" Height="20"/>
         
         <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
-            <TextBlock Text="部署名" Margin="20,62,0,-35" FontWeight="Bold" FontSize="15"/>
+            <TextBlock Text="部署名" Margin="20,62,0,-50" FontWeight="Bold" FontSize="15"/>
             <TextBox Text="{Binding Department.Name}" Margin="20,62,0,-35" Width="116" AcceptsReturn="True"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.RowSpan="2">
-            <TextBlock Text="部署CD" Margin="20,125,0,-37" FontWeight="Bold" FontSize="15" Width="52"/>
+            <TextBlock Text="部署CD" Margin="20,125,0,-59" FontWeight="Bold" FontSize="15" Width="52"/>
             <TextBox Text="{Binding Department.CD}" Margin="20,125,0,-37" Width="107" AcceptsReturn="True"/>
         </StackPanel>
 
@@ -73,7 +73,7 @@
          Foreground="White" FontSize="15" Margin="0,63,0,-90" Grid.Row="2"  Height="20"/>
 
         <StackPanel Orientation="Horizontal" Grid.RowSpan="3" Margin="0,0,0,-14">
-            <TextBlock Text="課名" Margin="20,212,0,-105" FontWeight="Bold" FontSize="15" Width="39" RenderTransformOrigin="0.5,0.5">
+            <TextBlock Text="課名" Margin="20,212,0,-118" FontWeight="Bold" FontSize="15" Width="39" RenderTransformOrigin="0.5,0.5">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -87,13 +87,13 @@
         </StackPanel>
 
 
-        <TextBlock Text="課CD" Margin="20,141,451,-165" FontWeight="Bold" FontSize="15" Grid.Row="2" RenderTransformOrigin="0.5,0.5"/>
+        <TextBlock Text="課CD" Margin="20,141,451,-174" FontWeight="Bold" FontSize="15" Grid.Row="2" RenderTransformOrigin="0.5,0.5"/>
         <TextBox Text="{Binding Section.CD}" Margin="80,141,319,-165" AcceptsReturn="True" Grid.Row="2" />
 
 
 
         <StackPanel Orientation="Horizontal" Margin="0,24,0,-268" Grid.RowSpan="3" HorizontalAlignment="Right" Width="517">
-            <TextBlock Text="部署名" Margin="20,260,10,72" FontWeight="Bold" FontSize="15" Width="44"/>
+            <TextBlock Text="部署名" Margin="20,260,10,58" FontWeight="Bold" FontSize="15" Width="44"/>
             <ComboBox ItemsSource="{Binding Departments}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Section.DepartmentId}" Margin="5,260,0,72" Width="106" RenderTransformOrigin="0.5,0.5"/>
         </StackPanel>
 
