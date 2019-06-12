@@ -7,7 +7,8 @@
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
         Title="部署登録" Height="350" Width="525" Background="#F5F5F5"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        WindowState="Maximized">
 
     <Window.DataContext>
         <vm:CreatedBusyoViewModel/>
@@ -41,65 +42,52 @@
 
     </i:Interaction.Triggers>
 
-    <Grid Margin="0,0,0,207" RenderTransformOrigin="0.505,0.823">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="37"/>
-            <RowDefinition Height="0"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.RowSpan="2">
-            <TextBlock Text="部署＆課登録" Background="#9ACD32" Foreground="White" FontSize="20" Height="40"/>
-        </StackPanel>
+    <Grid>
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Text="部署＆課登録" Background="#9ACD32" Foreground="White" FontSize="20" Height="40"/>
+            </StackPanel>
 
-        <TextBlock Text="部署登録" Background="#FFC0CB"
-         Foreground="White" FontSize="15" Margin="0,41,0,10" Height="20"/>
-        
-        <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
-            <TextBlock Text="部署名" Margin="20,62,0,-50" FontWeight="Bold" FontSize="15"/>
-            <TextBox Text="{Binding Department.Name}" Margin="20,62,0,-35" Width="116" AcceptsReturn="True"/>
-        </StackPanel>
+            <TextBlock Text="部署登録" Background="#FFC0CB" Foreground="White" Height="30" FontSize="20"/>
 
-        <StackPanel Orientation="Horizontal" Grid.RowSpan="2">
-            <TextBlock Text="部署CD" Margin="20,125,0,-59" FontWeight="Bold" FontSize="15" Width="52"/>
-            <TextBox Text="{Binding Department.CD}" Margin="20,125,0,-37" Width="107" AcceptsReturn="True"/>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="56">
+                <TextBlock Text="部署名：" FontWeight="Bold" FontSize="20" Width="90" Margin="20,15,0,5"/>
+                <TextBox Text="{Binding Department.Name}" Margin="0,15,0,5" Width="100" AcceptsReturn="True" FontSize="20"/>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.RowSpan="2">
-            <Button Content="部署登録" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Margin="320,141,0,-57" Width="72"/>
-            <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White"  Margin="20,141,0,-57" Width="74" />
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="58">
+                <TextBlock Text="部署CD：" FontWeight="Bold" FontSize="20" Margin="20,10,0,10" Width="90"/>
+                <TextBox Text="{Binding Department.CD}" Margin="0,10,0,10" Width="100" AcceptsReturn="True" FontSize="20"/>
+            </StackPanel>
 
-        <TextBlock Text="課登録" Background="#FFC0CB"
-         Foreground="White" FontSize="15" Margin="0,63,0,-90" Grid.Row="2"  Height="20"/>
+            <StackPanel Orientation="Horizontal" Height="61">
+                <Button Content="部署登録" Command="{Binding Submit2Command}" FontSize="20" Background="#6495ED" Foreground="White" Margin="350,10,0,10" Width="104"/>
+                <Button Content="キャンセル" Command ="{Binding CancelCommand}" FontSize="20" Background="#6495ED" Foreground="White"  Margin="20,10,0,10" Width="104" />
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.RowSpan="3" Margin="0,0,0,-14">
-            <TextBlock Text="課名" Margin="20,212,0,-118" FontWeight="Bold" FontSize="15" Width="39" RenderTransformOrigin="0.5,0.5">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-1.039"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <TextBox Text="{Binding Section.Name}" Margin="20,209,0,-107" Width="119" AcceptsReturn="True"/>
-        </StackPanel>
+            <TextBlock Text="課登録" Background="#FFC0CB" Foreground="White" FontSize="20" Height="33"/>
 
+            <StackPanel Orientation="Horizontal" Height="55">
+                <TextBlock Text="課名：" FontWeight="Bold" FontSize="20" Margin="20,10,0,0" Width="83"/>
+                <TextBox Text="{Binding Section.Name}" Margin="0,10,0,10" Width="100" AcceptsReturn="True" FontSize="20"/>
+            </StackPanel>
 
-        <TextBlock Text="課CD" Margin="20,141,451,-174" FontWeight="Bold" FontSize="15" Grid.Row="2" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox Text="{Binding Section.CD}" Margin="80,141,319,-165" AcceptsReturn="True" Grid.Row="2" />
+            <StackPanel Orientation="Horizontal" Height="53">
+                <TextBlock Text="課CD：" Margin="20,14,0,10" FontWeight="Bold" FontSize="20" Width="81"/>
+                <TextBox Text="{Binding Section.CD}" Margin="0,5,0,10" Width="100" AcceptsReturn="True" FontSize="20"/>
+            </StackPanel>
 
+            <StackPanel Orientation="Horizontal" Height="58">
+                <TextBlock Text="部署名" Margin="20,14,0,10" FontWeight="Bold" FontSize="20" Width="81"/>
+                <ComboBox ItemsSource="{Binding Departments}" DisplayMemberPath="Name"  SelectedValuePath="Id"
+                       SelectedValue="{Binding Section.DepartmentId}" Margin="0,14,0,10" Width="136" RenderTransformOrigin="0.5,0.5"/>
+            </StackPanel>
 
+            <StackPanel Orientation="Horizontal" Height="42">
+                <Button Content="課登録" Command="{Binding SubmitCommand}" Background="#6495ED" Foreground="White" Margin="350,0,0,0" Width="105" FontSize="20"/>
+                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White"  Margin="20,0,0,0" Width="112" FontSize="20"/>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,24,0,-268" Grid.RowSpan="3" HorizontalAlignment="Right" Width="517">
-            <TextBlock Text="部署名" Margin="20,260,10,58" FontWeight="Bold" FontSize="15" Width="44"/>
-            <ComboBox ItemsSource="{Binding Departments}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Section.DepartmentId}" Margin="5,260,0,72" Width="106" RenderTransformOrigin="0.5,0.5"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.RowSpan="3" Margin="0,10,0,-24">
-            <Button Content="課登録" Command="{Binding SubmitCommand}" Background="#6495ED" Foreground="White" Margin="320,279,0,-182" Width="69"/>
-            <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White"  Margin="20,279,0,-182" Width="73" />
         </StackPanel>
     </Grid>
 </Window>
