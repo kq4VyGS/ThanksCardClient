@@ -98,6 +98,170 @@ namespace ThanksCardClient.ViewModels
 
         private List<Department> Departments;
         #endregion
+        #region Cards
+        private List<Card> _Cards;
+
+        public List<Card> Cards
+        {
+            get
+            { return _Cards; }
+            set
+            {
+                if (_Cards == value)
+                    return;
+                _Cards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region SendCards
+        private List<Card> _SendCards;
+
+        public List<Card> SendCards
+        {
+            get
+            { return _SendCards; }
+            set
+            { 
+                if (_SendCards == value)
+                    return;
+                _SendCards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region  ReceiveCards
+        private List<Card> _ReceiveCards;
+
+        public List<Card> ReceiveCards
+        {
+            get
+            { return _ReceiveCards; }
+            set
+            { 
+                if (_ReceiveCards == value)
+                    return;
+                _ReceiveCards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region UpdateCard
+        private Card _UpdateCard;
+
+        public Card UpdateCard
+        {
+            get
+            { return _UpdateCard; }
+            set
+            {
+                if (_UpdateCard == value)
+                    return;
+                _UpdateCard = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region DateProperty
+        private Card _Date;
+
+        public Card Date
+        {
+            get
+            { return _Date; }
+            set
+            {
+                if (_Date == value)
+                    return;
+                _Date = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region AllCards
+        private List<Card> _AllCards;
+
+        public List<Card> AllCards
+        {
+            get
+            { return _AllCards; }
+            set
+            {
+                if (_AllCards == value)
+                    return;
+                _AllCards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region FavoritesProperty
+        private List<Favorite> _Favorites;
+
+        public List<Favorite> Favorites
+        {
+            get
+            { return _Favorites; }
+            set
+            {
+                if (_Favorites == value)
+                    return;
+                _Favorites = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region FavoriteProperty
+        private Favorite _Favorite;
+
+        public Favorite Favorite
+        {
+            get
+            { return _Favorite; }
+            set
+            {
+                if (_Favorite == value)
+                    return;
+                _Favorite = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region FavoriteCards
+        private List<Favorite> _FavoriteCards;
+
+        public List<Favorite> FavoriteCards
+        {
+            get
+            { return _FavoriteCards; }
+            set
+            { 
+                if (_FavoriteCards == value)
+                    return;
+                _FavoriteCards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        #region DeleteFavoriteProperty
+
+        private Favorite _DeleteFavorite;
+
+        public Favorite DeleteFavorite
+        {
+            get
+            { return _DeleteFavorite; }
+            set
+            {
+                if (_DeleteFavorite == value)
+                    return;
+                _DeleteFavorite = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion
+
+       
 
         //コマンド
 
@@ -318,11 +482,103 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
+        #region FavoriteCheck
+        private ListenerCommand<int> _FavoriteCheckCommand;
+
+        public ListenerCommand<int> FavoriteCheckCommand
+        {
+            get
+            {
+                if (_FavoriteCheckCommand == null)
+                {
+                    _FavoriteCheckCommand = new ListenerCommand<int>(FavoriteCheck);
+                }
+                return _FavoriteCheckCommand;
+            }
+        }
+
+        public async void FavoriteCheck(int cardId)
+        {
+            this.Favorite = new Favorite();
+
+            this.Favorite.EmployeeId = AuthorizedEmployee.Id;
+            this.Favorite.CardId = cardId;
+          
+            Favorite createfavorite = await Favorite.PostFavoriteAsync(Favorite);
+            this.Favorites = await Favorite.GetFavoritesAsync();
+        }
+        #endregion
+        #region FavoriteUnChecked
+        private ListenerCommand<int> _FavoriteUnCheckedCommand;
+
+        public ListenerCommand<int> FavoriteUnCheckedCommand
+        {
+            get
+            {
+                if (_FavoriteUnCheckedCommand == null)
+                {
+                    _FavoriteUnCheckedCommand = new ListenerCommand<int>(FavoriteUnChecked);
+                }
+                return _FavoriteUnCheckedCommand;
+            }
+        }
+
+        public async void FavoriteUnChecked(int cardId)
+        {
+            if (Favorites.Any(f => f.CardId == cardId && f.EmployeeId == this.AuthorizedEmployee.Id))
+            {
+                Favorite Favorite = new Favorite();
+
+                Favorite deletefavorite = await Favorite.DeleteFavoriteAsync(cardId);
+                this.Favorites = await Favorite.GetFavoritesAsync();
+            }
+        }
+        #endregion        
+        #region MypageFavoriteUnCheckedCommand
+        private ListenerCommand<int> _MypageFavoriteUnCheckedCommand;
+
+        public ListenerCommand<int> MypageFavoriteUnCheckedCommand
+        {
+            get
+            {
+                if (_MypageFavoriteUnCheckedCommand == null)
+                {
+                    _MypageFavoriteUnCheckedCommand = new ListenerCommand<int>(MypageFavoriteUnChecked);
+                }
+                return _MypageFavoriteUnCheckedCommand;
+            }
+        }
+
+        public async void MypageFavoriteUnChecked(int cardId)
+        {
+            if (Favorites.Any(f => f.CardId == cardId && f.EmployeeId == this.AuthorizedEmployee.Id))
+            {
+                this.Favorite = new Favorite();
+                this.Favorites = await Favorite.GetFavoritesAsync();
+
+                this.DeleteFavorite = new Favorite();
+                this.Favorite.EmployeeId = AuthorizedEmployee.Id;
+                this.Favorite.CardId = cardId;
+
+                this.DeleteFavorite = Favorites.Find(f => Favorite.EmployeeId == f.EmployeeId && Favorite.CardId == f.CardId);
+
+                Favorite deletefavorite = await Favorite.DeleteFavoriteAsync(DeleteFavorite.Id);
+            }
+        }
+        #endregion
+
+
+        //
+
+
+
 
         public async void Initialize()
         {
             Employee employees = new Employee();
             Department departments = new Department();
+            Card card = new Card();
+            Favorite favorite = new Favorite();
 
             //下のやつは、ログイン者のEmployee情報をAuthorizedEMployeeに入れてます。
             this.AuthorizedEmployee = SessionService.Instance.AuthorizedEmployee;
@@ -330,7 +586,72 @@ namespace ThanksCardClient.ViewModels
             {
                 this.Employees = await employees.GetEmployeesAsync();
                 this.Departments = await departments.GetDepartmentsAsync();
+                this.AllCards = await card.GetCardsAsync();
+                this.Favorites = await favorite.GetFavoritesAsync();
             }
+
+
+            #region FavoriteCards
+            this.FavoriteCards = Favorites.Where(f => f.EmployeeId == this.AuthorizedEmployee.Id).ToList() ;
+            for (var i = 0; i < FavoriteCards.Count; i++)
+            {
+                favorite = FavoriteCards.ElementAt(i);
+                favorite.Card.Favorite = true;
+
+                FavoriteCards.RemoveAt(i);
+                FavoriteCards.Insert(i,favorite);
+            }
+            #endregion
+
+            #region SendCards
+            this.SendCards = AllCards.Where(al => al.From.Id == this.AuthorizedEmployee.Id).ToList();
+            for (var i = 0; i < SendCards.Count; i++)
+            {
+                if (Favorites.Any(f => f.CardId == card.Id && f.EmployeeId == this.AuthorizedEmployee.Id))
+                {
+                    card = SendCards.ElementAt(i);
+                    card.Favorite = true;
+
+                    SendCards.RemoveAt(i);
+                    SendCards.Insert(i, card);
+                }                
+            }
+            #endregion
+
+            #region ReceiveCards
+            this.ReceiveCards = AllCards.Where(al => al.To.Id == this.AuthorizedEmployee.Id).ToList();
+            for (var i = 0; i < ReceiveCards.Count; i++)
+            {
+                if (Favorites.Any(f => f.CardId == card.Id && f.EmployeeId == this.AuthorizedEmployee.Id))
+                {
+                    card = ReceiveCards.ElementAt(i);
+                    card.Favorite = true;
+
+                    ReceiveCards.RemoveAt(i);
+                    ReceiveCards.Insert(i, card);
+                }
+            }
+            #endregion
+
+            var FavoriteCheckCards = new List<Card>();
+
+            for (var i = 0; i < AllCards.Count; i++)
+            {
+                card = AllCards.ElementAt(i);
+
+                if (Favorites.Any(f => f.CardId == card.Id && f.EmployeeId == this.AuthorizedEmployee.Id))
+                {
+                    card = AllCards.ElementAt(i);
+                    card.Favorite = true;
+
+                    FavoriteCheckCards.Add(card);          
+                }
+                
+
+            }
+            this.Cards = FavoriteCheckCards;
+            this.Cards = Cards.OrderBy(ac => ac.Date).ToList();
+
 
         }
     }
