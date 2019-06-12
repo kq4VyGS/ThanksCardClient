@@ -13,11 +13,14 @@ using Livet.Messaging.Windows;
 
 using ThanksCardClient.Models;
 using System.Windows;
+using ThanksCardClient.Services;
 
 namespace ThanksCardClient.ViewModels
 {
+
     public class RankingViewModel : ViewModel
     {
+
         #region　説明書
         /* コマンド、プロパティの定義にはそれぞれ 
          * 
@@ -62,6 +65,27 @@ namespace ThanksCardClient.ViewModels
          */
         #endregion
 
+        //プロパティ
+
+        #region Ranking
+
+        private List<Ranking> _Ranking;
+
+        public List<Ranking> Ranking
+        {
+            get
+            { return _Ranking; }
+            set
+            {
+                if (_Ranking == value)
+                    return;
+                _Ranking = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        //ページ遷移用コマンド
         #region MypageCommand
 
 
@@ -249,8 +273,11 @@ namespace ThanksCardClient.ViewModels
         }
         #endregion
 
-        public void Initialize()
+        public async void Initialize()
         {
+            IRestService service = new RestService();
+            Ranking = await service.GetRankings();
+
         }
     }
 }

@@ -7,12 +7,12 @@
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
         Title="ランキング" Height="350" Width="525" Background="#F5F5F5">
-    
+
     <Window.DataContext>
         <vm:RankingViewModel/>
     </Window.DataContext>
-    
-     <i:Interaction.Triggers>
+
+    <i:Interaction.Triggers>
 
         <l:InteractionMessageTrigger MessageKey="ShowMainWindow" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
@@ -51,9 +51,9 @@
         </l:InteractionMessageTrigger>
 
         <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
-    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
-    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
-        
+        <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+        <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
         <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
         <i:EventTrigger EventName="ContentRendered">
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
@@ -71,22 +71,44 @@
     <ScrollViewer>
         <Grid>
             <StackPanel>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="ランキング" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"/>
                 <StackPanel>
-                    <UniformGrid  Columns="5">
-                        <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
-                        <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
-                        <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
-                        <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
-                        <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
-                    </UniformGrid>
-                    <UniformGrid  Columns="3">
-                        <TextBlock Text="順位" Margin="53,0,0,0"/>
-                        <TextBlock Text="名前" Margin="27,0,0,0"/>
-                        <TextBlock Text="枚数" Margin="21,0,56,0"/>
-                    </UniformGrid>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="ランキング" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"/>
+                    <StackPanel>
+                        <UniformGrid  Columns="5">
+                            <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
+                            <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
+                            <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
+                            <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
+                            <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
+                        </UniformGrid>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding Ranking}" AutoGenerateColumns="False" CanUserAddRows="False"
+                             FontWeight="Bold" Foreground="Black" FontSize="10"  Margin="10,20,10,0">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#00CED1" />
+                                <Setter Property="BorderBrush" Value="White" />
+                                <Setter Property="BorderThickness" Value="0.5" />
+                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="BorderBrush" Value="Black" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Header="順位" Binding="{Binding Rank}" Width="154"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="名前" Binding="{Binding Name}" Width="155"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="受け取った枚数" Binding="{Binding Count}" Width="155"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </StackPanel>
+
+
+
         </Grid>
     </ScrollViewer>
 </Window>

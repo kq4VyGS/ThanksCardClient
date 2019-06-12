@@ -57,6 +57,7 @@
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Favorite.cs" />
+    <Compile Include="Models\Ranking.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Services\IRestService.cs" />
     <Compile Include="Services\RestService.cs" />
