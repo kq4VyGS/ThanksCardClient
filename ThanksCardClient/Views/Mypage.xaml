@@ -6,9 +6,8 @@
        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
        xmlns:v="clr-namespace:ThanksCardClient.Views"
        xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-       Title="⌂マイページ" Height="350" Width="525" Background="AliceBlue"
-       WindowStartupLocation="CenterOwner"
-       WindowState="Maximized">
+       Title="⌂マイページ" Height="500" Width="750" Background="AliceBlue"
+       WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
         <vm:MypageViewModel/>
@@ -137,7 +136,7 @@
                     </UniformGrid>
 
                     <StackPanel>
-                        <UniformGrid Columns="5" Background="skyblue" Height="26">
+                        <UniformGrid Columns="5" Background="#F5F5F5" Height="26">
                             <TextBlock Text="{Binding AuthorizedEmployee.Name}"  FontSize="20" Margin="36,0,0,0"/>
                             <TextBlock Text="さん"  FontSize="20" HorizontalAlignment="Left" Width="42"/>
                             <TextBlock Text="部署:" Margin="0,0,68,0" Height="26" VerticalAlignment="Top"/>
@@ -146,9 +145,9 @@
                         </UniformGrid>
                     </StackPanel>
 
-                    <UniformGrid Columns="2" Background="skyblue">
-                        <TextBlock Text="メールアドレス:" Margin="161,0,17,0"/>
-                        <TextBlock Text="{Binding AuthorizedEmployee.MailAddress}" Margin="-12,0,101,0"/>
+                    <UniformGrid Columns="2" Background="#F5F5F5">
+                        <TextBlock Text="メールアドレス:" Margin="161,0,17,5"/>
+                        <TextBlock Text="{Binding AuthorizedEmployee.MailAddress}" Margin="-12,0,101,5"/>
                     </UniformGrid>
 
 
@@ -156,17 +155,17 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#FFD700" Height="30" HorizontalAlignment="Left" Width="500"/>
+                    <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#FFD700" Height="30" HorizontalAlignment="Left" Width="750"/>
 
 
-                    <DataGrid ItemsSource="{Binding Favorites}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                    <DataGrid ItemsSource="{Binding Favorites}" AutoGenerateColumns="False" CanUserAddRows="False" Width="750"
                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="#00CED1" />
+                                <Setter Property="Background" Value="#F0E68C" />
                                 <Setter Property="BorderBrush" Value="White" />
                                 <Setter Property="BorderThickness" Value="0.5" />
-                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="Foreground" Value="black" />
                                 <Setter Property="BorderBrush" Value="Black" />
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
@@ -191,25 +190,25 @@
                             </DataGridTemplateColumn>
 
 
-                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="150"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="200"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="250"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#800080" Height="26"/>
 
-                    <DataGrid ItemsSource="{Binding ReceiveCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                    <DataGrid ItemsSource="{Binding ReceiveCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="750"
                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="#00CED1" />
+                                <Setter Property="Background" Value="#FF69B4" />
                                 <Setter Property="BorderBrush" Value="White" />
                                 <Setter Property="BorderThickness" Value="0.5" />
-                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="Foreground" Value="Black" />
                                 <Setter Property="BorderBrush" Value="Black" />
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
@@ -234,11 +233,11 @@
                             </DataGridTemplateColumn>
 
 
-                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="150"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="200"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="250"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
@@ -247,14 +246,14 @@
                     <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#FF0000" Height="26"/>
 
 
-                    <DataGrid ItemsSource="{Binding FavoriteCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                    <DataGrid ItemsSource="{Binding FavoriteCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="750"
                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="#00CED1" />
+                                <Setter Property="Background" Value="#FF6347" />
                                 <Setter Property="BorderBrush" Value="White" />
                                 <Setter Property="BorderThickness" Value="0.5" />
-                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="Foreground" Value="black" />
                                 <Setter Property="BorderBrush" Value="Black" />
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
@@ -279,11 +278,11 @@
                             </DataGridTemplateColumn>
 
 
-                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Card.Date}" Width="75"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = Card.From.Name}" Width="50"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = Card.To.Name}" Width="50"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Card.Title}" Width="150"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Card.Text}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Card.Date}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = Card.From.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = Card.To.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Card.Title}" Width="200"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Card.Text}" Width="250"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
@@ -292,14 +291,14 @@
                 <StackPanel>
                     <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #0000CD" Height="26"/>
 
-                    <DataGrid ItemsSource="{Binding SendCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                    <DataGrid ItemsSource="{Binding SendCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="750"
                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#00CED1" />
                                 <Setter Property="BorderBrush" Value="White" />
                                 <Setter Property="BorderThickness" Value="0.5" />
-                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="Foreground" Value="black" />
                                 <Setter Property="BorderBrush" Value="Black" />
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
@@ -324,11 +323,11 @@
                             </DataGridTemplateColumn>
 
 
-                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="150"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="200"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="250"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
