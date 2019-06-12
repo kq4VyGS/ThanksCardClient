@@ -47,5 +47,8 @@ namespace ThanksCardClient.Services
         Task<Favorite> PutFavoriteAsync(Favorite favorite);
         Task<Favorite> DeleteFavoriteAsync(int Id);
 
+        // Rank REST API Client
+        Task<List<Ranking>> GetRankings();
+
     }
 }
