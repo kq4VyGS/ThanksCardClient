@@ -98,24 +98,7 @@ namespace ThanksCardClient.Models
         }
 
         #endregion
-        /*
-        #region FavoriteCheck
-        private bool _FavoriteCheck;
-
-        public bool FavoriteCheck
-        {
-            get
-            { return _FavoriteCheck; }
-            set
-            { 
-                if (_FavoriteCheck == value)
-                    return;
-                _FavoriteCheck = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-        */
+      
 
 
         public async Task<List<Favorite>> GetFavoritesAsync()

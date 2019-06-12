@@ -524,7 +524,7 @@ namespace ThanksCardClient.ViewModels
 
         public async void FavoriteUnChecked(int cardId)
         {
-            if (Favorites.Any(f => f.CardId == cardId && f.EmployeeId == this.AuthorizedEmployee.Id))
+            if (Favorites.Any(f => f.Id == cardId))
             {
                 Favorite Favorite = new Favorite();
 
@@ -565,6 +565,7 @@ namespace ThanksCardClient.ViewModels
             }
         }
         #endregion
+
 
 
         //
