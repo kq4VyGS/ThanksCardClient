@@ -22,20 +22,20 @@ namespace ThanksCardClient.ViewModels
     {
 
         #region 説明書
-        /* コマンド、プロパティの定義にはそれぞれ 
-         * 
+        /* コマンド、プロパティの定義にはそれぞれ
+         *
          *  lvcom   : ViewModelCommand
          *  lvcomn  : ViewModelCommand(CanExecute無)
          *  llcom   : ListenerCommand(パラメータ有のコマンド)
          *  llcomn  : ListenerCommand(パラメータ有のコマンド・CanExecute無)
          *  lprop   : 変更通知プロパティ(.NET4.5ではlpropn)
-         *  
+         *
          * を使用してください。
-         * 
+         *
          * Modelが十分にリッチであるならコマンドにこだわる必要はありません。
          * View側のコードビハインドを使用しないMVVMパターンの実装を行う場合でも、ViewModelにメソッドを定義し、
          * LivetCallMethodActionなどから直接メソッドを呼び出してください。
-         * 
+         *
          * ViewModelのコマンドを呼び出せるLivetのすべてのビヘイビア・トリガー・アクションは
          * 同様に直接ViewModelのメソッドを呼び出し可能です。
          */
@@ -47,19 +47,19 @@ namespace ThanksCardClient.ViewModels
         /* Modelからの変更通知などの各種イベントを受け取る場合は、PropertyChangedEventListenerや
          * CollectionChangedEventListenerを使うと便利です。各種ListenerはViewModelに定義されている
          * CompositeDisposableプロパティ(LivetCompositeDisposable型)に格納しておく事でイベント解放を容易に行えます。
-         * 
+         *
          * ReactiveExtensionsなどを併用する場合は、ReactiveExtensionsのCompositeDisposableを
          * ViewModelのCompositeDisposableプロパティに格納しておくのを推奨します。
-         * 
+         *
          * LivetのWindowテンプレートではViewのウィンドウが閉じる際にDataContextDisposeActionが動作するようになっており、
          * ViewModelのDisposeが呼ばれCompositeDisposableプロパティに格納されたすべてのIDisposable型のインスタンスが解放されます。
-         * 
+         *
          * ViewModelを使いまわしたい時などは、ViewからDataContextDisposeActionを取り除くか、発動のタイミングをずらす事で対応可能です。
          */
 
         /* UIDispatcherを操作する場合は、DispatcherHelperのメソッドを操作してください。
          * UIDispatcher自体はApp.xaml.csでインスタンスを確保してあります。
-         * 
+         *
          * LivetのViewModelではプロパティ変更通知(RaisePropertyChanged)やDispatcherCollectionを使ったコレクション変更通知は
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
@@ -122,7 +122,7 @@ namespace ThanksCardClient.ViewModels
             get
             { return _SendCards; }
             set
-            { 
+            {
                 if (_SendCards == value)
                     return;
                 _SendCards = value;
@@ -138,7 +138,7 @@ namespace ThanksCardClient.ViewModels
             get
             { return _ReceiveCards; }
             set
-            { 
+            {
                 if (_ReceiveCards == value)
                     return;
                 _ReceiveCards = value;
@@ -234,7 +234,7 @@ namespace ThanksCardClient.ViewModels
             get
             { return _FavoriteCards; }
             set
-            { 
+            {
                 if (_FavoriteCards == value)
                     return;
                 _FavoriteCards = value;
@@ -261,7 +261,7 @@ namespace ThanksCardClient.ViewModels
 
         #endregion
 
-       
+
 
         //コマンド
 
@@ -294,7 +294,6 @@ namespace ThanksCardClient.ViewModels
 
         }
         #endregion
-
         #region MypageCommand
 
 
@@ -503,7 +502,7 @@ namespace ThanksCardClient.ViewModels
 
             this.Favorite.EmployeeId = AuthorizedEmployee.Id;
             this.Favorite.CardId = cardId;
-          
+
             Favorite createfavorite = await Favorite.PostFavoriteAsync(Favorite);
             this.Favorites = await Favorite.GetFavoritesAsync();
         }
@@ -533,7 +532,7 @@ namespace ThanksCardClient.ViewModels
                 this.Favorites = await Favorite.GetFavoritesAsync();
             }
         }
-        #endregion        
+        #endregion
         #region MypageFavoriteUnCheckedCommand
         private ListenerCommand<int> _MypageFavoriteUnCheckedCommand;
 
@@ -592,14 +591,14 @@ namespace ThanksCardClient.ViewModels
 
 
             #region FavoriteCards
-            this.FavoriteCards = Favorites.Where(f => f.EmployeeId == this.AuthorizedEmployee.Id).ToList() ;
+            this.FavoriteCards = Favorites.Where(f => f.EmployeeId == this.AuthorizedEmployee.Id).ToList();
             for (var i = 0; i < FavoriteCards.Count; i++)
             {
                 favorite = FavoriteCards.ElementAt(i);
                 favorite.Card.Favorite = true;
 
                 FavoriteCards.RemoveAt(i);
-                FavoriteCards.Insert(i,favorite);
+                FavoriteCards.Insert(i, favorite);
             }
             #endregion
 
@@ -614,7 +613,7 @@ namespace ThanksCardClient.ViewModels
 
                     SendCards.RemoveAt(i);
                     SendCards.Insert(i, card);
-                }                
+                }
             }
             #endregion
 
@@ -644,9 +643,9 @@ namespace ThanksCardClient.ViewModels
                     card = AllCards.ElementAt(i);
                     card.Favorite = true;
 
-                    FavoriteCheckCards.Add(card);          
+                    FavoriteCheckCards.Add(card);
                 }
-                
+
 
             }
             this.Cards = FavoriteCheckCards;

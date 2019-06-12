@@ -1,14 +1,14 @@
 ﻿<Window x:Class="ThanksCardClient.Views.Mypage"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
-        xmlns:v="clr-namespace:ThanksCardClient.Views"
-        xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="⌂マイページ" Height="350" Width="525" Background="AliceBlue"
-        WindowStartupLocation="CenterOwner" 
-        WindowState="Maximized">
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+       xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+       xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+       xmlns:v="clr-namespace:ThanksCardClient.Views"
+       xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
+       Title="⌂マイページ" Height="350" Width="525" Background="AliceBlue"
+       WindowStartupLocation="CenterOwner"
+       WindowState="Maximized">
 
     <Window.DataContext>
         <vm:MypageViewModel/>
@@ -18,43 +18,43 @@
 
         <l:InteractionMessageTrigger MessageKey="ShowMainWindow" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
-                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+               Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
-        
+
         <l:InteractionMessageTrigger MessageKey="ShowMypage" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
-                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+               Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
-        
+
         <l:InteractionMessageTrigger MessageKey="ShowKeiziban" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
-                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+               Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
         <l:InteractionMessageTrigger MessageKey="ShowPickup" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
-                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+               Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
         <l:InteractionMessageTrigger MessageKey="ShowBusyo" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
-                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+               Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
         <l:InteractionMessageTrigger MessageKey="ShowRanking" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
-                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+               Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
         <l:InteractionMessageTrigger MessageKey="ShowKanshaCard" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション
-                Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+               Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
@@ -76,44 +76,44 @@
     </i:Interaction.Triggers>
 
     <!---
-    <ScrollViewer>
-        <Grid>
-            <StackPanel>
-                <StackPanel Grid.ColumnSpan="2" Height="98">
-                    <UniformGrid  Columns="2">
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="⌂マイページ" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Margin="0,0,-191,0"/>
-                        <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="191,0,-1,0" Background=" #3CB371" RenderTransformOrigin="0.5,0.5"/>
-                    </UniformGrid>
-                    <UniformGrid  Columns="5" Background="#9ACD32">
-                        <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
-                        <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
-                        <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
-                        <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
-                        <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
-                    </UniformGrid>
-                    <StackPanel>
-                        <UniformGrid Columns="5" Background="skyblue" Height="26">
-                            <TextBlock Text="{Binding AuthorizedEmployee.Name}"  FontSize="20" Margin="36,0,0,0"/>
-                            <TextBlock Text="さん"  FontSize="20" HorizontalAlignment="Left" Width="42"/>
-                            <TextBlock Text="部署:" Margin="0,0,68,0" Height="26" VerticalAlignment="Top"/>
-                            <TextBlock Text="{Binding AuthorizedEmployee.Section.Department.Name}" Margin="-63,0,5,0"/>
-                            <Button Content="感謝カード作成" Command="{Binding ShowKanshaCardCommand}" Foreground="White" Background="#6495ED"/>
-                        </UniformGrid>
-                    </StackPanel>
-                    <UniformGrid Columns="2" Background="skyblue">
-                        <TextBlock Text="メールアドレス:" Margin="161,0,17,0"/>
-                        <TextBlock Text="{Binding AuthorizedEmployee.MailAddress}" Margin="-12,0,101,0"/>
-                    </UniformGrid>
-                </StackPanel>
-            </StackPanel>
-            <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="30" HorizontalAlignment="Left" Width="500"/>
-            <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
-            <Button Content="どういたしまして" Margin="408,0,0,0"  Foreground="White" Background="#6495ED"/>
-            <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
-            <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
-        </Grid>
-    </ScrollViewer>
-    -->
+   <ScrollViewer>
+       <Grid>
+           <StackPanel>
+               <StackPanel Grid.ColumnSpan="2" Height="98">
+                   <UniformGrid  Columns="2">
+                       <TextBlock Grid.Row="2" Grid.Column="0" Text="⌂マイページ" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Margin="0,0,-191,0"/>
+                       <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="191,0,-1,0" Background=" #3CB371" RenderTransformOrigin="0.5,0.5"/>
+                   </UniformGrid>
+                   <UniformGrid  Columns="5" Background="#9ACD32">
+                       <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
+                       <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
+                       <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
+                       <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
+                       <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
+                   </UniformGrid>
+                   <StackPanel>
+                       <UniformGrid Columns="5" Background="skyblue" Height="26">
+                           <TextBlock Text="{Binding AuthorizedEmployee.Name}"  FontSize="20" Margin="36,0,0,0"/>
+                           <TextBlock Text="さん"  FontSize="20" HorizontalAlignment="Left" Width="42"/>
+                           <TextBlock Text="部署:" Margin="0,0,68,0" Height="26" VerticalAlignment="Top"/>
+                           <TextBlock Text="{Binding AuthorizedEmployee.Section.Department.Name}" Margin="-63,0,5,0"/>
+                           <Button Content="感謝カード作成" Command="{Binding ShowKanshaCardCommand}" Foreground="White" Background="#6495ED"/>
+                       </UniformGrid>
+                   </StackPanel>
+                   <UniformGrid Columns="2" Background="skyblue">
+                       <TextBlock Text="メールアドレス:" Margin="161,0,17,0"/>
+                       <TextBlock Text="{Binding AuthorizedEmployee.MailAddress}" Margin="-12,0,101,0"/>
+                   </UniformGrid>
+               </StackPanel>
+           </StackPanel>
+           <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="30" HorizontalAlignment="Left" Width="500"/>
+           <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+           <Button Content="どういたしまして" Margin="408,0,0,0"  Foreground="White" Background="#6495ED"/>
+           <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+           <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+</Grid>
+   </ScrollViewer>
+   -->
 
     <ScrollViewer>
         <Grid>
@@ -154,13 +154,13 @@
 
 
                 </StackPanel>
-                
+
                 <StackPanel>
                     <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="30" HorizontalAlignment="Left" Width="500"/>
 
 
                     <DataGrid ItemsSource="{Binding Favorites}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
-                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#00CED1" />
@@ -203,7 +203,7 @@
                     <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
 
                     <DataGrid ItemsSource="{Binding ReceiveCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
-                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#00CED1" />
@@ -242,13 +242,13 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
-               
+
                 <StackPanel>
                     <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
 
 
                     <DataGrid ItemsSource="{Binding FavoriteCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
-                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#00CED1" />
@@ -288,12 +288,12 @@
                     </DataGrid>
                 </StackPanel>
 
-               
+
                 <StackPanel>
                     <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
 
                     <DataGrid ItemsSource="{Binding SendCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
-                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#00CED1" />
