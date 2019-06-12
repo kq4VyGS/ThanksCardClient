@@ -302,7 +302,7 @@ namespace ThanksCardClient.ViewModels
         public void ShowKanshaCard()
         {
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
-            window.Hide();
+            //window.Hide();
 
             var showkanshacard = new TransitionMessage(typeof(Views.KanshaCard), new KanshaCardViewModel(), TransitionMode.Modal, "ShowKanshaCard");
             Messenger.Raise(showkanshacard);

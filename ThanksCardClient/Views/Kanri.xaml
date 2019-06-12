@@ -6,7 +6,8 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-Title=" 管理" Height="687.5" Width="798" Background="#F5F5F5">
+Title=" 管理" Height="687.5" Width="798" Background="#F5F5F5"
+        WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
         <vm:KanriViewModel/>
