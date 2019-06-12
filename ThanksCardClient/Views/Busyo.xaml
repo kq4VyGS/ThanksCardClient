@@ -6,9 +6,8 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-Title="部署" Height="449.5" Width="532.5" Background="#F5F5F5"
-        WindowStartupLocation="CenterOwner"
-        WindowState="Maximized">
+Title="部署" Height="500" Width="750" Background="#F5F5F5"
+        WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
         <vm:BusyoViewModel/>
@@ -71,7 +70,8 @@ Title="部署" Height="449.5" Width="532.5" Background="#F5F5F5"
                 <RowDefinition Height="0*"/>
             </Grid.RowDefinitions>
             <StackPanel Margin="0,0,0,186">
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="部署" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background="#3CB371"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="部署" FontWeight="Bold" Foreground="White" FontSize="20"
+                           Height="40" VerticalAlignment="Top" Background="#3CB371"></TextBlock>
                 <UniformGrid  Columns="5">
                     <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
                     <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
