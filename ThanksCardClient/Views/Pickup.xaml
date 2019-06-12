@@ -73,7 +73,7 @@
 
         <Grid Height="539">
             <StackPanel>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="掲示板" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="ピックアップ" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371"/>
                 <UniformGrid  Columns="5">
                     <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
                     <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
@@ -89,7 +89,7 @@
                     <TextBlock Text="日付:" Margin="10,66,76,221" FontWeight="Bold" FontSize="15"/>
                     <DatePicker SelectedDate="{Binding Date.Date}" Margin="-71,66,90,441"/>
                     <Button Content="履歴" Command="{Binding ShowRefineCardsCommand}" Margin="-86,66,154,441" Background="#6495ED" Foreground="White"/>
-                    <Button Content="更新" Command="{Binding ShowKeizibanCommand}" Foreground="White" Margin="26,66,0,441" Background="#6495ED" HorizontalAlignment="Left" Width="80"/>
+                    <Button Content="更新" Command="{Binding ShowPickupCommand}" Foreground="White" Margin="26,66,0,441" Background="#6495ED" HorizontalAlignment="Left" Width="80"/>
                 </UniformGrid>
             </StackPanel>
 
