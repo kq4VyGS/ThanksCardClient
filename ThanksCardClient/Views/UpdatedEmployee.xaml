@@ -6,7 +6,7 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="UpdatedEmployee" Height="500" Width="750" Background="#F5F5F5"
+        Title="ユーザー編集" Height="500" Width="750" Background="#F5F5F5"
         WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
