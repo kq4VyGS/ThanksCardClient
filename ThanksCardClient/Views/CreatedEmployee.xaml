@@ -7,7 +7,8 @@
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
         Title="新規登録" Height="350" Width="669" Background="#F5F5F5"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        WindowState="Maximized">
 
     <Window.DataContext>
         <vm:CreatedEmployeeViewModel/>
@@ -49,25 +50,25 @@
         <StackPanel Grid.ColumnSpan="4">
             <TextBlock Text="新規登録" Background="#9ACD32" Foreground="White" FontSize="20" Height="34"/>
 
-            <StackPanel Orientation="Horizontal" Height="60">
-                <TextBlock Text="名前" Margin="20,50,0,-14" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.Name}" Margin="20,50,0,-14" Width="200" AcceptsReturn="True"/>
-                <TextBlock Text="メールアドレス" Margin="20,50,0,-23" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.MailAddress}" Margin="20,50,20,-14" Width="244" AcceptsReturn="True"/>
+            <StackPanel Orientation="Horizontal" Height="164">
+                <TextBlock Text="名前" Margin="20,105,0,10" FontWeight="Bold" FontSize="20"/>
+                <TextBox Text="{Binding Employee.Name}" Margin="20,105,0,10" Width="200" AcceptsReturn="True" FontSize="20"/>
+                <TextBlock Text="メールアドレス" Margin="20,105,0,10" FontWeight="Bold" FontSize="20"/>
+                <TextBox Text="{Binding Employee.MailAddress}" Margin="20,105,20,10" Width="244" AcceptsReturn="True" FontSize="20"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Height="64">
-                <TextBlock Text="CD    " Margin="20,69,0,-33" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.CD}" Margin="20,69,0,-33" Width="200" AcceptsReturn="True"/>
-                <TextBlock Text="パスワード" Margin="20,69,0,-33" FontWeight="Bold"/>
-                <TextBox Text="{Binding Employee.Password}" Margin="20,69,0,-33"  Width="200" AcceptsReturn="True"/>
+            <StackPanel Orientation="Horizontal" Height="146">
+                <TextBlock Text="CD    " Margin="20,69,0,42" FontWeight="Bold" FontSize="20" Width="38"/>
+                <TextBox Text="{Binding Employee.CD}" Margin="20,50,0,42" Width="198" AcceptsReturn="True" FontSize="20"/>
+                <TextBlock Text="パスワード" Margin="20,69,0,26" FontWeight="Bold" FontSize="20" Width="112"/>
+                <TextBox Text="{Binding Employee.Password}" Margin="20,50,0,42"  Width="243" AcceptsReturn="True" FontSize="20"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Height="116">
-                <TextBlock Text="課名" Margin="20,75,0,20" FontWeight="Bold"/>
-                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Employee.SectionId}" Margin="20,75,0,20" Width="87"/>
-                <Button Content="登録" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Margin="330,75,0,20" Width="49"/>
-                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White" Margin="20,75,0,20" Width="80" />
+            <StackPanel Orientation="Horizontal" Height="163" HorizontalAlignment="Right" Width="1144">
+                <TextBlock Text="課名" Margin="20,75,0,20" FontWeight="Bold" FontSize="20"/>
+                <ComboBox ItemsSource="{Binding Sections}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedValue="{Binding Employee.SectionId}" Margin="20,59,0,56" Width="179"/>
+                <Button Content="登録" Command="{Binding Submit2Command}" Background="#6495ED" Foreground="White" Margin="330,90,0,20" Width="126" FontSize="20"/>
+                <Button Content="キャンセル" Command ="{Binding CancelCommand}" Background="#6495ED" Foreground="White" Margin="20,90,0,20" Width="127" FontSize="20" />
             </StackPanel>
         </StackPanel>
 
