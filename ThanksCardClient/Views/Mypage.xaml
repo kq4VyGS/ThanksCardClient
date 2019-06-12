@@ -7,7 +7,8 @@
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
         Title="⌂マイページ" Height="350" Width="525" Background="AliceBlue"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner" 
+        WindowState="Maximized">
 
     <Window.DataContext>
         <vm:MypageViewModel/>
@@ -74,28 +75,68 @@
 
     </i:Interaction.Triggers>
 
+    <!---
     <ScrollViewer>
-    <Grid>
+        <Grid>
+            <StackPanel>
+                <StackPanel Grid.ColumnSpan="2" Height="98">
+                    <UniformGrid  Columns="2">
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="⌂マイページ" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Margin="0,0,-191,0"/>
+                        <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="191,0,-1,0" Background=" #3CB371" RenderTransformOrigin="0.5,0.5"/>
+                    </UniformGrid>
+                    <UniformGrid  Columns="5" Background="#9ACD32">
+                        <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
+                        <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
+                    </UniformGrid>
+                    <StackPanel>
+                        <UniformGrid Columns="5" Background="skyblue" Height="26">
+                            <TextBlock Text="{Binding AuthorizedEmployee.Name}"  FontSize="20" Margin="36,0,0,0"/>
+                            <TextBlock Text="さん"  FontSize="20" HorizontalAlignment="Left" Width="42"/>
+                            <TextBlock Text="部署:" Margin="0,0,68,0" Height="26" VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding AuthorizedEmployee.Section.Department.Name}" Margin="-63,0,5,0"/>
+                            <Button Content="感謝カード作成" Command="{Binding ShowKanshaCardCommand}" Foreground="White" Background="#6495ED"/>
+                        </UniformGrid>
+                    </StackPanel>
+                    <UniformGrid Columns="2" Background="skyblue">
+                        <TextBlock Text="メールアドレス:" Margin="161,0,17,0"/>
+                        <TextBlock Text="{Binding AuthorizedEmployee.MailAddress}" Margin="-12,0,101,0"/>
+                    </UniformGrid>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="30" HorizontalAlignment="Left" Width="500"/>
+            <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+            <Button Content="どういたしまして" Margin="408,0,0,0"  Foreground="White" Background="#6495ED"/>
+            <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+            <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+        </Grid>
+    </ScrollViewer>
+    -->
+
+    <ScrollViewer>
+        <Grid>
 
 
-        <StackPanel>
+            <StackPanel>
 
                 <StackPanel Grid.ColumnSpan="2" Height="98">
-                <UniformGrid  Columns="2">
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="⌂マイページ" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Margin="0,0,-191,0"></TextBlock>
-                    <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="191,0,-1,0" Background=" #3CB371" RenderTransformOrigin="0.5,0.5"/>
-                </UniformGrid>
+                    <UniformGrid  Columns="2">
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="⌂マイページ" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Margin="0,0,-191,0"></TextBlock>
+                        <Button Content="ログアウト" Command="{Binding ShowMainWindowCommand}" Margin="191,0,-1,0" Background=" #3CB371" RenderTransformOrigin="0.5,0.5"/>
+                    </UniformGrid>
 
-              
-               <UniformGrid  Columns="5" Background="#9ACD32">
-                    <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
-                    <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
-                    <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
-                    <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
-                    <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
-                </UniformGrid>
-              
-            <StackPanel>
+
+                    <UniformGrid  Columns="5" Background="#9ACD32">
+                        <Button Content="マイページ" Command="{Binding ShowMypageCommand}" Background="#9ACD32" Foreground="White" Height="32" />
+                        <Button Content="掲示板" Command="{Binding ShowKeizibanCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="ピックアップ" Command="{Binding ShowPickupCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="部署" Command="{Binding ShowBusyoCommand}" Background="#9ACD32" Foreground="White"/>
+                        <Button Content="ランキング" Command="{Binding ShowRankingCommand}" Background="#9ACD32" Foreground="White"/>
+                    </UniformGrid>
+
+                    <StackPanel>
                         <UniformGrid Columns="5" Background="skyblue" Height="26">
                             <TextBlock Text="{Binding AuthorizedEmployee.Name}"  FontSize="20" Margin="36,0,0,0"/>
                             <TextBlock Text="さん"  FontSize="20" HorizontalAlignment="Left" Width="42"/>
@@ -113,12 +154,187 @@
 
 
                 </StackPanel>
-            <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="30" HorizontalAlignment="Left" Width="500"/>
-            <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
-                <Button Content="どういたしまして" Margin="408,0,0,0"  Foreground="White" Background="#6495ED"/>
-            <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
-            <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
-        </StackPanel>
-    </Grid>
-        </ScrollViewer>
+                
+                <StackPanel>
+                    <TextBlock Text="1番感謝カードをくれた人" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="30" HorizontalAlignment="Left" Width="500"/>
+
+
+                    <DataGrid ItemsSource="{Binding Favorites}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#00CED1" />
+                                <Setter Property="BorderBrush" Value="White" />
+                                <Setter Property="BorderThickness" Value="0.5" />
+                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="BorderBrush" Value="Black" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="お気に入り" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="FavoriteCheck" Width="25" IsChecked="{Binding Path=Favorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.FavoriteCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.FavoriteUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="自分宛感謝カード" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+
+                    <DataGrid ItemsSource="{Binding ReceiveCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#00CED1" />
+                                <Setter Property="BorderBrush" Value="White" />
+                                <Setter Property="BorderThickness" Value="0.5" />
+                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="BorderBrush" Value="Black" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="お気に入り" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="FavoriteCheck" Width="25" IsChecked="{Binding Path=Favorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.FavoriteCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.MypageFavoriteUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+               
+                <StackPanel>
+                    <TextBlock Text="お気に入り" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+
+
+                    <DataGrid ItemsSource="{Binding FavoriteCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#00CED1" />
+                                <Setter Property="BorderBrush" Value="White" />
+                                <Setter Property="BorderThickness" Value="0.5" />
+                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="BorderBrush" Value="Black" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="お気に入り" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="FavoriteCheck" Width="25" IsChecked="{Binding Path=Card.Favorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.FavoriteCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Card.Id}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.FavoriteUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Card.Date}" Width="75"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = Card.From.Name}" Width="50"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = Card.To.Name}" Width="50"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Card.Title}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Card.Text}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+               
+                <StackPanel>
+                    <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #3CB371" Height="26"/>
+
+                    <DataGrid ItemsSource="{Binding SendCards}" AutoGenerateColumns="False" CanUserAddRows="False" Width="525"
+                           FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#00CED1" />
+                                <Setter Property="BorderBrush" Value="White" />
+                                <Setter Property="BorderThickness" Value="0.5" />
+                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="BorderBrush" Value="Black" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="お気に入り" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="FavoriteCheck" Width="25" IsChecked="{Binding Path=Favorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.FavoriteCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.MypageFavoriteUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="75"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="50"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="50"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="150"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+
+
 </Window>
