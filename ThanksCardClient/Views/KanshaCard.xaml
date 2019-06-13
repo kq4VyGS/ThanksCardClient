@@ -6,9 +6,8 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:ThanksCardClient.Views"
         xmlns:vm="clr-namespace:ThanksCardClient.ViewModels"
-        Title="感謝カード作成" Height="500" Width="600" Background="#F5F5F5"
-        WindowStartupLocation="CenterOwner"
-        WindowState="Maximized">
+        Title="感謝カード作成" Height="500" Width="750" Background="#F5F5F5"
+        WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
         <vm:KanshaCardViewModel/>
@@ -140,8 +139,10 @@
 
 
         <StackPanel Orientation="Horizontal">
-            <Button Content="送信" Command="{Binding SubmitCommand}" Margin="370,422,0,10" Background="#6495ED" Foreground="White" FontSize="15" Width="83"/>
-            <Button Content="キャンセル" Command="{Binding CancelCommand}" Margin="30,422,0,10" Background="#6495ED" Foreground="White" FontSize="15" Width="88"/>
+            <Button Content="送信" Command="{Binding SubmitCommand}" Margin="370,400,0,10" Background="#6495ED"
+                    Height="40" Foreground="White" FontSize="15" Width="80"/>
+            <Button Content="キャンセル" Command="{Binding CancelCommand}" Margin="30,400,0,10" Background="#6495ED"
+                    Height="40" Foreground="White" FontSize="15" Width="80"/>
         </StackPanel>
 
         
