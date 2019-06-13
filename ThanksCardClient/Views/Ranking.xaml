@@ -100,9 +100,9 @@
                         </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="True" Header="順位" Binding="{Binding Rank}" Width="250"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="名前" Binding="{Binding Name}" Width="250"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="受け取った枚数" Binding="{Binding Count}" Width="250"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="順位" Binding="{Binding Rank}" Width="200"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="名前" Binding="{Binding Name}" Width="300"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="受け取った枚数" Binding="{Binding Count}" Width="200"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
