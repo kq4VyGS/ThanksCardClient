@@ -162,12 +162,11 @@
                 <StackPanel>
                     <TextBlock Text="一番感謝カードをくれた人" FontWeight="Bold" Foreground="White" 
                                FontSize="20" VerticalAlignment="Top" Background="#FFD700" Height="26" />
-
-                  
                     <DataGrid ItemsSource="{Binding Favorites}" AutoGenerateColumns="False" CanUserAddRows="False"
-                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top" Height="150"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
                                 <Setter Property="Background" Value="#F0E68C" />
                                 <Setter Property="BorderBrush" Value="White" />
                                 <Setter Property="BorderThickness" Value="0.5" />
@@ -177,29 +176,29 @@
                         </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="お気に入り" >
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <CheckBox x:Name="FavoriteCheck" Width="20" IsChecked="{Binding Path=Favorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="Checked" >
-                                                        <i:InvokeCommandAction Command="{Binding DataContext.FavoriteCheckCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
-                                                    </i:EventTrigger>
-                                                    <i:EventTrigger EventName="Unchecked" >
-                                                        <i:InvokeCommandAction Command="{Binding DataContext.FavoriteUnCheckedCommand, RelativeSource = {RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding Path=Id}"/>
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </CheckBox>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                
+                            <DataGridTemplateColumn Header="お気に入り" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="FavoriteCheck" Width="20" IsChecked="{Binding Favorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.FavoriteCheckCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Id}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="Unchecked" >
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.FavoriteUnCheckedCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Id}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
-                                <DataGridTextColumn IsReadOnly="True" Header="日時" Binding="{Binding Path = Date}" Width="80"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="100"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="100"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="180"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Path = Text}" Width="200"/>
+
+                            <DataGridTextColumn IsReadOnly="True" Header="日時" Binding="{Binding Date}" Width="80"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding From.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding To.Name}" Width="100"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Title}" Width="180"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="感謝の言葉" Binding="{Binding Text}" Width="200"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
@@ -209,7 +208,8 @@
                                FontSize="20" VerticalAlignment="Top" Background="#800080" Height="26"/>
 
                     <DataGrid ItemsSource="{Binding ReceiveCards}" AutoGenerateColumns="False" CanUserAddRows="False"
-                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top" Height="150"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#FF69B4" />
@@ -257,7 +257,8 @@
 
 
                     <DataGrid ItemsSource="{Binding FavoriteCards}" AutoGenerateColumns="False" CanUserAddRows="False"
-                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top" Height="150"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#FF6347" />
@@ -301,8 +302,10 @@
                 <StackPanel>
                     <TextBlock Text="送信一覧" FontWeight="Bold" Foreground="White" FontSize="20" VerticalAlignment="Top" Background=" #0000CD" Height="26"/>
 
+
                     <DataGrid ItemsSource="{Binding SendCards}" AutoGenerateColumns="False" CanUserAddRows="False"
-                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top">
+                          FontWeight="Bold" Foreground="Black" FontSize="10" VerticalAlignment="Top" Height="150"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <DataGrid.ColumnHeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="#00CED1" />
@@ -344,6 +347,5 @@
             </StackPanel>
         </Grid>
     </ScrollViewer>
-
 
 </Window>

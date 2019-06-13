@@ -139,7 +139,7 @@
 
 
         <StackPanel Orientation="Horizontal">
-            <Button Content="送信" Command="{Binding SubmitCommand}" Margin="370,400,0,10" Background="#6495ED"
+            <Button Content="送信" Command="{Binding SubmitCommand}" Margin="530,400,0,10" Background="#6495ED"
                     Height="40" Foreground="White" FontSize="15" Width="80"/>
             <Button Content="キャンセル" Command="{Binding CancelCommand}" Margin="30,400,0,10" Background="#6495ED"
                     Height="40" Foreground="White" FontSize="15" Width="80"/>
