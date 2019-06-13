@@ -89,7 +89,7 @@
                 <UniformGrid  Columns="4" Width="514">
                     <TextBlock Text="日付:" Margin="10,80,76,221" FontWeight="Bold" FontSize="15"/>
                     <DatePicker SelectedDate="{Binding Date.Date}" Margin="-71,80,63,423"/>
-                    <Button Content="履歴" Command="{Binding ShowRefineCardsCommand}" Margin="-59,80,107,431"
+                    <Button Content="日付検索" Command="{Binding ShowRefineCardsCommand}" Margin="-59,80,107,431"
                             Background="#6495ED" Foreground="White" Width="80"/>
                     <Button Content="更新" Command="{Binding ShowPickupCommand}" Foreground="White" 
                             Margin="200,80,-152,431" Background="#6495ED" HorizontalAlignment="Left" Width="80"/>
@@ -156,7 +156,7 @@
 
 
 
-                        <DataGridTextColumn IsReadOnly="True" Header="作成日時" Binding="{Binding Path = Date}" Width="150"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="日時" Binding="{Binding Path = Date}" Width="150"/>
                         <DataGridTextColumn IsReadOnly="True" Header="From" Binding="{Binding Path = From.Name}" Width="100"/>
                         <DataGridTextColumn IsReadOnly="True" Header="To" Binding="{Binding Path = To.Name}" Width="100"/>
                         <DataGridTextColumn IsReadOnly="True" Header="タイトル" Binding="{Binding Path = Title}" Width="200"/>

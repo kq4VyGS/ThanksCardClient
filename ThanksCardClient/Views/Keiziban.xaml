@@ -89,8 +89,8 @@
                 <UniformGrid  Columns="4" Width="680">
                     <TextBlock Text="日付:" Margin="10,66,76,221" FontWeight="Bold" FontSize="15"/>
                     <DatePicker SelectedDate="{Binding Date.Date}" Margin="-71,66,90,441"/>
-                    <Button Content="履歴" Command="{Binding ShowRefineCardsCommand}" Margin="-86,66,154,441" Background="#6495ED" Foreground="White"/>
-                    <Button Content="更新" Command="{Binding ShowKeizibanCommand}" Foreground="White" Margin="150,0,-46,441" Background="#6495ED" HorizontalAlignment="Left" Width="66" Height="32" VerticalAlignment="Bottom"/>
+                    <Button Content="日付検索" Command="{Binding ShowRefineCardsCommand}" Margin="-86,66,154,441" Background="#6495ED" Foreground="White"/>
+                    <Button Content="更新" Command="{Binding ShowKeizibanCommand}" Foreground="White" Margin="90,0,0,441" Background="#6495ED" HorizontalAlignment="Left" Width="80" Height="32" VerticalAlignment="Bottom"/>
                 </UniformGrid>
             </StackPanel>
 
@@ -144,7 +144,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="作成日時" Binding="{Binding Path = Date}" Width="150">
+                        <DataGridTextColumn Header="日時" Binding="{Binding Path = Date}" Width="150">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
